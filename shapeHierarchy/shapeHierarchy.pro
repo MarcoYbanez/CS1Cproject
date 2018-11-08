@@ -29,7 +29,14 @@ SOURCES += \
         hierarchy.cpp
 
 HEADERS += \
-        hierarchy.h
+        hierarchy.h \
+    shape.h \
+    text.h \
+    rectangle.h \
+    polyline.h \
+    polygon.h \
+    line.h \
+    ellipse.h
 
 FORMS += \
         hierarchy.ui
