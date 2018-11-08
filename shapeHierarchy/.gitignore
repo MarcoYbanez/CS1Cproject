@@ -1,0 +1,5 @@
+.DS_Store
+.vscode
+.shapeHierarchy.pro
+.shapeHierarchy.pro.user
+.main.cpp
