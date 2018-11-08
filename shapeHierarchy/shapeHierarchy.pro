@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-11-01T11:07:33
+# Project created by QtCreator 2018-11-08T10:00:37
 #
 #-------------------------------------------------
 
@@ -10,7 +10,7 @@ QT += gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = CS1Cproject
+TARGET = shapeHierarchy
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -29,13 +29,20 @@ CONFIG +=sdk_no_version_check
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        hierarchy.cpp
 
 HEADERS += \
-        mainwindow.h
+        hierarchy.h \
+    shape.h \
+    text.h \
+    rectangle.h \
+    polyline.h \
+    polygon.h \
+    line.h \
+    ellipse.h
 
 FORMS += \
-        mainwindow.ui
+        hierarchy.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
