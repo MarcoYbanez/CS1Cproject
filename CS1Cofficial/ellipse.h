@@ -1,5 +1,6 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef ELLIPSE_H
+#define ELLIPSE_H
+
 #include <string>
 #include <QPen>
 #include <QFont>
@@ -7,17 +8,17 @@
 #include "shape.h"
 using namespace std;
 
-class Rectangle : public Shape
+class Ellipse : public Shape
 {
 private:
     int x1;
     int y1; //(x1,y1) top left point
-    int l; //length
-    int w; //width
+    int a; //semi-major axis
+    int b; //semi-minor axis
 public:
     void draw()
     {
-        painter.drawRect(x1,y1,l,w);
+       painter.drawEllipse(x1,y1,a,b);
     }
 
     void move()
@@ -36,4 +37,6 @@ public:
     }
 };
 
-#endif // RECTANGLE_H
+
+
+#endif // ELLIPSE_H

@@ -1,5 +1,6 @@
-#ifndef POLYGON_H
-#define POLYGON_H
+#ifndef RECTANGLE_H
+#define RECTANGLE_H
+
 #include <string>
 #include <QPen>
 #include <QFont>
@@ -7,14 +8,17 @@
 #include "shape.h"
 using namespace std;
 
-class Polygon : public Shape
+class Rectangle : public Shape
 {
 private:
-
+    int x1;
+    int y1; //(x1,y1) top left point
+    int l; //length
+    int w; //width
 public:
     void draw()
     {
-        
+        painter.drawRect(x1,y1,l,w);
     }
 
     void move()
@@ -33,4 +37,4 @@ public:
     }
 };
 
-#endif // POLYGON_H
+#endif // RECTANGLE_H
