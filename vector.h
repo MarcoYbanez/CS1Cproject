@@ -157,7 +157,7 @@ public:
 			reserve(2*capacity);
 
 		size++;
-		for (iterator pos = p + 1; pos != end(); ++pos)
+		for (iterator pos = end(); pos != p; --pos)
 			*pos  = *(pos - 1);
 
 		*p = val;
