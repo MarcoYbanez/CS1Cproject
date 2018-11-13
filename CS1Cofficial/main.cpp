@@ -111,12 +111,81 @@ PenJoinStyle: MiterJoin
 void ParseData(){ //Since this will be a member of Vector, parameters will change
 
     enum ShapeType { Line, PolyLine, Polygon, Rectangle, Square, Ellipse, Circle, Text};
+    ShapeType enumVal;
 
     ifstream& dataBase
     dataBase.open("shapes.txt");
 
-    while(dataBase){
+   // C
 
+	string target = "ShapeId: ";
+	string line; 
+	int ShapeId;
+	string ShapeType;
+
+	/*
+		NOTE: I could switch to enum if depending on constructors
+	*/
+
+	//General Characteristics Shared by most shapes 
+	string ShapeDimensions; 	// saved as an entire string, but will slice into individual int's
+	string PenColor;
+	int PenWidth;
+	string PenStyle;
+	string PenCapStyle;
+	string PenJoinStyle;
+
+	string BrushColor;
+	string BrushStyle;
+
+	//Characteristics for just text
+	string TextString;
+	string TextColor; 
+	string TextAlignment;
+	string TextPointSize;
+	string TextFontFamily;
+	string TextFontStyle;
+	string TextFontWeight;
+
+    while(!(dataBase.eof())){
+    	getline(dataBase, line);
+
+    	//identifier has been taken in.
+    	if(line.find(target) != std::string::npos){ // ShapeID: is found 
+    		
+    		ShapeID = stoi(line.substr(9));
+    		getline(dataBase, ShapeType);
+    		ShapeType = ShapeType.substr(11);
+
+    		if(ShapeType == "Line"){
+    			
+
+    		}
+    		if(ShapeType == "Polyline"){
+
+    		}
+    		if(ShapeType == "Polygon"){
+
+    		}
+    		if(ShapeType == "Rectangle"){
+
+    		}
+    		if(ShapeType == "Square"){
+
+    		}
+    		if(ShapeType == "Ellipse"){
+
+    		}
+    		if(ShapeType == "Circle"){
+
+    		}
+    		if(ShapeType == "Text"){
+
+    		}
+
+
+
+    	}
 
 
     }
