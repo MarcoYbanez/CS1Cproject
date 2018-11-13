@@ -156,9 +156,10 @@ public:
 		if(size == capacity)
 			reserve(2*capacity);
 
-		size++;
 		for (iterator pos = end(); pos != p; --pos)
 			*pos  = *(pos - 1);
+		
+		size++;
 
 		*p = val;
 
