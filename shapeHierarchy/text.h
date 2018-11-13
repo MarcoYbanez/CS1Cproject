@@ -15,13 +15,20 @@ private:
     int l; //length
     int w; //width
     //dimensions for a textbox-rectangle
+    string textString;
+    Qt::GlobalColor textColor;
+    Qt::AlignmentFlag textAlignment;
+    int textPointSize;
+    string textFontFamily;
+    QFont::Style textFontStyle;
+    QFont::Weight textFontWeight;
 public:
     void draw()
     {
         //painter.drawText()
     }
 
-    void move()
+    void move() //admin only
     {
 
     }
@@ -35,5 +42,22 @@ public:
     {
 
     }
+
+    Text():Shape(8)
+    {
+        x1 = 250;
+        y1 = 425;
+        l = 500;
+        w = 50;
+        textString = "Class Project 2 - 2D Graphics Modeler";
+        textColor = Qt::blue;
+        textAlignment = Qt::AlignCenter;
+        textPointSize = 10;
+        textFontFamily = "Comic Sans MS";
+        textFontStyle = QFont::StyleNormal;
+        textFontWeight = QFont::Normal;
+    }
+
+
 };
 #endif // TEXT_H

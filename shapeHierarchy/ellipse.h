@@ -34,6 +34,14 @@ public:
     {
 
     }
+
+    Ellipse():Shape(6,Qt::black,12,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin,Qt::white,Qt::NoBrush)
+    {
+        x1 = 520;
+        y1 = 200;
+        a = 170;
+        b = 100;
+    }
 };
 
 #endif // ELLIPSE_H

@@ -17,15 +17,40 @@ private:
     Qt::PenJoinStyle joinStyle;
     Qt::GlobalColor brushColor;
     Qt::BrushStyle brushStyle;
-    string textString;
-    Qt::GlobalColor textColor;
-    Qt::AlignmentFlag textAlignment;
-    int textPointSize;
-    string textFontFamily;
-    QFont::Style textFontStyle;
-    QFont::Weight textFontWeight;
+
 public:
     QPainter painter;  //used to draw functions, currently public
+
+    //constructor
+    Shape(int id)
+    {
+        shapeId = id;
+    }
+
+    Shape(int id, Qt::GlobalColor penC, int penW, Qt::PenStyle penS, Qt::PenCapStyle capS, Qt::PenJoinStyle joinS)
+    {
+        shapeId = id;
+        penColor = penC;
+        penWidth = penW;
+        penStyle = penS;
+        capStyle = capS;
+        joinStyle = joinS;
+
+    }
+
+    Shape(int id, Qt::GlobalColor penC, int penW, Qt::PenStyle penS, Qt::PenCapStyle capS, Qt::PenJoinStyle joinS,
+          Qt::GlobalColor brushC, Qt::BrushStyle brushS)
+    {
+        shapeId = id;
+        penColor = penC;
+        penWidth = penW;
+        penStyle = penS;
+        capStyle = capS;
+        joinStyle = joinS;
+        brushColor = brushC;
+        brushStyle = brushS;
+
+    }
 
     //pure virtual functions:
     virtual void draw() = 0;
@@ -44,6 +69,8 @@ public:
 
     //disable (by marking deleted?):
     //copy constructor, assignment
+
+
 
 };
 

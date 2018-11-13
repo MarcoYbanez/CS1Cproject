@@ -36,6 +36,14 @@ public:
 
  }
 
+ Line():Shape(1,Qt::blue,2,Qt::DashDotLine,Qt::FlatCap,Qt::MiterJoin)
+ {
+     x1 = 20;
+     y1 = 90;
+     x2 = 100;
+     y2 = 20;
+ }
+
 };
 
 #endif // LINE_H
