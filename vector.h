@@ -41,7 +41,7 @@ public:
 		elem = p;
 		size = newVector.size;
 		capacity = newVector.capacity;
-		
+
 		return *this;
 	}
 
@@ -51,7 +51,7 @@ public:
 		temp.capacity = 0;
 		temp.elem = nullptr;
 	}
-		
+
 		vector& operator=(vector&& temp) //move assignment
 	{
 		delete [] elem;
@@ -70,7 +70,7 @@ public:
 	delete[] elem;
 	}
 
-	T& operator[] (int n) 
+	T& operator[] (int n)
 	{
 		return elem[n];
 	}
@@ -80,12 +80,12 @@ public:
 	return elem[n];
 	}
 
-	int size() const
+	int getSize() const
 	{
 		return size;
 	}
 
-	int capacity() const
+	int getCapacity() const
 	{
 		return capacity;
 	}
@@ -93,7 +93,7 @@ public:
 	void resize(int newsize)
 	{
 		reserve(newsize);
-		for (int i = size; i < newsize; ++i) 
+		for (int i = size; i < newsize; ++i)
 			elem[i] = 0;
 		size = newsize;
 	}
@@ -112,7 +112,7 @@ public:
 
 	void push_back(T d)
 	{
-		if (capacity == 0) 
+		if (capacity == 0)
 			reserve(8);
 		else if(size == capacity)
 			reserve(2 * capacity);
@@ -125,7 +125,7 @@ public:
 
 	iterator begin()
 	{
-		if (size == 0) 
+		if (size == 0)
 			return nullptr;
 		return &elem[0];
 	}
@@ -139,7 +139,7 @@ public:
 
 	iterator end()
 	{
-		if (size == 0) 
+		if (size == 0)
 			return nullptr;
 		return &elem[size];
 	}
@@ -151,7 +151,7 @@ public:
 		return &elem[size];
 	}
 
-	iterator insert(iterator p, const T &val) 
+	iterator insert(iterator p, const T &val)
 	{
 		if(size == capacity)
 			reserve(2*capacity);
@@ -178,6 +178,7 @@ public:
 };
 
 #endif /* VECTOR_H_ */
+
 
 
 
