@@ -58,25 +58,6 @@ using namespace std;
 
 /*
 -Marco
-Personal Notes:
-    - Identifiers are given first before reaching data
-        --> how can the first part and commas be ignored.
-            --> goal: algorithm to search a line for a series of words, then getline whatever is after
-    - Data is given in strings
-        --> convert by casting ?
-        --> Switch statement
-
-
-Example Data
-ShapeId: 1
-ShapeType: Line
-ShapeDimensions: 20, 90, 100, 20
-PenColor: blue
-PenWidth: 2
-PenStyle: DashDotLine
-PenCapStyle: FlatCap
-PenJoinStyle: MiterJoin
-
 
 /********************************************************************************
 *	PRE-CONDITION:                                                              *
@@ -103,9 +84,17 @@ PenJoinStyle: MiterJoin
 *                                                                               *
 ********************************************************************************/
 
-
-
-
+/*
+Example Data
+ShapeId: 1
+ShapeType: Line
+ShapeDimensions: 20, 90, 100, 20
+PenColor: blue
+PenWidth: 2
+PenStyle: DashDotLine
+PenCapStyle: FlatCap
+PenJoinStyle: MiterJoin
+*/
 
 //Parser to be included within Vector class
 void ParseData(){ //Since this will be a member of Vector, parameters will change
