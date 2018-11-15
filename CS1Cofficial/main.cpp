@@ -223,21 +223,22 @@ void ParseData(){ //Since this will be a member of Vector, parameters will chang
 	string TextFontStyle;
 	string TextFontWeight;
 
-    while(!(dataBase.eof())){
-    	getline(dataBase, line);
+	while(!(dataBase.eof())){	
 
-    	//identifier has been taken in.
-    	if(line.find(target) != std::string::npos){ // ShapeID: is found 
-    		
-    		ShapeID = stoi(line.substr(9));
-    		
-    		getline(dataBase, ShapeType);
-    		ShapeType = ShapeType.substr(11);
+		getline(dataBase, input);
 
-			getline(dataBase, ShapeDimensions);
+		if(input.find(target) != std::string::npos){ //target would be found at this point 
+			
+			ShapeId = stoi(input.substr(9));
+			getline(dataBase, shapeType);
+			shapeType = shapeType.substr(11);
 
+			getline(dataBase, ShapeDimensions);				
 
-    		if(ShapeType == "Text"){
+			if(shapeType == "Text"){
+
+				int textDimmensions[4]; 
+
 				getline(dataBase, TextString);
 				TextString = TextString.substr(12);
 
@@ -258,72 +259,66 @@ void ParseData(){ //Since this will be a member of Vector, parameters will chang
 
 				getline(dataBase, TextFontWeight);
 				TextFontWeight = TextFontWeight.substr(16);
-    		}
-    		else{
+
+				dimmensionParser(ShapeDimensions, textDimmensions);
+
+				// ---> ****** array is fille with int dimmenstions here ****** <---
+
+				/*
+					Convert Data here to match data for constructor
+
+					--> call the dimmension parser 
+
+					--> save data to vector before the leaving the scope
+				*/
 
 
+			}
+			else{
 
+				getline(dataBase, PenColor);
+				PenColor = PenColor.substr(10);
 
-    		}
+				getline(dataBase, PenWidth);
+				PenWidth = PenWidth.substr(10); //Needs casting
+				
 
-    		if(ShapeType == "Line"){
+				getline(dataBase, PenStyle);
+				PenStyle = PenStyle.substr(10);
 
-    			//Confirmed to take out data per line
+				getline(dataBase, PenCapStyle);
+				PenCapStyle = PenCapStyle.substr(13);
 
-					int lineArray[4];
-					getline(dataBase, ShapeDimensions);
+				getline(dataBase, PenJoinStyle);
+				PenJoinStyle = PenJoinStyle.substr(14);
 
-					dimmensionParser(ShapeDimensions, lineArray);
+				if( (ShapeType != "Line") || (ShapeType != "Polyline")){
+					getline(dataBase, BrushColor);
+					BrushColor = BrushColor.substr(12);
 
-					for(int i = 0; i < 4; i++){
-						cout << "dimmension " << i << ": " << lineArray[i] << endl; 
-					}
+					getline(dataBase, BrushStyle);
+					BrushStyle = BrushStyle.substr(12);
 
-					getline(dataBase, PenColor);
-					PenColor = PenColor.substr(10);
+					/*
+						----> *** Switch statment to create array's for the correct shape
+									- create object within that scope and save to vector
 
-					getline(dataBase, PenWidth);
-					PenWidth = PenWidth.substr(10); //Needs casting
-					
+					*/
 
-					getline(dataBase, PenStyle);
-					PenStyle = PenStyle.substr(10);
+				}
 
-					getline(dataBase, PenCapStyle);
-					PenCapStyle = PenCapStyle.substr(13);
+				/*
+					---> ***** create code that will handle if he parse data will be for a 
+						polyline OR for line
 
-					getline(dataBase, PenJoinStyle);
-					PenJoinStyle = PenJoinStyle.substr(14);    			
+						- create object and save to vector.
+				*/
 
-    		}
-    		if(ShapeType == "Polyline"){
+			}
 
-    		}
-    		if(ShapeType == "Polygon"){
-
-    		}
-    		if(ShapeType == "Rectangle"){
-
-    		}
-    		if(ShapeType == "Square"){
-
-    		}
-    		if(ShapeType == "Ellipse"){
-
-    		}
-    		if(ShapeType == "Circle"){
-
-    		}
-    		if(ShapeType == "Text"){
-
-    		}
-
-
-
-    	}
-
-
-    }
+		}
+	
+	}
 
 
     dataBase.close();
