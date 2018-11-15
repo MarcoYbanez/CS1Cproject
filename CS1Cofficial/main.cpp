@@ -56,6 +56,92 @@ using namespace std;
 
 #include <QApplication>
 
+/********************************************************************************
+*	PRE-CONDITION: Array of int's needed and SET TO THE CORRECT CAPACITY		*
+*																				*
+*	Function name: dimmensionParser(string& dimmensionString, int Array[]) 		*
+*																				*
+*	-Functionality: function accepts string, return's int[] of dimmensions 		*
+*		ready to be passed to the corresponding shapes constructor. 			*
+*		(dimmensions accepted in order from text file)							*
+*																				*
+*	-Variables																	*
+*																				*
+*	Name			Data Type	 Value											*
+*	------------	------------ --------------------							*
+*	dimmensionSTR 	string 														*
+*	ArrPosition		int 		 0 		(Purpose: indexing value)				*
+*	set 			bool 		 false 	(Purpose: flag when number's complete)	*
+*																				*
+*	-Process: 																	*
+*		1) for loop to go through the entire string 							*
+*			2) if number is found, it will check to see if the next character 	*
+*				is a number														*
+*				3) if number is found it will check to see if the next character*
+*					is a number 												*
+*			4) moves up i value to start from the newest point 					*
+*		5) Saves number as a string 											*
+*		6) flag triggered - casts to int - saves value to array 				*
+*	-Output: Array is filled with seperate values to be assigned to Shape 		*
+*																	constructer	*
+*	-POST-CONDITION: Array is filled with dimmension's as intergers			 	*
+*															  	  				*
+********************************************************************************/
+void dimmensionParser(string& dimmensionString, int Array[]){
+
+	string dimmensionSTR;
+	int ArrPosition = 0;
+
+	for(int i = 0; i < dimmensionString.length(); i++){
+
+		bool set = false;
+
+		string startingCharacter = dimmensionString.substr(i,1); //checking first value
+
+		int INTcharacterOver = i + 1;
+		string characterOver = dimmensionString.substr(INTcharacterOver, 1);
+
+		int INTcharacterOverNext = INTcharacterOver + 1;
+		string characterOverNext = dimmensionString.substr(INTcharacterOverNext, 1);
+		
+		if(startingCharacter == "1" || startingCharacter == "2" || startingCharacter == "3" 
+			|| startingCharacter == "4" || startingCharacter == "5" || startingCharacter == "6" 
+			|| startingCharacter == "7" || startingCharacter == "8" || startingCharacter == "9" 
+			|| startingCharacter == "0"){
+
+			dimmensionSTR = startingCharacter;
+
+			if(characterOver == "1" || characterOver == "2" || characterOver == "3" 
+				|| characterOver == "4" || characterOver == "5" || characterOver == "6" 
+				|| characterOver == "7" || characterOver == "8" || characterOver == "9" || characterOver == "0"){
+			
+				dimmensionSTR += characterOver;
+
+				if(characterOverNext == "1" || characterOverNext == "2" || characterOverNext == "3" 
+					|| characterOverNext == "4" || characterOverNext == "5" || characterOverNext == "6" 
+					|| characterOverNext == "7" || characterOverNext == "8" || characterOverNext == "9" 
+					|| characterOverNext == "0"){
+
+					dimmensionSTR += characterOverNext;
+				}
+				i += 1;
+			}
+			i += 1;
+			set = true;
+		}
+
+		if(set){
+			int dimmension = stoi(dimmensionSTR);
+
+			Array[ArrPosition] = dimmension;
+			ArrPosition++;
+		}
+	}
+}
+
+
+
+
 /*
 -Marco
 
@@ -105,19 +191,14 @@ void ParseData(){ //Since this will be a member of Vector, parameters will chang
     ifstream& dataBase
     dataBase.open("shapes.txt");
 
-   // C
-
+    //
 	string target = "ShapeId: ";
 	string line; 
+
+	//General Shape Characteristics
 	int ShapeId;
-	string ShapeType;
-
-	/*
-		NOTE: I could switch to enum if depending on constructors
-	*/
-
-	//General Characteristics Shared by most shapes 
-	string ShapeDimensions; 	// saved as an entire string, but will slice into individual int's
+	string ShapeType;			//	NOTE: I could switch to enum if depending on constructors 
+	string ShapeDimensions; 	// dimmensionSTR as an entire string, but will slice into individual int's
 	string PenColor;
 	int PenWidth;
 	string PenStyle;
@@ -127,7 +208,7 @@ void ParseData(){ //Since this will be a member of Vector, parameters will chang
 	string BrushColor;
 	string BrushStyle;
 
-	//Characteristics for just text
+	//Characteristics for just Text
 	string TextString;
 	string TextColor; 
 	string TextAlignment;
@@ -143,8 +224,17 @@ void ParseData(){ //Since this will be a member of Vector, parameters will chang
     	if(line.find(target) != std::string::npos){ // ShapeID: is found 
     		
     		ShapeID = stoi(line.substr(9));
+    		
     		getline(dataBase, ShapeType);
     		ShapeType = ShapeType.substr(11);
+
+
+    		/*
+				TO DO: (Temporary position for both functions... will be a mess to include in Vector.h as undone, so will include once finished)
+					- since dimmensions will be specific this middle portion will be for int[] for that shape
+					- for efficiency function with enums since they will be necessary per Shape_requirement.txt
+					- 
+    		*/
 
     		if(ShapeType == "Line"){
     			
