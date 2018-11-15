@@ -180,6 +180,12 @@ PenWidth: 2
 PenStyle: DashDotLine
 PenCapStyle: FlatCap
 PenJoinStyle: MiterJoin
+
+TO DO: (Temporary position for both functions... will be a mess to include in Vector.h as undone, so will include once finished)
+	- since dimmensions will be specific this middle portion will be for int[] for that shape
+	- for efficiency function with enums since they will be necessary per Shape_requirement.txt
+	- 
+
 */
 
 //Parser to be included within Vector class
@@ -228,16 +234,66 @@ void ParseData(){ //Since this will be a member of Vector, parameters will chang
     		getline(dataBase, ShapeType);
     		ShapeType = ShapeType.substr(11);
 
+			getline(dataBase, ShapeDimensions);
 
-    		/*
-				TO DO: (Temporary position for both functions... will be a mess to include in Vector.h as undone, so will include once finished)
-					- since dimmensions will be specific this middle portion will be for int[] for that shape
-					- for efficiency function with enums since they will be necessary per Shape_requirement.txt
-					- 
-    		*/
+
+    		if(ShapeType == "Text"){
+				getline(dataBase, TextString);
+				TextString = TextString.substr(12);
+
+				getline(dataBase, TextColor);
+				TextColor = TextColor.substr(11);
+
+				getline(dataBase, TextAlignment);
+				TextAlignment = TextAlignment.substr(15);
+
+				getline(dataBase, TextPointSize);
+				TextPointSize = TextPointSize.substr(15);
+
+				getline(dataBase, TextFontFamily);
+				TextFontFamily = TextFontFamily.substr(16);
+
+				getline(dataBase, TextFontStyle);
+				TextFontStyle = TextFontStyle.substr(15);
+
+				getline(dataBase, TextFontWeight);
+				TextFontWeight = TextFontWeight.substr(16);
+    		}
+    		else{
+
+
+
+
+    		}
 
     		if(ShapeType == "Line"){
-    			
+
+    			//Confirmed to take out data per line
+
+					int lineArray[4];
+					getline(dataBase, ShapeDimensions);
+
+					dimmensionParser(ShapeDimensions, lineArray);
+
+					for(int i = 0; i < 4; i++){
+						cout << "dimmension " << i << ": " << lineArray[i] << endl; 
+					}
+
+					getline(dataBase, PenColor);
+					PenColor = PenColor.substr(10);
+
+					getline(dataBase, PenWidth);
+					PenWidth = PenWidth.substr(10); //Needs casting
+					
+
+					getline(dataBase, PenStyle);
+					PenStyle = PenStyle.substr(10);
+
+					getline(dataBase, PenCapStyle);
+					PenCapStyle = PenCapStyle.substr(13);
+
+					getline(dataBase, PenJoinStyle);
+					PenJoinStyle = PenJoinStyle.substr(14);    			
 
     		}
     		if(ShapeType == "Polyline"){
