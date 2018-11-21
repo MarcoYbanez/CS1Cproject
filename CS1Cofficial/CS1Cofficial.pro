@@ -28,7 +28,8 @@ CONFIG+=sdk_no_version_check
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    contact.cpp
+    contact.cpp \
+    login.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,11 +40,13 @@ HEADERS += \
     rectangle.h \
     shape.h \
     text.h \
-    contact.h
+    contact.h \
+    login.h
 
 FORMS += \
         mainwindow.ui \
-    contact.ui
+    contact.ui \
+    login.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
