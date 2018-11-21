@@ -37,8 +37,8 @@ public:
     virtual void perimeter() = 0;
     virtual void area() = 0;
 
-        //*********//
-      // Setters //
+      //*********//
+     // Setters //
     //*********//
     // TO BE FILLED void setGlobalColor(string)
 
