@@ -36,7 +36,7 @@ public:
     virtual void move() = 0;
     virtual void perimeter() = 0;
     virtual void area() = 0;
-
+    virtual void getData() = 0;
         //*********//
       // Setters //
     //*********//
@@ -53,7 +53,7 @@ public:
     }
 
     //disable (by marking deleted?):
-    //copy constructor, assignment
+    Shape(const Shape &);//copy constructor, assignment
 
 };
 
