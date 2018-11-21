@@ -34,7 +34,7 @@ private:
 	void ParseData();	
 	void dimmensionParser(string& dimmensionString, int Array[]);
 
-	//vector<*shape> Storage;
+	//vector<shape*> Storage;
 
 };
 
