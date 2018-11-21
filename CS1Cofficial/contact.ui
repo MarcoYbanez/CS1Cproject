@@ -11,10 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Contact Us</string>
-  </property>
-  <property name="autoFillBackground">
-   <bool>true</bool>
+   <string>Dialog</string>
   </property>
   <widget class="QLabel" name="logo_pic">
    <property name="geometry">
