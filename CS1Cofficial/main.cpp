@@ -193,8 +193,8 @@ void ParseData(){ //Since this will be a member of Vector, parameters will chang
 
     enum ShapeType { Line, PolyLine, Polygon, Rectangle, Square, Ellipse, Circle, Text};
     ShapeType enumVal;
-
-    ifstream& dataBase
+    // need to initialize a reference -*ifstream& dataBase
+    ifstream dataBase;
     dataBase.open("shapes.txt");
 
     //
@@ -206,7 +206,8 @@ void ParseData(){ //Since this will be a member of Vector, parameters will chang
 	string ShapeType;			//	NOTE: I could switch to enum if depending on constructors 
 	string ShapeDimensions; 	// dimmensionSTR as an entire string, but will slice into individual int's
 	string PenColor;
-	int PenWidth;
+    // change penWidth to string to work with getline
+    string PenWidth;
 	string PenStyle;
 	string PenCapStyle;
 	string PenJoinStyle;
@@ -223,6 +224,9 @@ void ParseData(){ //Since this will be a member of Vector, parameters will chang
 	string TextFontStyle;
 	string TextFontWeight;
 
+    //input not defined temp string
+    string input;
+
 	while(!(dataBase.eof())){	
 
 		getline(dataBase, input);
@@ -230,12 +234,12 @@ void ParseData(){ //Since this will be a member of Vector, parameters will chang
 		if(input.find(target) != std::string::npos){ //target would be found at this point 
 			
 			ShapeId = stoi(input.substr(9));
-			getline(dataBase, shapeType);
-			shapeType = shapeType.substr(11);
+            getline(dataBase, ShapeType);
+            ShapeType = ShapeType.substr(11);
 
 			getline(dataBase, ShapeDimensions);				
 
-			if(shapeType == "Text"){
+            if(ShapeType == "Text"){
 
 				int textDimmensions[4]; 
 
@@ -278,7 +282,7 @@ void ParseData(){ //Since this will be a member of Vector, parameters will chang
 
 				getline(dataBase, PenColor);
 				PenColor = PenColor.substr(10);
-
+//get line will store into a string. change int to string.
 				getline(dataBase, PenWidth);
 				PenWidth = PenWidth.substr(10); //Needs casting
 				

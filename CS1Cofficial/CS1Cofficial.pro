@@ -27,7 +27,9 @@ CONFIG+=sdk_no_version_check
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    contact.cpp \
+    login.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -37,12 +39,19 @@ HEADERS += \
     polyline.h \
     rectangle.h \
     shape.h \
-    text.h
+    text.h \
+    contact.h \
+    login.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    contact.ui \
+    login.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    logo.png
