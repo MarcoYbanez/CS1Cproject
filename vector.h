@@ -15,24 +15,19 @@ private:
 	T* elem;
 
 public:
-	vector(): size{0}, capacity{100}, elem{new T[capacity]} //default constructor
-	{
-		for(int i = 0; i < capacity; i++)
-				elem[i] = T();
-	}
+	vector(): size{0}, capacity{100}, elem{new T[capacity]}{} //default constructor
 
-	explicit vector(int s): size{0}, capacity{s}, elem{new T[s]} //alternate constructor
-	{
-		for(int i = 0; i < capacity; i++)
-			elem[i] = T();
-	}
-
+	explicit vector(int s): size{0}, capacity{s}, elem{new T[s]}{} //alternate constructor
+	
 	vector(const vector& newVector): size{newVector.size}, capacity{newVector.capacity}, elem{new T[capacity]} //copy constructor
 	{
 		for(int i = 0; i < size; i++)
 			elem[i] = newVector.elem[i];
 	}
 
+	// IMPORTANT
+	// If the type is a pointer you MUST delete the data pointed to by pointers in this vector before
+	// using this copy assignment function. If this is not done there will be a memory leak.
 	vector& operator=(const vector& newVector) //copy assignment
 	{
 		T *p = new T[newVector.size];
@@ -52,6 +47,9 @@ public:
 		temp.elem = nullptr;
 	}
 
+	// IMPORTANT
+	// If the type is a pointer you MUST delete the data pointed to by pointers in this vector before
+	// using this move assignment function. If this is not done there will be a memory leak.
 		vector& operator=(vector&& temp) //move assignment
 	{
 		delete [] elem;
@@ -65,6 +63,10 @@ public:
 		return *this;
 	}
 
+	// IMPORTANT
+	// If the type is a pointer you MUST delete the data pointed to by pointers in this vector before
+	// using this destructor (only if the destructor is explicitly called). If this is not done there
+	// will be a memory leak.
 	~vector() //destructor
 	{
 	delete[] elem;
@@ -166,6 +168,9 @@ public:
 		return p;
 	}
 
+	// IMPORTANT
+	// If the type is a pointer you MUST delete the data pointed to by this pointer before
+	// using this function. If this is not done there will be a memory leak.
 	iterator erase(iterator p)
 	{
 		if (p == end())
