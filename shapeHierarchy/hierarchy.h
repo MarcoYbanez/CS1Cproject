@@ -15,6 +15,11 @@ public:
     explicit Hierarchy(QWidget *parent = nullptr);
     ~Hierarchy();
 
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::Hierarchy *ui;
 };

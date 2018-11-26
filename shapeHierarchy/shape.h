@@ -10,6 +10,7 @@ class Shape
 {
 private:
     int shapeId;
+protected:
     Qt::GlobalColor penColor;
     int penWidth;
     Qt::PenStyle penStyle;
@@ -17,9 +18,8 @@ private:
     Qt::PenJoinStyle joinStyle;
     Qt::GlobalColor brushColor;
     Qt::BrushStyle brushStyle;
-
+    QPainter painter;
 public:
-    QPainter painter;  //used to draw functions, currently public
 
     //constructor
     Shape(int id)

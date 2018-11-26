@@ -26,7 +26,10 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        hierarchy.cpp
+        hierarchy.cpp \
+    renderarea.cpp \
+    window.cpp \
+    main.cpp
 
 HEADERS += \
         hierarchy.h \
@@ -36,10 +39,11 @@ HEADERS += \
     polyline.h \
     polygon.h \
     line.h \
-    ellipse.h
+    ellipse.h \
+    window.h \
+    renderarea.h
 
-FORMS += \
-        hierarchy.ui
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

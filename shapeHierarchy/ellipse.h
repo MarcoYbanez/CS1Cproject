@@ -18,11 +18,13 @@ private:
     int b; //semi-minor axis
     double p;
     double h;
-    double area;
+    double ar;
+    QPen ellPen;
+    QPainter ellPainter;
 public:
     void draw()
     {
-       painter.drawEllipse(x1,y1,a,b);
+       ellPainter.drawEllipse(x1,y1,a,b);
     }
 
     void move()
@@ -40,25 +42,43 @@ public:
 
     void area()
     {
-        area = PI * a * b;
+        ar = PI * a * b;
     }
 
     Ellipse():Shape(6,Qt::black,12,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin,Qt::white,Qt::NoBrush)
     {
+        ellPen.setColor(penColor);
+        ellPen.setWidth(penWidth);
+        ellPen.setStyle(penStyle);
+        ellPen.setCapStyle(capStyle);
+        ellPen.setJoinStyle(joinStyle);
+        ellPainter.setPen(ellPen);
         x1 = 520;
         y1 = 200;
         a = 170;
         b = 100;
     }
 
-    Ellispe(int a1, int b1):Shape(6,Qt::black,12,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin,Qt::white,Qt::NoBrush)
+    Ellipse(int a1, int b1):Shape(6,Qt::black,12,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin,Qt::white,Qt::NoBrush)
     {
+        ellPen.setColor(penColor);
+        ellPen.setWidth(penWidth);
+        ellPen.setStyle(penStyle);
+        ellPen.setCapStyle(capStyle);
+        ellPen.setJoinStyle(joinStyle);
+        ellPainter.setPen(ellPen);
        a = a1;
        b = b1;
     }
 
-    Ellispe(const Ellispe & other):Shape(6,Qt::black,12,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin,Qt::white,Qt::NoBrush)
+    Ellipse(const Ellipse & other):Shape(6,Qt::black,12,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin,Qt::white,Qt::NoBrush)
      {
+        ellPen.setColor(penColor);
+        ellPen.setWidth(penWidth);
+        ellPen.setStyle(penStyle);
+        ellPen.setCapStyle(capStyle);
+        ellPen.setJoinStyle(joinStyle);
+        ellPainter.setPen(ellPen);
        this->a = other.a;
        this->b = other.b;
      }

@@ -18,10 +18,12 @@ private:
     int l;
     int p;
     int a;
+    QPainter linePainter;
+    QPen linePen;
 public:
  void draw()
  {
-    painter.drawLine(x1,y1,x2,y2);
+    linePainter.drawLine(x1,y1,x2,y2);
  }
 
  void move()
@@ -41,6 +43,12 @@ public:
 
  Line():Shape(1,Qt::blue,2,Qt::DashDotLine,Qt::FlatCap,Qt::MiterJoin)
  {
+     linePen.setColor(penColor);
+     linePen.setWidth(penWidth);
+     linePen.setStyle(penStyle);
+     linePen.setCapStyle(capStyle);
+     linePen.setJoinStyle(joinStyle);
+     linePainter.setPen(linePen);
      x1 = 20;
      y1 = 90;
      x2 = 100;
@@ -49,6 +57,12 @@ public:
 
  Line(int a1, int b1, int a2, int b2):Shape(1,Qt::blue,2,Qt::DashDotLine,Qt::FlatCap,Qt::MiterJoin)
  {
+     linePen.setColor(penColor);
+     linePen.setWidth(penWidth);
+     linePen.setStyle(penStyle);
+     linePen.setCapStyle(capStyle);
+     linePen.setJoinStyle(joinStyle);
+     linePainter.setPen(linePen);
       x1 = a1;
       y1 = b1;
       x2 = a2;
@@ -57,6 +71,12 @@ public:
 
  Line(const Line & other):Shape(1,Qt::blue,2,Qt::DashDotLine,Qt::FlatCap,Qt::MiterJoin)
  {
+     linePen.setColor(penColor);
+     linePen.setWidth(penWidth);
+     linePen.setStyle(penStyle);
+     linePen.setCapStyle(capStyle);
+     linePen.setJoinStyle(joinStyle);
+     linePainter.setPen(linePen);
      this->x1 = other.x1;
      this->y1 = other.y1;
      this->x2 = other.x2;
