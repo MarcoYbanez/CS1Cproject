@@ -149,7 +149,7 @@ Window::Window()
     shapeChanged();
     penChanged();
     brushChanged();
-    antialiasingCheckBox->setChecked(true);
+    //antialiasingCheckBox->setChecked(true);
 
     setWindowTitle(tr("Shape Display"));
 }
@@ -165,7 +165,7 @@ void Window::shapeChanged()
 //! [11]
 
 //! [12]
-void Window::penChanged()
+/*void Window::penChanged()
 {
     int width = penWidthSpinBox->value();
     Qt::PenStyle style = Qt::PenStyle(penStyleComboBox->itemData(
@@ -214,4 +214,5 @@ void Window::brushChanged()
         renderArea->setBrush(QBrush(Qt::green, style));
     }
 }
+*/
 //! [17]
