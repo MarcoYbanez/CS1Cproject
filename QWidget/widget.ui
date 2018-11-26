@@ -1,6 +1,6 @@
 <ui version="4.0">
- <class>Hierarchy</class>
- <widget class="QMainWindow" name="Hierarchy" >
+ <class>Widget</class>
+ <widget class="QMainWindow" name="Widget" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -10,7 +10,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Hierarchy</string>
+   <string>Widget</string>
   </property>
   <widget class="QMenuBar" name="menuBar" />
   <widget class="QToolBar" name="mainToolBar" />
