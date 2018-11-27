@@ -22,7 +22,8 @@ private:
 public:
     void draw()
     {
-
+        painter.setPen(pLinePen);
+        painter.drawPolyline(getPoints(),4);
     }
 
     void move()
@@ -43,6 +44,17 @@ public:
     QPen getPen()
     {
         return pLinePen;
+    }
+
+    QPoint* getPoints()
+    {
+        static QPoint points[4] = {
+                 QPoint(x1, y1),
+                 QPoint(x2, y2),
+                 QPoint(x3, y3),
+                 QPoint(x4, y4)
+             };
+        return points;
     }
 
     Polyline():Shape(2,Qt::green,6,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin)

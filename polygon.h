@@ -19,11 +19,14 @@ private:
     int x4;
     int y4;
     QPen pGonPen;
+    QBrush pGonBrush;
 
 public:
     void draw()
     {
-
+        painter.setPen(pGonPen);
+        painter.setBrush(pGonBrush);
+        painter.drawPolygon(getPoints(),4);
     }
 
     void move()
@@ -46,6 +49,22 @@ public:
         return pGonPen;
     }
 
+    QBrush getBrush()
+    {
+        return pGonBrush;
+    }
+
+    QPoint* getPoints()
+    {
+        static   QPoint points[4] = {
+                 QPoint(x1, y1),
+                 QPoint(x2, y2),
+                 QPoint(x3, y3),
+                 QPoint(x4, y4)
+             };
+        return points;
+    }
+
     Polygon():Shape(3,Qt::cyan,6,Qt::DashDotDotLine,Qt::FlatCap,Qt::MiterJoin,Qt::yellow,Qt::SolidPattern)
     {
         pGonPen.setColor(penColor);
@@ -54,6 +73,8 @@ public:
         pGonPen.setCapStyle(capStyle);
         pGonPen.setJoinStyle(joinStyle);
         painter.setPen(pGonPen);
+        pGonBrush.setColor(brushColor);
+        pGonBrush.setStyle(brushStyle);
         x1 = 900;
         y1 = 90;
         x2 = 910;

@@ -19,6 +19,7 @@ private:
     int p;
     int a;
     QPen rectPen;
+    QBrush rectBrush;
 public:
     void draw()
     {
@@ -45,6 +46,17 @@ public:
         return rectPen;
     }
 
+    QBrush getBrush()
+    {
+        return rectBrush;
+    }
+
+    QRect getRect()
+    {
+        QRect rect(x1,y1,w,l);
+        return rect;
+    }
+
     Rectangle():Shape(4,Qt::blue,0,Qt::DashLine,Qt::RoundCap,Qt::RoundJoin,Qt::red,Qt::VerPattern)
     {
         rectPen.setColor(penColor);
@@ -53,6 +65,8 @@ public:
         rectPen.setCapStyle(capStyle);
         rectPen.setJoinStyle(joinStyle);
         painter.setPen(rectPen);
+        rectBrush.setColor(brushColor);
+        rectBrush.setStyle(brushStyle);
         x1 = 20;
         y1 = 200;
         l = 170;
@@ -69,6 +83,8 @@ public:
         rectPen.setCapStyle(capStyle);
         rectPen.setJoinStyle(joinStyle);
         painter.setPen(rectPen);
+        rectBrush.setColor(brushColor);
+        rectBrush.setStyle(brushStyle);
          this->l = other.l;
          this->w = other.w;
      }
@@ -81,6 +97,8 @@ public:
          rectPen.setCapStyle(capStyle);
          rectPen.setJoinStyle(joinStyle);
          painter.setPen(rectPen);
+         rectBrush.setColor(brushColor);
+         rectBrush.setStyle(brushStyle);
          l = length;
          w = width;
          a = l*w;

@@ -43,6 +43,23 @@ public:
 
     }
 
+
+    QRect getRect()
+    {
+        QRect rect(x1,y1,w,l);
+        return rect;
+    }
+
+    Qt::Alignment getAlign()
+    {
+        return textAlignment;
+    }
+
+    string getString()
+    {
+        return textString;
+    }
+
     Text():Shape(8)
     {
         x1 = 250;

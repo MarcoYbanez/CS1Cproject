@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-11-27T10:11:23
+# Project created by QtCreator 2018-11-09T18:47:02
 #
 #-------------------------------------------------
 
@@ -23,29 +23,41 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 CONFIG += c++11
+CONFIG+=sdk_no_version_check
 
 SOURCES += \
-        cs1cofficial.cpp \
-    display.cpp \
-    window.cpp \
-    renderarea.cpp
+        main.cpp \
+        mainwindow.cpp \
+    contact.cpp \
+    login.cpp \
+    renderarea.cpp \
+    window.cpp
 
 HEADERS += \
-        cs1cofficial.h \
-    line.h \
-    window.h \
+        mainwindow.h \
     ellipse.h \
+    line.h \
     polygon.h \
     polyline.h \
     rectangle.h \
-    renderarea.h \
     shape.h \
-    text.h
+    text.h \
+    contact.h \
+    login.h \
+    shapeVector.h \
+    vector.h \
+    renderarea.h \
+    window.h
 
 FORMS += \
-        cs1cofficial.ui
+        mainwindow.ui \
+    contact.ui \
+    login.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    logo.png

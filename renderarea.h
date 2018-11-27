@@ -19,7 +19,6 @@ public slots:
     void setShape(Shapes shape);
     void setPen(const QPen &pen);
     void setBrush(const QBrush &brush);
-    void setAntialiased(bool antialiased);
     void setTransformed(bool transformed);
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
@@ -27,9 +26,7 @@ private:
     Shapes shape;
     QPen pen;
     QBrush brush;
-    bool antialiased;
     bool transformed;
-    QPixmap pixmap;
 };
 
 

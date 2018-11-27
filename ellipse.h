@@ -20,6 +20,7 @@ private:
     double h;
     double ar;
     QPen ellPen;
+    QBrush ellBrush;
 public:
     void draw()
     {
@@ -49,6 +50,11 @@ public:
         return ellPen;
     }
 
+    QBrush getBrush()
+    {
+        return ellBrush;
+    }
+
     Ellipse():Shape(6,Qt::black,12,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin,Qt::white,Qt::NoBrush)
     {
         ellPen.setColor(penColor);
@@ -57,6 +63,8 @@ public:
         ellPen.setCapStyle(capStyle);
         ellPen.setJoinStyle(joinStyle);
         painter.setPen(ellPen);
+        ellBrush.setColor(brushColor);
+        ellBrush.setStyle(brushStyle);
         x1 = 520;
         y1 = 200;
         a = 170;
@@ -71,6 +79,8 @@ public:
         ellPen.setCapStyle(capStyle);
         ellPen.setJoinStyle(joinStyle);
         painter.setPen(ellPen);
+        ellBrush.setColor(brushColor);
+        ellBrush.setStyle(brushStyle);
        a = a1;
        b = b1;
     }
@@ -83,6 +93,8 @@ public:
         ellPen.setCapStyle(capStyle);
         ellPen.setJoinStyle(joinStyle);
         painter.setPen(ellPen);
+        ellBrush.setColor(brushColor);
+        ellBrush.setStyle(brushStyle);
        this->a = other.a;
        this->b = other.b;
      }
