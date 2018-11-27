@@ -147,8 +147,8 @@ Window::Window()
     setLayout(mainLayout);
 
     shapeChanged();
-    penChanged();
-    brushChanged();
+    //penChanged();
+    //brushChanged();
     //antialiasingCheckBox->setChecked(true);
 
     setWindowTitle(tr("Shape Display"));

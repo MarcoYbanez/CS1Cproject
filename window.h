@@ -17,8 +17,8 @@ public:
     Window();
 private slots:
     void shapeChanged();
-    void penChanged();
-    void brushChanged();
+  //  void penChanged();
+  //  void brushChanged();
 private:
     RenderArea *renderArea;
     QLabel *shapeLabel;

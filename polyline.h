@@ -19,7 +19,6 @@ private:
     int x4;
     int y4;
     QPen pLinePen;
-    QPainter pLinePainter;
 public:
     void draw()
     {
@@ -41,6 +40,11 @@ public:
 
     }
 
+    QPen getPen()
+    {
+        return pLinePen;
+    }
+
     Polyline():Shape(2,Qt::green,6,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin)
     {
         pLinePen.setColor(penColor);
@@ -48,7 +52,7 @@ public:
         pLinePen.setStyle(penStyle);
         pLinePen.setCapStyle(capStyle);
         pLinePen.setJoinStyle(joinStyle);
-        pLinePainter.setPen(pLinePen);
+        painter.setPen(pLinePen);
         x1 = 460;
         y1 = 90;
         x2 = 470;

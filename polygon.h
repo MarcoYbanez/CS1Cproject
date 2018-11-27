@@ -19,7 +19,6 @@ private:
     int x4;
     int y4;
     QPen pGonPen;
-    QPainter pGonPainter;
 
 public:
     void draw()
@@ -42,6 +41,11 @@ public:
 
     }
 
+    QPen getPen()
+    {
+        return pGonPen;
+    }
+
     Polygon():Shape(3,Qt::cyan,6,Qt::DashDotDotLine,Qt::FlatCap,Qt::MiterJoin,Qt::yellow,Qt::SolidPattern)
     {
         pGonPen.setColor(penColor);
@@ -49,7 +53,7 @@ public:
         pGonPen.setStyle(penStyle);
         pGonPen.setCapStyle(capStyle);
         pGonPen.setJoinStyle(joinStyle);
-        pGonPainter.setPen(pGonPen);
+        painter.setPen(pGonPen);
         x1 = 900;
         y1 = 90;
         x2 = 910;

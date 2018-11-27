@@ -167,7 +167,7 @@ void RenderArea::paintEvent(QPaintEvent * /* event */)
 //         QPoint(90, 70)
 //     };
 
-//     QRect rect(10, 20, 80, 60);
+     QRect rect(20, 200, 100, 170);
 
 //     QPainterPath path;
 //     path.moveTo(20, 80);
@@ -179,79 +179,29 @@ void RenderArea::paintEvent(QPaintEvent * /* event */)
 // //! [8]
 
 // //! [9]
-//     QPainter painter(this);
-//     painter.setPen(pen);
-//     painter.setBrush(brush);
-//     if (antialiased)
-//         painter.setRenderHint(QPainter::Antialiasing, true);
+     QPainter painter(this);
+     painter.setPen(renderLine.getPen());
+     painter.setBrush(brush);
 // //! [9]
 
-// //! [10]
-//     for (int x = 0; x < width(); x += 100) {
-//         for (int y = 0; y < height(); y += 100) {
-//             painter.save();
-//             painter.translate(x, y);
-// //! [10] //! [11]
-//             if (transformed) {
-//                 painter.translate(50, 50);
-//                 painter.rotate(60.0);
-//                 painter.scale(0.6, 0.9);
-//                 painter.translate(-50, -50);
-//             }
-// //! [11]
-
 // //! [12]
-//             switch (shape) {
-//             case Line:
-//                 painter.drawLine(rect.bottomLeft(), rect.topRight());
-//                 break;
-//             case Points:
-//                 painter.drawPoints(points, 4);
-//                 break;
-//             case Polyline:
+                   painter.drawLine(20,90,100,20);
+
 //                 painter.drawPolyline(points, 4);
-//                 break;
-//             case Polygon:
+
 //                 painter.drawPolygon(points, 4);
-//                 break;
-//             case Rect:
-//                 painter.drawRect(rect);
-//                 break;
-//             case RoundedRect:
-//                 painter.drawRoundedRect(rect, 25, 25, Qt::RelativeSize);
-//                 break;
-//             case Ellipse:
-//                 painter.drawEllipse(rect);
-//                 break;
-//             case Arc:
-//                 painter.drawArc(rect, startAngle, arcLength);
-//                 break;
-//             case Chord:
-//                 painter.drawChord(rect, startAngle, arcLength);
-//                 break;
-//             case Pie:
-//                 painter.drawPie(rect, startAngle, arcLength);
-//                 break;
-//             case Path:
-//                 painter.drawPath(path);
-//                 break;
-//             case Text:
-//                 painter.drawText(rect,
-//                                  Qt::AlignCenter,
-//                                  tr("Qt by\nThe Qt Company"));
-//                 break;
-//             case Pixmap:
-//                 painter.drawPixmap(10, 10, pixmap);
-//             }
+
+                   painter.setPen(renderRectangle.getPen());
+                   painter.drawRect(rect);
+
+  //                 painter.drawEllipse(rect);
+
+    //               painter.drawText(rect,Qt::AlignCenter,tr("Qt by\nThe Qt Company"));
+
 // //! [12] //! [13]
 //             painter.restore();
 //         }
 //     }
-
-//     painter.setRenderHint(QPainter::Antialiasing, false);
-//     painter.setPen(palette().dark().color());
-//     painter.setBrush(Qt::NoBrush);
-//     painter.drawRect(QRect(0, 0, width() - 1, height() - 1));
 
 
 }

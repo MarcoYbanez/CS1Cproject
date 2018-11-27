@@ -20,11 +20,10 @@ private:
     double h;
     double ar;
     QPen ellPen;
-    QPainter ellPainter;
 public:
     void draw()
     {
-       ellPainter.drawEllipse(x1,y1,a,b);
+       painter.drawEllipse(x1,y1,a,b);
     }
 
     void move()
@@ -45,6 +44,11 @@ public:
         ar = PI * a * b;
     }
 
+    QPen getPen()
+    {
+        return ellPen;
+    }
+
     Ellipse():Shape(6,Qt::black,12,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin,Qt::white,Qt::NoBrush)
     {
         ellPen.setColor(penColor);
@@ -52,7 +56,7 @@ public:
         ellPen.setStyle(penStyle);
         ellPen.setCapStyle(capStyle);
         ellPen.setJoinStyle(joinStyle);
-        ellPainter.setPen(ellPen);
+        painter.setPen(ellPen);
         x1 = 520;
         y1 = 200;
         a = 170;
@@ -66,7 +70,7 @@ public:
         ellPen.setStyle(penStyle);
         ellPen.setCapStyle(capStyle);
         ellPen.setJoinStyle(joinStyle);
-        ellPainter.setPen(ellPen);
+        painter.setPen(ellPen);
        a = a1;
        b = b1;
     }
@@ -78,7 +82,7 @@ public:
         ellPen.setStyle(penStyle);
         ellPen.setCapStyle(capStyle);
         ellPen.setJoinStyle(joinStyle);
-        ellPainter.setPen(ellPen);
+        painter.setPen(ellPen);
        this->a = other.a;
        this->b = other.b;
      }

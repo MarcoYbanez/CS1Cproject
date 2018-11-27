@@ -18,12 +18,11 @@ private:
     int w; //width
     int p;
     int a;
-    QPainter rectPainter;
     QPen rectPen;
 public:
     void draw()
     {
-        rectPainter.drawRect(x1,y1,l,w);
+        painter.drawRect(x1,y1,l,w);
     }
 
     void move() //admin only
@@ -41,13 +40,10 @@ public:
         a = (l*w);
     }
 
-    void getData()
-     {
-         cout << "What is the length of the rectangle? ";
-         cin >> l;
-         cout << "What is the width of the rectangle? ";
-         cin >> w;
-     }
+    QPen getPen()
+    {
+        return rectPen;
+    }
 
     Rectangle():Shape(4,Qt::blue,0,Qt::DashLine,Qt::RoundCap,Qt::RoundJoin,Qt::red,Qt::VerPattern)
     {
@@ -56,7 +52,7 @@ public:
         rectPen.setStyle(penStyle);
         rectPen.setCapStyle(capStyle);
         rectPen.setJoinStyle(joinStyle);
-        rectPainter.setPen(rectPen);
+        painter.setPen(rectPen);
         x1 = 20;
         y1 = 200;
         l = 170;
@@ -72,7 +68,7 @@ public:
         rectPen.setStyle(penStyle);
         rectPen.setCapStyle(capStyle);
         rectPen.setJoinStyle(joinStyle);
-        rectPainter.setPen(rectPen);
+        painter.setPen(rectPen);
          this->l = other.l;
          this->w = other.w;
      }
@@ -84,7 +80,7 @@ public:
          rectPen.setStyle(penStyle);
          rectPen.setCapStyle(capStyle);
          rectPen.setJoinStyle(joinStyle);
-         rectPainter.setPen(rectPen);
+         painter.setPen(rectPen);
          l = length;
          w = width;
          a = l*w;

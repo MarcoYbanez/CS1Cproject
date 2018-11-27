@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-11-08T10:00:37
+# Project created by QtCreator 2018-11-27T10:11:23
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = shapeHierarchy
+TARGET = CS1Cofficial
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,25 +25,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        hierarchy.cpp \
-    renderarea.cpp \
+        cs1cofficial.cpp \
+    display.cpp \
     window.cpp \
-    main.cpp
+    renderarea.cpp
 
 HEADERS += \
-        hierarchy.h \
-    shape.h \
-    text.h \
-    rectangle.h \
-    polyline.h \
-    polygon.h \
+        cs1cofficial.h \
     line.h \
-    ellipse.h \
     window.h \
-    renderarea.h
+    ellipse.h \
+    polygon.h \
+    polyline.h \
+    rectangle.h \
+    renderarea.h \
+    shape.h \
+    text.h
 
-FORMS +=
+FORMS += \
+        cs1cofficial.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
