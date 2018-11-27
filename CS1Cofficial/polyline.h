@@ -22,8 +22,7 @@ private:
 public:
     void draw()
     {
-        painter.setPen(pLinePen);
-        painter.drawPolyline(getPoints(),4);
+
     }
 
     void move()

@@ -336,9 +336,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    w.show();
-
     Window rendering;
+    w.show();
     rendering.show();
 
     return a.exec();

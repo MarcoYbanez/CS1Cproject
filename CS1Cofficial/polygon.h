@@ -24,9 +24,7 @@ private:
 public:
     void draw()
     {
-        painter.setPen(pGonPen);
-        painter.setBrush(pGonBrush);
-        painter.drawPolygon(getPoints(),4);
+
     }
 
     void move()
