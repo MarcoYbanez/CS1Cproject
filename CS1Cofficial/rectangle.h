@@ -31,14 +31,14 @@ public:
 
     }
 
-    void perimeter()
+    int getPerimeter()
     {
-        p = (l*2) + (w*2);
+        return p;
     }
 
-    void area()
+    int getArea()
     {
-        a = (l*w);
+        return a;
     }
 
     QPen getPen()
@@ -87,6 +87,8 @@ public:
         rectBrush.setStyle(brushStyle);
          this->l = other.l;
          this->w = other.w;
+        a = l*w;
+        p = (2*l) + (2*w);
      }
 
      Rectangle(int length, int width):Shape(4,Qt::blue,0,Qt::DashLine,Qt::RoundCap,Qt::RoundJoin,Qt::red,Qt::VerPattern)

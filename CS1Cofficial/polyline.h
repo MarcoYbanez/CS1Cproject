@@ -7,7 +7,7 @@
 #include "shape.h"
 using namespace std;
 
-class Polyline : public Shape
+class Polyline : public Shape //currently incomplete
 {
 private:
     int x1;
@@ -18,6 +18,8 @@ private:
     int y3;
     int x4;
     int y4;
+    int p;
+    int a;
     QPen pLinePen;
 public:
     void draw()
@@ -30,14 +32,14 @@ public:
 
     }
 
-    void perimeter()
+    int getPerimeter()
     {
-
+        return p;
     }
 
-    void area()
+    int getArea()
     {
-
+        return a;
     }
 
     QPen getPen()

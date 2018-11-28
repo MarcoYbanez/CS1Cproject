@@ -44,8 +44,6 @@ HEADERS += \
     text.h \
     contact.h \
     login.h \
-    shapeVector.h \
-    vector.h \
     renderarea.h \
     window.h
 

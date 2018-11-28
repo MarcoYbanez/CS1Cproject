@@ -11,6 +11,7 @@ class Shape
 private:
     int shapeId;
 protected:
+    //Qt namespace?
     Qt::GlobalColor penColor;
     int penWidth;
     Qt::PenStyle penStyle;
@@ -55,8 +56,8 @@ public:
     //pure virtual functions:
     virtual void draw() = 0;
     virtual void move() = 0;
-    virtual void perimeter() = 0;
-    virtual void area() = 0;
+    virtual int getPerimeter() = 0;
+    virtual int getArea() = 0;
 
     bool operator==(const Shape& shape2)
     {
@@ -69,7 +70,7 @@ public:
 
     //disable (by marking deleted?):
     //copy constructor, assignment
-
+    Shape(const Shape&);
 
 
 };

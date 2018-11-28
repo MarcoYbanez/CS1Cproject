@@ -15,9 +15,9 @@ private:
     int y1;
     int x2;
     int y2;
-    //int l;
-    int p;
-    int a;
+    //int l; length; perhaps use distance formula?
+    int p = 0;
+    int a = 0;
     QPen linePen;
 public:
  void draw()
@@ -30,14 +30,14 @@ public:
 
  }
 
- void perimeter()
+ int getPerimeter()
  {
-    p = 0;
+    return p;
  }
 
- void area()
+ int getArea()
  {
-    a = 0;
+    return a;
  }
 
  QPen getPen()
