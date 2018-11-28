@@ -15,17 +15,18 @@ private:
 	T* elem;
 
 public:
-	vector(): size{0}, capacity{100}, elem{new T[capacity]} //default constructor
-	{
-		for(int i = 0; i < capacity; i++)
-				elem[i] = T();
-	}
+public:
+ 	vector(): size{0}, capacity{100}, elem{new T[capacity]} //default constructor
+ 	{
+ 		for(int i = 0; i < capacity; i++)
+ 				elem[i] = T();
+ 	}
 
-	explicit vector(int s): size{0}, capacity{s}, elem{new T[s]} //alternate constructor
-	{
-		for(int i = 0; i < capacity; i++)
-			elem[i] = T();
-	}
+ 	explicit vector(int s): size{0}, capacity{s}, elem{new T[s]} //alternate constructor
+ 	{
+ 		for(int i = 0; i < capacity; i++)
+ 			elem[i] = T();
+ 	}
 
 	vector(const vector& newVector): size{newVector.size}, capacity{newVector.capacity}, elem{new T[capacity]} //copy constructor
 	{

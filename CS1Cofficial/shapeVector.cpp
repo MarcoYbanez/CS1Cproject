@@ -1,8 +1,12 @@
-#ifndef SHAPEVECTOR
-#define SHAPEVECTOR
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <fstream>
+
 
 #include "vector.h"
-#include "shape.h"
+#include "shapeVector.h"
 
 #include "ellipse.h"
 #include "line.h"
@@ -11,33 +15,6 @@
 #include "rectangle.h"
 #include "shape.h"
 #include "text.h"
-
-class shapeVector{
-
-public:
-	  //*************//
-	 // Constructor //
-	//*************//
-	shapeVector();
-
-	  //***********************//
-	 // Program Functionality //
-	//***********************//	
-	void addShape();
-	void deleteShape();
-		/* Add other options here */
-
-private:
-	  //*********//
-	 // Purpose //
-	//*********//
-	void ParseData();	
-	void dimmensionParser(string& dimmensionString, int Array[]);
-
-	//vector<shape*> Storage;
-
-};
-
 
 
 /********************************************************************************
@@ -182,15 +159,6 @@ void shapeVector::ParseData(){
 	string TextFontStyle;
 	string TextFontWeight;
 
-	int TextString;
-	int TextColor; 
-	int TextAlignment;
-	int TextPointSize;
-	int TextFontFamily;
-	int TextFontStyle;
-	int TextFontWeight;
-
-
 	while(!(dataBase.eof())){	
 
 		getline(dataBase, input);
@@ -209,7 +177,6 @@ void shapeVector::ParseData(){
 
 				getline(dataBase, TextString);
 				TextString = TextString.substr(12);
-
 
 				getline(dataBase, TextColor);
 				TextColor = TextColor.substr(11);
@@ -299,5 +266,5 @@ shapeVector::shapeVector(){
 }
 
 
-#endif
+
 
