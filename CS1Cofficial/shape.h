@@ -36,9 +36,9 @@ public:
     virtual void move() = 0;
     virtual void perimeter() = 0;
     virtual void area() = 0;
-
-      //*********//
-     // Setters //
+    virtual void getData() = 0;
+        //*********//
+      // Setters //
     //*********//
     // TO BE FILLED void setGlobalColor(string)
 
@@ -53,7 +53,7 @@ public:
     }
 
     //disable (by marking deleted?):
-    //copy constructor, assignment
+    Shape(const Shape &);//copy constructor, assignment
 
 };
 
