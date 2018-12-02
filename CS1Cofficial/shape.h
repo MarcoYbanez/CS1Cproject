@@ -58,7 +58,7 @@ public:
         //temp values to be able to test drawing widget.
         penColor = Qt::cyan;
         penStyle = Qt::DotLine;
-        penWidth = 20;
+        penWidth = 3;
         capStyle = Qt::RoundCap;
         joinStyle = Qt::BevelJoin;
 

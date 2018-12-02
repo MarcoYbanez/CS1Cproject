@@ -4,6 +4,7 @@
 #include "login.h"
 #include <QPainter>
 #include <shape.h>
+#include "ellipse.h"
 
 #include <QtWidgets>
 #include "drawwt.h"
@@ -32,7 +33,14 @@ void MainWindow::on_contactUs_btn_clicked()
 
 void MainWindow::on_draw_btn_clicked()
 {
-    currentShape = new Line;
+    /*
+     *Main window can hold our vector, we can then pass to current shape pointer the shape we want to display.
+     *
+     */
+    //test for line.
+    //currentShape = new Line;
+    //test for ellipse.
+    currentShape = new Ellipse;
     drawWt * draw = new drawWt;
     draw->setShape(currentShape);
     draw->show();
