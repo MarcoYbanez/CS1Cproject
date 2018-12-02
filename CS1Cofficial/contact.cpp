@@ -7,7 +7,7 @@ contact::contact(QWidget *parent) :
     ui(new Ui::contact)
 {
     ui->setupUi(this);
-    QPixmap pix("/home/cs1c/Documents/CS1Cproject/CS1Cofficial/logo.png");
+    QPixmap pix("/home/cs1c/Documents/CS1Cproject-master/CS1Cofficial/logo.png");
     ui->logo_pic->setPixmap(pix);
 }
 

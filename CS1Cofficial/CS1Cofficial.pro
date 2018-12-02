@@ -29,7 +29,8 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     contact.cpp \
-    login.cpp
+    login.cpp \
+    drawwt.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +42,8 @@ HEADERS += \
     shape.h \
     text.h \
     contact.h \
-    login.h
+    login.h \
+    drawwt.h
 
 FORMS += \
         mainwindow.ui \
