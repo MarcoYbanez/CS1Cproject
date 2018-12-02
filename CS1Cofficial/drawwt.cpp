@@ -10,6 +10,7 @@ drawWt::drawWt(QWidget *parent) : QWidget(parent)
 void drawWt::paintEvent(QPaintEvent * /* event */)
 {
     QPainter p(this);
+
     shape->draw(p);
 }
 

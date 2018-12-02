@@ -5,6 +5,7 @@
 #include <QPen>
 #include <QFont>
 #include <QPainter>
+#include <QBrush>
 using namespace std;
 
 class Shape
@@ -35,6 +36,7 @@ private:
 
     //
     QPen myPen;
+    QBrush myBrush;
 public:
     //pure virtual functions:
     virtual void draw(QPainter &p) = 0;
@@ -56,7 +58,7 @@ public:
     Shape()
     {
         //temp values to be able to test drawing widget.
-        penColor = Qt::cyan;
+        penColor = Qt::red;
         penStyle = Qt::DotLine;
         penWidth = 3;
         capStyle = Qt::RoundCap;
@@ -80,8 +82,25 @@ public:
         myPen.setCapStyle(capStyle);
         myPen.setJoinStyle(joinStyle);
 
+        //set brush
+        setBrush();
 
 
+
+    }
+
+    QBrush getBrush()
+    {
+        return myBrush;
+    }
+
+    void setBrush()
+    {
+        brushColor = Qt::white;
+        brushStyle = Qt::VerPattern;
+
+        myBrush.setColor(brushColor);
+        myBrush.setStyle(brushStyle);
     }
 
     bool operator==(const Shape& shape2)

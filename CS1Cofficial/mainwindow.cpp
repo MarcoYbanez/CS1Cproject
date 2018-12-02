@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <shape.h>
 #include "ellipse.h"
+#include "rectangle.h"
 
 #include <QtWidgets>
 #include "drawwt.h"
@@ -23,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete currentShape;
 }
 
 void MainWindow::on_contactUs_btn_clicked()
@@ -41,6 +43,9 @@ void MainWindow::on_draw_btn_clicked()
     //currentShape = new Line;
     //test for ellipse.
     currentShape = new Ellipse;
+    //test for rectangle
+    //currentShape = new Rectangle;
+
     drawWt * draw = new drawWt;
     draw->setShape(currentShape);
     draw->show();
