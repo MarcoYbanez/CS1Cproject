@@ -33,14 +33,14 @@ public:
 
     }
 
-    int getPerimeter()
+    void perimeter()
     {
-        return (2*l)+(2*w);
+
     }
 
-    int getArea()
+    void area()
     {
-        return (l*w);
+
     }
 
 

@@ -7,7 +7,7 @@
 #include "shape.h"
 using namespace std;
 
-class Polygon : public Shape //currently incomplete
+class Polygon : public Shape
 {
 private:
     int x1;
@@ -18,8 +18,6 @@ private:
     int y3;
     int x4;
     int y4;
-    int p;
-    int a;
     QPen pGonPen;
     QBrush pGonBrush;
 
@@ -34,14 +32,14 @@ public:
 
     }
 
-    int getPerimeter()
+    void perimeter()
     {
-        return p; //needs calculations
+
     }
 
-    int getArea()
+    void area()
     {
-        return a; //needs calculations
+
     }
 
     QPen getPen()
