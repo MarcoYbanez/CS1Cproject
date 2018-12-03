@@ -33,12 +33,171 @@ private:
 	//*********//
 	void ParseData();	
 	void dimmensionParser(string& dimmensionString, int Array[]);
+	
+	int ColorEnumConverter(string Color);
+	int BrushStyleEnum(string Style);
+	int PenStyleEnum(string Style);
 
 	//vector<shape*> Storage;
 
 };
 
+/********************************************************************************
+*																				*
+*	Function name: PenStyleEnum(string Style) 					 				*
+*																				*
+*	-Functionality: Created to convert string style to enum equivalent 			*
+*																				*
+*	-Variables																	*
+*																				*
+*	Name			Data Type		Value										*
+*	------------	------------	--------------------						*
+*	enumVal			int 			2 (default) 								*
+*	Style 			string 			passed paramter								*
+*																				*
+*	-Process: Switch statement accepts string and returns its equivalent 		*
+*																				*
+*	-Output: return enum equivalent to be called in constructor 				*
+*															  	  				*
+********************************************************************************/
+int PenStyleEnum(string Style){
+	
+	int enumVal = 1;
 
+	if(Style == "NoPen"){
+		enumVal = 0;
+	}
+	if(Style == "SolidLine"){
+		enumVal = 1;
+	}
+	if(Style == "DashLine"){
+		enumVal = 2;
+	}
+	if(Style == "DotLine"){
+		enumVal = 3;
+	}
+	if(Style == "DashDotLine"){
+		enumVal = 4;
+	}
+	if(Style == "DashDotDotLine"){
+		enumVal = 5;
+	}
+
+	return enumVal;
+}
+
+
+/********************************************************************************
+*																				*
+*	Function name: BrushStyleEnum(string Style) 					 			*
+*																				*
+*	-Functionality: Created to convert string style to enum equivalent 			*
+*																				*
+*	-Variables																	*
+*																				*
+*	Name			Data Type		Value										*
+*	------------	------------	--------------------						*
+*	enumVal			int 			2 (default) 								*
+*	Style 			string 			passed paramter								*
+*																				*
+*	-Process: Switch statement accepts string and returns its equivalent 		*
+*																				*
+*	-Output: return enum equivalent to be called in constructor 				*
+*															  	  				*
+********************************************************************************/
+int shapeVector::BrushStyleEnum(string Style){
+	
+	int enumVal = 1;
+
+	if(Style == "NoBrush"){
+		enumVal = 0;
+	}
+	if(Style == "SolidPattern"){
+		enumVal = 1;
+	}
+	if(Style == "HorPattern"){
+		enumVal = 9;
+	}
+	if(Style == "VerPattern"){
+		enumVal = 10;
+	}	
+
+	return enumVal;
+
+}
+
+/*
+special enum values
+
+int shapeVector::PenCapEnum(string Style){
+	
+	int enumVal = 1;
+
+	if(Style == "NoPen"){
+		enumVal = 0;
+	}
+	if(Style == "SolidLine"){
+		enumVal = 1;
+	}
+	if(Style == "DashLine"){
+		enumVal = 2;
+	}
+
+	return enumVal
+
+}
+*/
+
+/********************************************************************************
+*																				*
+*	Function name: ColorEnumConverter(string Color) 					 		*
+*																				*
+*	-Functionality: Created to convert string color to enum equivalent 			*
+*																				*
+*	-Variables																	*
+*																				*
+*	Name			Data Type		Value										*
+*	------------	------------	--------------------						*
+*	enumVal			int 			2 (default) 								*
+*	Color 			string 			passed paramter								*
+*																				*
+*	-Process: Switch statement accepts string and returns its equivalent 		*
+*																				*
+*	-Output: return enum equivalent to be called in constructor 				*
+*															  	  				*
+********************************************************************************/
+int shapeVector::ColorEnumConverter(string Color){
+	int enumVal = 2;
+
+	if(Color == "white"){
+		enumVal = 3;
+	}
+	if(Color == "black"){
+		enumVal = 2;
+	}
+	if(Color == "red"){
+		enumVal = 7;
+	}
+	if(Color == "green"){
+		enumVal = 8;
+	}
+	if(Color == "blue"){
+		enumVal = 9;
+	}
+	if(Color == "cyan"){
+		enumVal = 10;
+	}
+	if(Color == "magenta"){
+		enumVal = 11;
+	}
+	if(Color == "yellow"){
+		enumVal = 12;
+	}
+	if(Color == "gray"){
+		enumVal = 5;
+	}
+	return enumVal;
+}
 
 /********************************************************************************
 *	PRE-CONDITION: Array of int's needed and SET TO THE CORRECT CAPACITY		*
@@ -164,32 +323,22 @@ void shapeVector::ParseData(){
 	int ShapeId;
 	string ShapeType;			//	NOTE: I could switch to enum if depending on constructors 
 	string ShapeDimensions; 	// dimmensionSTR as an entire string, but will slice into individual int's
-	string PenColor;
+	string Color;
+
 	int PenWidth;
 	string PenStyle;
 	string PenCapStyle;
 	string PenJoinStyle;
 
-	string BrushColor;
 	string BrushStyle;
 
 	//Characteristics for just Text
 	string TextString;
-	string TextColor; 
 	string TextAlignment;
 	string TextPointSize;
 	string TextFontFamily;
 	string TextFontStyle;
 	string TextFontWeight;
-
-	int TextString;
-	int TextColor; 
-	int TextAlignment;
-	int TextPointSize;
-	int TextFontFamily;
-	int TextFontStyle;
-	int TextFontWeight;
-
 
 	while(!(dataBase.eof())){	
 
@@ -211,8 +360,8 @@ void shapeVector::ParseData(){
 				TextString = TextString.substr(12);
 
 
-				getline(dataBase, TextColor);
-				TextColor = TextColor.substr(11);
+				getline(dataBase, Color);
+				Color = Color.substr(11);
 
 				getline(dataBase, TextAlignment);
 				TextAlignment = TextAlignment.substr(15);
@@ -245,8 +394,8 @@ void shapeVector::ParseData(){
 			}
 			else{
 
-				getline(dataBase, PenColor);
-				PenColor = PenColor.substr(10);
+				getline(dataBase, Color);
+				Color = Color.substr(10);
 
 				getline(dataBase, PenWidth);
 				PenWidth = PenWidth.substr(10); //Needs casting
@@ -262,8 +411,8 @@ void shapeVector::ParseData(){
 				PenJoinStyle = PenJoinStyle.substr(14);
 
 				if( (ShapeType != "Line") || (ShapeType != "Polyline")){
-					getline(dataBase, BrushColor);
-					BrushColor = BrushColor.substr(12);
+					getline(dataBase, Color);
+					Color = Color.substr(12);
 
 					getline(dataBase, BrushStyle);
 					BrushStyle = BrushStyle.substr(12);
@@ -291,7 +440,7 @@ void shapeVector::ParseData(){
 
 shapeVector::shapeVector(){
 	/*
-		fill vector with shapetypes here
+		fill vector in this function 
 	*/
 
 	ParseData();
