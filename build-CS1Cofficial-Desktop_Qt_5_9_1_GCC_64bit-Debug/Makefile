@@ -68,6 +68,7 @@ OBJECTS       = main.o \
 		moc_login.o \
 		moc_drawwt.o
 DIST          = ../CS1Cofficial/logo.png \
+		../CS1Cofficial/shapes.txt \
 		../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/common/unix.conf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/common/linux.conf \
@@ -257,7 +258,8 @@ DIST          = ../CS1Cofficial/logo.png \
 		../CS1Cofficial/text.h \
 		../CS1Cofficial/contact.h \
 		../CS1Cofficial/login.h \
-		../CS1Cofficial/drawwt.h ../CS1Cofficial/main.cpp \
+		../CS1Cofficial/drawwt.h \
+		../CS1Cofficial/vector.h ../CS1Cofficial/main.cpp \
 		../CS1Cofficial/mainwindow.cpp \
 		../CS1Cofficial/contact.cpp \
 		../CS1Cofficial/login.cpp \
@@ -655,7 +657,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/5.9.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../CS1Cofficial/mainwindow.h ../CS1Cofficial/ellipse.h ../CS1Cofficial/line.h ../CS1Cofficial/polygon.h ../CS1Cofficial/polyline.h ../CS1Cofficial/rectangle.h ../CS1Cofficial/shape.h ../CS1Cofficial/text.h ../CS1Cofficial/contact.h ../CS1Cofficial/login.h ../CS1Cofficial/drawwt.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../CS1Cofficial/mainwindow.h ../CS1Cofficial/ellipse.h ../CS1Cofficial/line.h ../CS1Cofficial/polygon.h ../CS1Cofficial/polyline.h ../CS1Cofficial/rectangle.h ../CS1Cofficial/shape.h ../CS1Cofficial/text.h ../CS1Cofficial/contact.h ../CS1Cofficial/login.h ../CS1Cofficial/drawwt.h ../CS1Cofficial/vector.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../CS1Cofficial/main.cpp ../CS1Cofficial/mainwindow.cpp ../CS1Cofficial/contact.cpp ../CS1Cofficial/login.cpp ../CS1Cofficial/drawwt.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../CS1Cofficial/mainwindow.ui ../CS1Cofficial/contact.ui ../CS1Cofficial/login.ui $(DISTDIR)/
 
@@ -1451,9 +1453,8 @@ mainwindow.o: ../CS1Cofficial/mainwindow.cpp ../CS1Cofficial/mainwindow.h \
 		../../../Qt/5.9.1/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.9.1/gcc_64/include/QtWidgets/qdialog.h \
 		../CS1Cofficial/login.h \
-		../CS1Cofficial/drawwt.h \
-		../CS1Cofficial/line.h \
-		../../../Qt/5.9.1/gcc_64/include/QtCore/QPoint \
+		../CS1Cofficial/ellipse.h \
+		../CS1Cofficial/rectangle.h \
 		../../../Qt/5.9.1/gcc_64/include/QtWidgets/QtWidgets \
 		../../../Qt/5.9.1/gcc_64/include/QtWidgets/QtWidgetsDepends \
 		../../../Qt/5.9.1/gcc_64/include/QtCore/QtCore \
@@ -1762,7 +1763,10 @@ mainwindow.o: ../CS1Cofficial/mainwindow.cpp ../CS1Cofficial/mainwindow.h \
 		../../../Qt/5.9.1/gcc_64/include/QtWidgets/qwhatsthis.h \
 		../../../Qt/5.9.1/gcc_64/include/QtWidgets/qwidgetaction.h \
 		../../../Qt/5.9.1/gcc_64/include/QtWidgets/qwizard.h \
-		../../../Qt/5.9.1/gcc_64/include/QtWidgets/qtwidgetsversion.h
+		../../../Qt/5.9.1/gcc_64/include/QtWidgets/qtwidgetsversion.h \
+		../CS1Cofficial/drawwt.h \
+		../CS1Cofficial/line.h \
+		../../../Qt/5.9.1/gcc_64/include/QtCore/QPoint
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../CS1Cofficial/mainwindow.cpp
 
 contact.o: ../CS1Cofficial/contact.cpp ../CS1Cofficial/contact.h \
