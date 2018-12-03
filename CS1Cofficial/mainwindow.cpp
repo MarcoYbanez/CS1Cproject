@@ -1,8 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "contact.h"
-<<<<<<< HEAD
-=======
 #include "login.h"
 #include <QPainter>
 #include <shape.h>
@@ -11,22 +9,16 @@
 
 #include <QtWidgets>
 #include "drawwt.h"
->>>>>>> dbe7fe2542f2e4cbc795787ccce6af181173145f
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-<<<<<<< HEAD
-    contact *c = new contact();
-    c->show();
-=======
     /*
     logIn *l = new logIn();
     l->show();
     */
->>>>>>> dbe7fe2542f2e4cbc795787ccce6af181173145f
 }
 
 MainWindow::~MainWindow()
