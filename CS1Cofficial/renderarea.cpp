@@ -14,6 +14,7 @@ RenderArea::RenderArea(QWidget *parent)
     : QWidget(parent)
 {
     //shape = PolygonE;
+    transformed = false;
     setBackgroundRole(QPalette::Base);
     setAutoFillBackground(true);
 }
@@ -52,6 +53,7 @@ void RenderArea::setTransformed(bool transformed)
     update();
 }
 
+
 void RenderArea::paintEvent(QPaintEvent * /* event */)
 {
 
@@ -71,7 +73,7 @@ void RenderArea::paintEvent(QPaintEvent * /* event */)
 
      //hardcoded temp code
                     painter.setPen(renderLine.getPen());
-                    painter.setBrush(brush);
+                   painter.setBrush(brush);
                    painter.drawLine(20,90,100,20);
 
                  painter.setPen(renderPolyline.getPen());
@@ -89,12 +91,9 @@ void RenderArea::paintEvent(QPaintEvent * /* event */)
                    painter.setBrush(renderEllipse.getBrush());
                    painter.drawEllipse(520,200,170,100);
 
-                   //needs work
+                  //needs work
                  //  painter.drawText(renderText.getRect(),renderText.getAlign(),renderText.getString());
 
 //             painter.restore();
 
-
-
 }
-//! [13]

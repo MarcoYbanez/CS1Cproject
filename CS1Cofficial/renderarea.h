@@ -27,6 +27,16 @@ private:
     QPen pen;
     QBrush brush;
     bool transformed;
+
+    //transformation
+    void drawCoordinates(QPainter &painter);
+    void drawOutline(QPainter &painter);
+    void drawShape(QPainter &painter);
+    void transformPainter(QPainter &painter);
+    //QList<Operation> operations;
+    QPainterPath shapePath;
+    QRect xBoundingRect;
+    QRect yBoundingRect;
 };
 
 

@@ -25,6 +25,11 @@ Window::Window()
     connect(shapeComboBox, SIGNAL(activated(int)),
             this, SLOT(shapeChanged()));
 
+    transformationsCheckBox = new QCheckBox(tr("&Transformations"));
+
+    connect(transformationsCheckBox, SIGNAL(toggled(bool)),
+            renderArea, SLOT(setTransformed(bool)));
+
 
     QGridLayout *mainLayout = new QGridLayout;
     mainLayout->setColumnStretch(0, 1);
@@ -32,6 +37,7 @@ Window::Window()
     mainLayout->addWidget(renderArea, 0, 0, 1, 4);
     mainLayout->addWidget(shapeLabel, 2, 0, Qt::AlignRight);
     mainLayout->addWidget(shapeComboBox, 2, 1);
+    mainLayout->addWidget(transformationsCheckBox, 5, 2, 1, 2, Qt::AlignRight);
 
     setLayout(mainLayout);
 

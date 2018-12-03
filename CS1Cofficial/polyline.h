@@ -18,8 +18,6 @@ private:
     int y3;
     int x4;
     int y4;
-    int p;
-    int a;
     QPen pLinePen;
 public:
     void draw()
@@ -34,12 +32,12 @@ public:
 
     int getPerimeter()
     {
-        return p;
+        return -1;
     }
 
     int getArea()
     {
-        return a;
+        return -1;
     }
 
     QPen getPen()

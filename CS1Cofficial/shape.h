@@ -4,10 +4,14 @@
 #include <QPen>
 #include <QFont>
 #include <QPainter>
+#include <QWidget>
+#include <fstream>
+#include "renderarea.h"
 using namespace std;
 
 class Shape
 {
+
 private:
     int shapeId;
 protected:
@@ -51,6 +55,11 @@ public:
         brushColor = brushC;
         brushStyle = brushS;
 
+    }
+
+    int getId()
+    {
+        return shapeId;
     }
 
     //pure virtual functions:

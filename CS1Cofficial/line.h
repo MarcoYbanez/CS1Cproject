@@ -5,6 +5,7 @@
 #include <QFont>
 #include <QPainter>
 #include <QPoint>
+#include <QWidget>
 #include "shape.h"
 using namespace std;
 
@@ -15,14 +16,17 @@ private:
     int y1;
     int x2;
     int y2;
-    //int l;
-    int p;
-    int a;
+    //int l; length; perhaps use distance formula?
     QPen linePen;
+    QPainter linePainter;
+    QBrush lineBrush;
 public:
  void draw()
  {
-    painter.drawLine(x1,y1,x2,y2);
+     //to be implemented by alexis
+      //painter.setPen(linePen);
+      //painter.setBrush(lineBrush);
+      //painter.drawLine(x1,y1,x2,y2);
  }
 
  void move()
@@ -30,14 +34,14 @@ public:
 
  }
 
- void perimeter()
+ int getPerimeter()
  {
-    p = 0;
+    return -1;
  }
 
- void area()
+ int getArea()
  {
-    a = 0;
+    return -1;
  }
 
  QPen getPen()
@@ -54,6 +58,7 @@ public:
      linePen.setCapStyle(capStyle);
      linePen.setJoinStyle(joinStyle);
      painter.setPen(linePen);
+     painter.setBrush(lineBrush);
      x1 = 20;
      y1 = 90;
      x2 = 100;

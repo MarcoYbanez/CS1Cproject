@@ -4,10 +4,11 @@
 #include <QPen>
 #include <QFont>
 #include <QPainter>
+#include <math.h>
 #include "shape.h"
 using namespace std;
 
-class Polygon : public Shape
+class Polygon : public Shape //currently incomplete
 {
 private:
     int x1;
@@ -18,13 +19,15 @@ private:
     int y3;
     int x4;
     int y4;
+    int p;
+    int a;
     QPen pGonPen;
     QBrush pGonBrush;
 
 public:
     void draw()
     {
-
+        //to be implemented
     }
 
     void move()
@@ -32,14 +35,14 @@ public:
 
     }
 
-    void perimeter()
+    int getPerimeter()
     {
-
+        return p;
     }
 
-    void area()
+    int getArea()
     {
-
+        return a;
     }
 
     QPen getPen()
@@ -81,6 +84,9 @@ public:
         y3 = 40;
         x4 = 980;
         y4 = 80;
+        p = sqrt(pow((x2-x1),2) + pow((y2-y1),2)) + sqrt(pow((x3-x2),2) + pow((y3-y2),2)) + sqrt(pow((x4-x3),2) + pow((y4-y3),2)) +
+                sqrt(pow((x4-x1),2) + pow((y4-y1),2));
+        a= 0.5*((x1*y2 - x2*y1) + (x2*y3 - x3*y2) + (x3*y4 - x4*y3) + (x4*y1 - x1*y4));
         //ShapeDimensions: 900, 90, 910, 20, 970, 40, 980, 80
     }
 };

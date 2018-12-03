@@ -23,7 +23,7 @@ private:
     RenderArea *renderArea;
     QLabel *shapeLabel;
     QComboBox *shapeComboBox;
-
+    QCheckBox *transformationsCheckBox;
 
 
 };

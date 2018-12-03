@@ -25,6 +25,9 @@ public:
 	//***********************//	
 	void addShape();
 	void deleteShape();
+    void listPerimeter();
+    void listId();
+    void listArea();
 		/* Add other options here */
 
 private:
@@ -296,6 +299,30 @@ shapeVector::shapeVector(){
 
 	ParseData();
 
+}
+
+void listId()
+{
+    for (int i = 0; i < shapeVector.size(); i++)
+    {
+
+    }
+}
+
+void listPerimeter()
+{
+    for (int i = 0; i < shapeVector.size(); i++)
+    {
+
+    }
+}
+
+void listArea()
+{
+    for (int i = 0; i < shapeVector.size(); i++)
+    {
+
+    }
 }
 
 
