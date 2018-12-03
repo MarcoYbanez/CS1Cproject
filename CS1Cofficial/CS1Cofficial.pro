@@ -28,7 +28,13 @@ CONFIG+=sdk_no_version_check
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
+<<<<<<< HEAD
     contact.cpp
+=======
+    contact.cpp \
+    login.cpp \
+    drawwt.cpp
+>>>>>>> dbe7fe2542f2e4cbc795787ccce6af181173145f
 
 HEADERS += \
         mainwindow.h \
@@ -39,7 +45,13 @@ HEADERS += \
     rectangle.h \
     shape.h \
     text.h \
+<<<<<<< HEAD
     contact.h
+=======
+    contact.h \
+    login.h \
+    drawwt.h
+>>>>>>> dbe7fe2542f2e4cbc795787ccce6af181173145f
 
 FORMS += \
         mainwindow.ui \
