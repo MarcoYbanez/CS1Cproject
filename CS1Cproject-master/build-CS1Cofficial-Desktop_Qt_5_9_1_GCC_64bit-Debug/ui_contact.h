@@ -29,6 +29,7 @@ public:
         if (contact->objectName().isEmpty())
             contact->setObjectName(QStringLiteral("contact"));
         contact->resize(400, 300);
+        contact->setAutoFillBackground(true);
         logo_pic = new QLabel(contact);
         logo_pic->setObjectName(QStringLiteral("logo_pic"));
         logo_pic->setGeometry(QRect(90, 80, 221, 151));
@@ -41,7 +42,7 @@ public:
 
     void retranslateUi(QDialog *contact)
     {
-        contact->setWindowTitle(QApplication::translate("contact", "Dialog", Q_NULLPTR));
+        contact->setWindowTitle(QApplication::translate("contact", "Contact Us", Q_NULLPTR));
         logo_pic->setText(QString());
     } // retranslateUi
 
