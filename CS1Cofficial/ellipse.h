@@ -10,7 +10,8 @@
 #include <QPainter>
 #include "shape.h"
 using namespace std;
-
+//ellipse
+//ellispe
 class Ellipse : public Shape
 {
 private:
@@ -19,27 +20,33 @@ private:
     int a; //semi-major axis
     int b; //semi-minor axis
 public:
-    Ellipse()
+    Ellipse(): Shape()
     {
       a = 0;
       b = 0;
     }
     
-    Ellispe(int a1, int b1)
+    Ellipse(int a1, int b1): Shape()
     {
       a = a1;
       b = b1;
     }
 
-    Ellispe(const Ellispe & other)
+    Ellipse(const Ellipse & other): Shape()
     {
       this->a = other.a;
       this->b = other.b;
     }
     
-    void draw()
+    void draw(QPainter &p)
     {
-       painter.drawEllipse(x1,y1,a,b);
+        x1 = 10;
+        y1 = 1000;
+        a = 500;
+        b = 800;
+        p.setPen(getPen());
+
+        p.drawEllipse( QRect( 110, 10, 80, 80 ) );
     }
 
     void move()
@@ -54,7 +61,8 @@ public:
       h = pow(base1, power)/pow(base2, power);
       double square = sqrt(4-3*h);
       p = PI*base2*(1+3*h/10+square);
-      cout << "The perimeter is: " << p << endl;
+    //cout no allowed in qt
+      //cout << "The perimeter is: " << p << endl;
 
 
     }
@@ -63,15 +71,16 @@ public:
     {
       double area = 0;
       area = PI * a * b;
-      cout << "The area is: " << area << endl;
+     // cout << "The area is: " << area << endl;
 
     }
     void getData()
     {
-      cout << "What is the semi-major axis? ";
-      cin >> a;
-      cout << "What is the semi-minor axis? ";
-      cin >> b;
+     // cout << "What is the semi-major axis? ";
+        //no cin in qt creates
+      //cin >> a;
+      //cout << "What is the semi-minor axis? ";
+     // cin >> b;
     }
 };
 

@@ -45,7 +45,7 @@
 using namespace std;
 
 #include "mainwindow.h"
-
+/*
 #include "shape.h"
 #include "ellipse.h"
 #include "line.h"
@@ -54,8 +54,9 @@ using namespace std;
 #include "rectangle.h"
 #include "shape.h"
 #include "text.h"
-
+*/
 #include <QApplication>
+#include "drawwt.h"
 
 
 int main(int argc, char *argv[])
