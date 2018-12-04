@@ -63,12 +63,12 @@ void setCord(int a1, int b1, int a2, int b2)
 
  }
 
- int perimeter()
+ int getPerimeter()
  {
      return -1;
  }
 
- int area()
+ int getArea()
  {
      return -1;
  }

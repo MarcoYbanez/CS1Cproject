@@ -31,12 +31,12 @@ public:
 
     }
 
-    int perimeter()
+    int getPerimeter()
     {
         return 0;
     }
 
-    int area()
+    int getArea()
     {
         return 0;
     }

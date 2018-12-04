@@ -54,8 +54,9 @@ public:
 
     }
 
-    int perimeter()
+    int getPerimeter()
     {
+      double h = 0;
       double base1 = (a-b), base2 = (a+b), power = 2;
       h = pow(base1, power)/pow(base2, power);
       double square = sqrt(4-3*h);
@@ -63,11 +64,10 @@ public:
       return p;
     
     }
-    int area()
+    int getArea()
     {
       area = PI * a * b;
       return area;
-
     }
 
     void setCord(int a1,int b1,int a2,int b2)
@@ -77,7 +77,6 @@ public:
         a = a2;
         b = b2;
     }
-
 
 };
 

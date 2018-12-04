@@ -43,13 +43,13 @@ public:
 
     }
 
-    int perimeter()
+    int getPerimeter()
     {
       p = l*4;
       return p;
     }
 
-    int area()
+    int getArea()
     {
       a = l*l;
      return a;

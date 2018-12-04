@@ -1,10 +1,12 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
+#define PI 3.14159
 #include <QPen>
 #include <QFont>
 #include <QPainter>
 #include "shape.h"
 #include <QPointF>
+#include <math.h>
 class Circle : public Shape
 {
 private:
@@ -38,6 +40,7 @@ public:
         x = a1;
         y = b1;
         a = a2;
+        //b = b2;
         }
 
     void draw(QPainter &p)
@@ -53,9 +56,9 @@ public:
 
     }
 
-    int perimeter()
+    int getPerimeter()
     {
-      h=0;
+      double h=0;
       double base1 = (a-b), base2 = (a+b), power = 2;
       h = pow(base1, power)/pow(base2, power);
       double square = sqrt(4-3*h);
@@ -63,7 +66,7 @@ public:
    return p;
     }
 
-    int area()
+    int getArea()
     {
       area = PI * a * b;
     return area;
