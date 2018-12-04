@@ -3,11 +3,18 @@
 
 #include <QWidget>
 #include <QBrush>
-#include <QPen>
 #include <QPixmap>
 #include <QWidget>
 #include "line.h"
+#include "ellipse.h"
+#include "rectangle.h"
+#include "polygon.h"
+#include "polyline.h"
+#include "square.h"
+#include "circle.h"
+#include "text.h"
 #include "shape.h"
+
 
 class drawWt : public QWidget
 {

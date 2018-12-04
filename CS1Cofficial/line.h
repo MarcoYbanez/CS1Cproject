@@ -8,7 +8,6 @@
 #include <QPoint>
 #include "shape.h"
 #include <QPainter>
-#include "drawwt.h"
 
 
 class Line : public Shape
