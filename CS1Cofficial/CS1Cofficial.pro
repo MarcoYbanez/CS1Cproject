@@ -44,7 +44,8 @@ HEADERS += \
     contact.h \
     login.h \
     drawwt.h \
-    vector.h
+    vector.h \
+    square.h
 
 FORMS += \
         mainwindow.ui \

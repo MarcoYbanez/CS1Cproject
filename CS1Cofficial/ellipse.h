@@ -9,7 +9,7 @@
 #include <QFont>
 #include <QPainter>
 #include "shape.h"
-using namespace std;
+;
 //ellipse
 //ellispe
 class Ellipse : public Shape

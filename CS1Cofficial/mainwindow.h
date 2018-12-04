@@ -7,6 +7,7 @@
 #include <QPixmap>
 #include <QWidget>
 #include "shape.h"
+#include "vector.h"
 
 namespace Ui {
 class MainWindow;
