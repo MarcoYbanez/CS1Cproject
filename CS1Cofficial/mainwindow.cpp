@@ -15,6 +15,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->availableShapesList->addItem("Circle");
+    ui->availableShapesList->addItem("Ellipse");
+    ui->availableShapesList->addItem("Line");
+    ui->availableShapesList->addItem("Polygon");
+    ui->availableShapesList->addItem("Polyline");
+    ui->availableShapesList->addItem("Rectangle");
+    ui->availableShapesList->addItem("Square");
+    ui->availableShapesList->addItem("Text");
+    ui->availableShapesList->addItem("Custom");
+
     /*
     logIn *l = new logIn();
     l->show();
@@ -35,10 +45,18 @@ void MainWindow::on_contactUs_btn_clicked()
 void MainWindow::on_draw_btn_clicked()
 {
 
+    int selectedShape = ui->availableShapesList->currentRow();
+
+
+/*
+ * Populate array before this point
+ * Confirm order
+ *
+ *
     shapeV.parse();
     currentShape = shapeV.getShapeV(7);
     drawWt * draw = new drawWt;
     draw->setShape(currentShape);
     draw->show();
-
+*/
 }
