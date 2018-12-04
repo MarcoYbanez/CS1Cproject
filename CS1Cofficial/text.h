@@ -6,7 +6,7 @@
 #include <QFont>
 #include <QPainter>
 #include "shape.h"
-using namespace std;
+
 
 class Text : public Shape
 {

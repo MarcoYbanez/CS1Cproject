@@ -43,7 +43,9 @@ HEADERS += \
     text.h \
     contact.h \
     login.h \
-    drawwt.h
+    drawwt.h \
+    vector.h \
+    square.h
 
 FORMS += \
         mainwindow.ui \
@@ -56,4 +58,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    logo.png
+    logo.png \
+    shapes.txt

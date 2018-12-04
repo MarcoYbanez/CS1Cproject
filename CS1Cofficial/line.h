@@ -9,7 +9,7 @@
 #include "shape.h"
 #include <QPainter>
 #include "drawwt.h"
-using namespace std;
+
 
 class Line : public Shape
 {
@@ -40,6 +40,14 @@ Line(const Line & other) : Shape()
     this->y1 = other.y1;
     this->x2 = other.x2;
     this->y2 = other.y2;
+}
+
+void setCord(int a1, int b1, int a2, int b2)
+{
+    x1 = a1;
+    y1 = b1;
+    x2 = a2;
+    y2 = b2;
 }
  void draw(QPainter &p)
  {

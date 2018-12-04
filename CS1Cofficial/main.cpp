@@ -42,7 +42,7 @@
 #include <string>
 #include <fstream>
 
-using namespace std;
+
 
 #include "mainwindow.h"
 /*

@@ -24,7 +24,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete currentShape;
 }
 
 void MainWindow::on_contactUs_btn_clicked()
@@ -35,17 +34,9 @@ void MainWindow::on_contactUs_btn_clicked()
 
 void MainWindow::on_draw_btn_clicked()
 {
-    /*
-     *Main window can hold our vector, we can then pass to current shape pointer the shape we want to display.
-     *
-     */
-    //test for line.
-    //currentShape = new Line;
-    //test for ellipse.
-    currentShape = new Ellipse;
-    //test for rectangle
-    //currentShape = new Rectangle;
 
+    shapeV.parse();
+    currentShape = shapeV.getShapeV(4);
     drawWt * draw = new drawWt;
     draw->setShape(currentShape);
     draw->show();

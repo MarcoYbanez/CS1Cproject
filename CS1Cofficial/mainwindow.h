@@ -7,6 +7,7 @@
 #include <QPixmap>
 #include <QWidget>
 #include "shape.h"
+#include "vector.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +31,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
      Shape * currentShape;
+     vector<Shape*> shapeV;
 };
 
 #endif // MAINWINDOW_H

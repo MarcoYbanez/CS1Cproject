@@ -6,7 +6,7 @@
 #include <QFont>
 #include <QPainter>
 #include <QBrush>
-using namespace std;
+using std::string;
 
 class Shape
 {
@@ -46,6 +46,95 @@ public:
     virtual void getData() = 0;
         //*********//
       // Setters //
+    virtual void setCord(int a1,int b1,int a2,int b2) = 0;
+    Qt::GlobalColor myColor(string scolor)
+    {
+        if(scolor == "blue")
+            return Qt::blue;
+        else if(scolor == "red")
+            return Qt::red;
+        else if(scolor == "white")
+            return Qt::white;
+        else if(scolor== "black")
+            return Qt::black;
+
+    }
+
+    Qt::PenStyle getPenStyle(string thispenStyle)
+    {
+        if(thispenStyle == "DashDotLine")
+            return Qt::DashDotDotLine;
+        else if(thispenStyle == "SolidLine")
+            return Qt::SolidLine;
+        else if(thispenStyle == "DashLine")
+            return Qt::DashLine;
+    }
+
+    Qt::PenCapStyle getPenCap(string thispenCap)
+    {
+        if(thispenCap == "FlatCap")
+            return Qt::FlatCap;
+        else if(thispenCap == "RoundCap")
+            return Qt::RoundCap;
+    }
+
+    Qt::PenJoinStyle getPenJoinStyle(string thisJoinStyle)
+    {
+        if(thisJoinStyle == "MiterJoin")
+            return Qt::MiterJoin;
+        if(thisJoinStyle == "RoundJoin")
+            return Qt::RoundJoin;
+    }
+    Qt::BrushStyle getBrushStyle(string thisBrushStyle)
+    {
+        if(thisBrushStyle == "VerPattern")
+            return Qt::VerPattern;
+        else if(thisBrushStyle == "HorPattern")
+            return Qt::HorPattern;
+    }
+
+    void setBrushColor(string thisBrushColor)
+    {
+        brushColor = myColor(thisBrushColor);
+        myBrush.setColor(brushColor);
+    }
+    void setBrushStyle(string thisBrushStyle)
+    {
+        brushStyle = getBrushStyle(thisBrushStyle);
+        myBrush.setStyle(brushStyle);
+    }
+
+    void setJoinStyle(string thisJoinStyle)
+    {
+        joinStyle = getPenJoinStyle(thisJoinStyle);
+        myPen.setJoinStyle(joinStyle);
+    }
+
+    void setPenStyle(string thispenStyle)
+    {
+        penStyle = getPenStyle(thispenStyle);
+        myPen.setStyle(penStyle);
+    }
+    void setCapStyle(string thispenCap)
+    {
+        capStyle = getPenCap(thispenCap);
+        myPen.setCapStyle(capStyle);
+    }
+    void setID(int d)
+    {
+        shapeId = d;
+    }
+    void setColor(string color)
+    {
+
+       penColor = myColor(color);
+        myPen.setColor(penColor);
+    }
+    void setWidth(int d)
+    {
+        penWidth = d;
+        myPen.setWidth(penWidth);
+    }
     //*********//
     //getFucntions
     QPen getPen()
@@ -96,9 +185,6 @@ public:
 
     void setBrush()
     {
-        brushColor = Qt::white;
-        brushStyle = Qt::VerPattern;
-
         myBrush.setColor(brushColor);
         myBrush.setStyle(brushStyle);
     }
