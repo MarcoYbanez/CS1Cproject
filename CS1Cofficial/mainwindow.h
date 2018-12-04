@@ -30,6 +30,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
      Shape * currentShape;
+     vector<Shape*> shapeV;
 };
 
 #endif // MAINWINDOW_H

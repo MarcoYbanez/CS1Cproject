@@ -177,6 +177,92 @@ public:
 		--size;
 		return p;
 	}
+
+    void parser()
+    {
+        string data= "";
+        string shapeType = "";
+        int num = 0;
+        int d = 0;
+        string o = "";
+        std::ifstream shapesFile;
+        //change to current shape.
+        shapesFile.open("/home/cs1c/Pictures/myRep/CS1Cproject-master/CS1Cofficial/shapes.txt");
+        if(shapesFile.fail())
+            qDebug() << "fail";
+        elem = new Shape*[10];
+
+        while(!shapesFile.eof())
+        {
+            //look for new shape
+          getline(shapesFile,data, '-');
+          //skip to ID
+          getline(shapesFile, data, ' ');
+
+          //Get ID of the shape
+          getline(shapesFile, o , '\r');
+          //store shape
+          d = stoi(o);
+          //get to shape type
+          getline(shapesFile, data, ' ');
+          //Get shape type
+          getline(shapesFile, data, '\r');
+          //store shapeType
+          shapeType = data;
+
+          if(shapeType == "Line")
+          {
+              int x1 = 0;
+              int x2 = 0;
+              int y1 = 0;
+              int y2 = 0;
+              elem[num] = new Line;
+              // set id
+              elem[num]->setID(d);
+               getline(shapesFile, data, ' ');
+                qDebug() << QString::fromStdString(data);
+               getline(shapesFile, data, ',');
+               x1 = stoi(data);
+                qDebug() << QString::fromStdString(data);
+               getline(shapesFile, data, ',');
+               y1 = stoi(data);
+               getline(shapesFile, data, ',');
+               x2 = stoi(data);
+               getline(shapesFile, data, '\r');
+               y2 = stoi(data);
+               elem[num]->setCord(x1,y1,x2,y2);
+               getline(shapesFile, data, ' ');
+               getline(shapesFile, data, '\r');
+               elem[num]->setColor(data);
+               getline(shapesFile, data, ' ');
+               getline(shapesFile, data , '\r');
+               d = stoi(data);
+               elem[num]->setWidth(d);
+
+
+          }
+          num++;
+
+
+          qDebug() << QString::fromStdString(data) << QString::fromStdString(shapeType);
+
+        }
+        qDebug() << num;
+
+
+
+
+
+
+
+      //  QString b =data;
+      //  qDebug() << QString::fromStdString(data);
+    }
+
+    Shape* getShapeV(const int i)
+    {
+        return elem[i];
+    }
 };
 
 #endif /* VECTOR_H_ */
