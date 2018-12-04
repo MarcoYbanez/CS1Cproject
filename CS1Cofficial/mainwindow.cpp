@@ -36,7 +36,7 @@ void MainWindow::on_draw_btn_clicked()
 {
 
     shapeV.parse();
-    currentShape = shapeV.getShapeV(4);
+    currentShape = shapeV.getShapeV(7);
     drawWt * draw = new drawWt;
     draw->setShape(currentShape);
     draw->show();

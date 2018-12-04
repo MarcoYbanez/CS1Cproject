@@ -7,7 +7,10 @@
 #include <QPainter>
 #include <QBrush>
 using std::string;
-
+enum StyleHint { Helvetica, SansSerif = Helvetica, Times, Serif = Times, Courier, TypeWriter = Courier, OldEnglish, Decorative = OldEnglish, System, AnyStyle };
+enum  Style { StyleNormal, StyleItalic, StyleOblique };
+enum  	Weight { Light = 25, Normal = 50, DemiBold = 63, Bold = 75,
+  Black = 87 };
 class Shape
 {
 private:
@@ -31,8 +34,8 @@ private:
     Qt::AlignmentFlag textAlignment;
     int textPointSize;
     string textFontFamily;
-    QFont::Style textFontStyle;
-    QFont::Weight textFontWeight;
+    string  fontStyle;
+    Weight textFontWeight;
 
     //
     QPen myPen;
@@ -45,8 +48,10 @@ public:
     virtual void area() = 0;
     virtual void getData() = 0;
         //*********//
+    virtual void setText(string myText){}
       // Setters //
     virtual void setCord(int a1,int b1,int a2,int b2) = 0;
+    //Covert Strings to QColors and QStyles
     Qt::GlobalColor myColor(string scolor)
     {
         if(scolor == "blue")
@@ -57,6 +62,8 @@ public:
             return Qt::white;
         else if(scolor== "black")
             return Qt::black;
+        else if(scolor == "magenta")
+                return Qt::magenta;
 
     }
 
@@ -68,6 +75,7 @@ public:
             return Qt::SolidLine;
         else if(thispenStyle == "DashLine")
             return Qt::DashLine;
+
     }
 
     Qt::PenCapStyle getPenCap(string thispenCap)
@@ -76,6 +84,8 @@ public:
             return Qt::FlatCap;
         else if(thispenCap == "RoundCap")
             return Qt::RoundCap;
+        else if(thispenCap == "FlatCap")
+            return Qt::FlatCap;
     }
 
     Qt::PenJoinStyle getPenJoinStyle(string thisJoinStyle)
@@ -91,8 +101,37 @@ public:
             return Qt::VerPattern;
         else if(thisBrushStyle == "HorPattern")
             return Qt::HorPattern;
+        else if(thisBrushStyle == "SolidPattern")
+            return Qt::SolidPattern;
+        else if(thisBrushStyle == "NoBrush")
+                return Qt::NoBrush;
+    }
+    Qt::AlignmentFlag getAlignment(string myAlignment)
+    {
+        if(myAlignment == "AlignCenter")
+            return Qt::AlignCenter;
+    }
+    Style turnFontStyle(string myStile)
+    {
+        if(myStile == "StyleNormal")
+            return StyleNormal;
     }
 
+    Weight getMyFontWeight(string myFontWeight)
+    {
+        if(myFontWeight == "Bold")
+        return Bold;
+        else if(myFontWeight == "Normal")
+            return Normal;
+    }
+
+    string getFontFamily()
+    {
+        return textFontFamily;
+    }
+
+
+//====================================================================
     void setBrushColor(string thisBrushColor)
     {
         brushColor = myColor(thisBrushColor);
@@ -146,36 +185,6 @@ public:
     //temp Shape properties
     Shape()
     {
-        //temp values to be able to test drawing widget.
-        penColor = Qt::red;
-        penStyle = Qt::DotLine;
-        penWidth = 3;
-        capStyle = Qt::RoundCap;
-        joinStyle = Qt::BevelJoin;
-
-        brushColor = Qt::white;
-        brushStyle = Qt::Dense1Pattern;
-        /*
-        string textString;
-        Qt::GlobalColor textColor;
-        Qt::AlignmentFlag textAlignment;
-        int textPointSize;
-        string textFontFamily;
-        QFont::Style textFontStyle;
-        QFont::Weight textFontWeight;
-
-        */
-        myPen.setColor(penColor);
-        myPen.setWidth(penWidth);
-        myPen.setStyle(penStyle);
-        myPen.setCapStyle(capStyle);
-        myPen.setJoinStyle(joinStyle);
-
-        //set brush
-        setBrush();
-
-
-
     }
 
     QBrush getBrush()
@@ -188,6 +197,48 @@ public:
         myBrush.setColor(brushColor);
         myBrush.setStyle(brushStyle);
     }
+    //=====================================
+    //Text Functions
+    void setAlignment(string myAlignment)
+    {
+        textAlignment = getAlignment(myAlignment);
+    }
+
+    void setPointSize(int myPointSize)
+    {
+        textPointSize = myPointSize;
+    }
+
+    void setFamily(string myFamily)
+    {
+        textFontFamily = myFamily;
+    }
+
+    void setFontStyle(string myFontStyle)
+    {
+        fontStyle = myFontStyle;
+
+    }
+
+    void stFontWeight(string myFontWeight)
+    {
+        textFontWeight = getMyFontWeight(myFontWeight);
+    }
+
+    string getFontStyle()
+    {
+        return fontStyle;
+    }
+    int getFontSize()
+    {
+        return textPointSize;
+    }
+    Weight getWeight()
+    {
+        return textFontWeight;
+    }
+
+    //======================================
 
     bool operator==(const Shape& shape2)
     {
