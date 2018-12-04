@@ -6,20 +6,45 @@
 #include <QFont>
 #include <QPainter>
 #include "shape.h"
+#include "string.h"
+using std::string;
 
 
 class Text : public Shape
 {
 private:
-    int x1;
-    int y1; //(x1,y1) top left point
+    int x;
+    int y; //(x1,y1) top left point
     int l; //length
     int w; //width
+    string text;
     //dimensions for a textbox-rectangle
 public:
-    void draw()
+    Text(): Shape()
     {
-        //painter.drawText()
+    }
+
+     ~Text(){}
+
+    void setCord(int a1,int b1,int a2,int b2)
+    {
+        x = a1;
+        y = b1;
+        l = a2;
+        w = b2;
+    }
+    void setText(string myText)
+    {
+        text = myText;
+    }
+    void draw(QPainter &p)
+    {
+        QFont thisFont;
+        thisFont.setPointSize(getFontSize());
+        thisFont.setFamily(QString::fromStdString(getFontFamily()));
+        thisFont.setWeight(getWeight());
+        p.setFont(thisFont);
+        p.drawText(QPoint(x,y),QString::fromStdString(text));
     }
 
     void move()
@@ -33,6 +58,10 @@ public:
     }
 
     void area()
+    {
+
+    }
+    void getData()
     {
 
     }

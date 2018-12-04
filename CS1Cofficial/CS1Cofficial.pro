@@ -45,7 +45,9 @@ HEADERS += \
     login.h \
     drawwt.h \
     vector.h \
-    square.h
+    square.h \
+    circle.h \
+    text.h
 
 FORMS += \
         mainwindow.ui \
