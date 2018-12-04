@@ -1,80 +1,71 @@
 #ifndef TEXT_H
 #define TEXT_H
+
 #include <string>
 #include <QPen>
 #include <QFont>
 #include <QPainter>
 #include "shape.h"
-using namespace std;
+#include "string.h"
+using std::string;
+
 
 class Text : public Shape
 {
 private:
-    int x1;
-    int y1; //(x1,y1) top left point
+    int x;
+    int y; //(x1,y1) top left point
     int l; //length
     int w; //width
+    int p;
+    int a;
+    string text;
     //dimensions for a textbox-rectangle
-    string textString;
-    Qt::GlobalColor textColor;
-    Qt::AlignmentFlag textAlignment;
-    int textPointSize;
-    string textFontFamily;
-    QFont::Style textFontStyle;
-    QFont::Weight textFontWeight;
 public:
-    void draw()
+    Text(): Shape()
     {
-        //painter.drawText()
     }
 
-    void move() //admin only
+     ~Text(){}
+
+    void setCord(int a1,int b1,int a2,int b2)
+    {
+        x = a1;
+        y = b1;
+        l = a2;
+        w = b2;
+    }
+    void setText(string myText)
+    {
+        text = myText;
+    }
+    void draw(QPainter &p)
+    {
+        QFont thisFont;
+        thisFont.setPointSize(getFontSize());
+        thisFont.setFamily(QString::fromStdString(getFontFamily()));
+        thisFont.setWeight(getWeight());
+        p.setFont(thisFont);
+        p.drawText(QPoint(x,y),QString::fromStdString(text));
+    }
+
+    void move()
     {
 
     }
 
-    int getPerimeter()
+    void perimeter()
     {
-        return (2*l)+(2*w);
+      p = (2*l) + (2*w);
+      return p;
     }
 
-    int getArea()
+    void area()
     {
-        return (l*w);
-    }
-
-
-    QRect getRect()
-    {
-        QRect rect(x1,y1,w,l);
-        return rect;
-    }
-
-    Qt::Alignment getAlign()
-    {
-        return textAlignment;
-    }
-
-    string getString()
-    {
-        return textString;
-    }
-
-    Text():Shape(8)
-    {
-        x1 = 250;
-        y1 = 425;
-        l = 500;
-        w = 50;
-        textString = "Class Project 2 - 2D Graphics Modeler";
-        textColor = Qt::blue;
-        textAlignment = Qt::AlignCenter;
-        textPointSize = 10;
-        textFontFamily = "Comic Sans MS";
-        textFontStyle = QFont::StyleNormal;
-        textFontWeight = QFont::Normal;
-    }
-
-
+        a=l*w;
+        return a;
+    }   
 };
+
+
 #endif // TEXT_H

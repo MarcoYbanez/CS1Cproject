@@ -30,8 +30,7 @@ SOURCES += \
         mainwindow.cpp \
     contact.cpp \
     login.cpp \
-    renderarea.cpp \
-    window.cpp
+    drawwt.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,8 +43,11 @@ HEADERS += \
     text.h \
     contact.h \
     login.h \
-    renderarea.h \
-    window.h
+    drawwt.h \
+    vector.h \
+    square.h \
+    circle.h \
+    text.h
 
 FORMS += \
         mainwindow.ui \

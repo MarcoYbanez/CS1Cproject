@@ -7,7 +7,7 @@
 #include "shape.h"
 using namespace std;
 
-class Polyline : public Shape //currently incomplete
+class Polyline : public Shape
 {
 private:
     int x1;
@@ -22,7 +22,8 @@ private:
 public:
     void draw()
     {
-
+        //to be implemented
+    
     }
 
     void move()
@@ -30,14 +31,14 @@ public:
 
     }
 
-    int getPerimeter()
+    int perimeter()
     {
-        return -1;
+        return 0;
     }
 
-    int getArea()
+    int area()
     {
-        return -1;
+        return 0;
     }
 
     QPen getPen()
@@ -55,7 +56,7 @@ public:
              };
         return points;
     }
-
+    /*
     Polyline():Shape(2,Qt::green,6,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin)
     {
         pLinePen.setColor(penColor);
@@ -74,6 +75,7 @@ public:
         y4 = 80;
         //ShapeDimensions: 460, 90, 470, 20, 530, 40, 540, 80
     }
+    */
 };
 
 #endif // POLYLINE_H
