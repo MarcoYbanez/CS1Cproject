@@ -1,4 +1,3 @@
-
 #ifndef ELLIPSE_H
 #define ELLIPSE_H
 #define PI 3.14159
@@ -19,6 +18,8 @@ private:
     int y; //(x1,y1) top left point
     int a; //semi-major axis
     int b; //semi-minor axis
+    double area;
+    double p;
 public:
     Ellipse(): Shape()
     {
@@ -52,17 +53,20 @@ public:
 
     }
 
-    void perimeter()
+    double getPerimeter()
     {
-      double p=0,h=0;
+      double h = 0;
       double base1 = (a-b), base2 = (a+b), power = 2;
       h = pow(base1, power)/pow(base2, power);
       double square = sqrt(4-3*h);
       p = PI*base2*(1+3*h/10+square);
-    //cout no allowed in qt
-      //cout << "The perimeter is: " << p << endl;
-
-
+      return p;
+    
+    }
+    double getArea()
+    {
+      area = PI * a * b;
+      return area;
     }
 
     void setCord(int a1,int b1,int a2,int b2)
@@ -73,21 +77,6 @@ public:
         b = b2;
     }
 
-    void area()
-    {
-      double area = 0;
-      area = PI * a * b;
-     // cout << "The area is: " << area << endl;
-
-    }
-    void getData()
-    {
-     // cout << "What is the semi-major axis? ";
-        //no cin in qt creates
-      //cin >> a;
-      //cout << "What is the semi-minor axis? ";
-     // cin >> b;
-    }
 };
 
 

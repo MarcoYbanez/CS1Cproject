@@ -17,6 +17,8 @@ private:
     int y; //(x1,y1) top left point
     int l; //length
     int w; //width
+    int p;
+    int a;
     string text;
     //dimensions for a textbox-rectangle
 public:
@@ -52,19 +54,17 @@ public:
 
     }
 
-    void perimeter()
+    double getPerimeter()
     {
-
+      p = (2*l) + (2*w);
+      return p;
     }
 
-    void area()
+    double getArea()
     {
-
-    }
-    void getData()
-    {
-
-    }
+        a=l*w;
+        return a;
+    }   
 };
 
 
