@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    drawWt *n = new drawWt;
+
     ui->setupUi(this);
     ui->availableShapesList->addItem("Circle");
     ui->availableShapesList->addItem("Ellipse");
@@ -45,7 +47,6 @@ void MainWindow::on_draw_btn_clicked()
 
     int selectedShape = ui->availableShapesList->currentRow();  //returns int for the value that user selects
                                                                 //once button is clicked... int passes to draw
-                                                                //below
 
 
 /*
@@ -59,4 +60,10 @@ void MainWindow::on_draw_btn_clicked()
     draw->setShape(currentShape);
     draw->show();
 */
+}
+
+void MainWindow::on_login_btn_clicked()
+{
+    logIn *l = new logIn;
+    l->show();
 }
