@@ -4,20 +4,10 @@
 #define VECTOR_H_
 
 #include<algorithm>
-#include <QDebug>
-#include "shape.h"
-#include "line.h"
-#include <fstream>
-#include "rectangle.h"
-#include "square.h"
-#include "ellipse.h"
-#include "circle.h"
-#include "text.h"
 using std::copy;
-using std::stoi;
 
 template<class T>
-class vector
+class vectorType
 {
 private:
 	int size;
@@ -25,26 +15,20 @@ private:
 	T* elem;
 
 public:
-public:
- 	vector(): size{0}, capacity{100}, elem{new T[capacity]} //default constructor
- 	{
- 		for(int i = 0; i < capacity; i++)
- 				elem[i] = T();
- 	}
+    vectorType(): size{0}, capacity{100}, elem{new T[capacity]}{} //default constructor
 
- 	explicit vector(int s): size{0}, capacity{s}, elem{new T[s]} //alternate constructor
- 	{
- 		for(int i = 0; i < capacity; i++)
- 			elem[i] = T();
- 	}
-
-	vector(const vector& newVector): size{newVector.size}, capacity{newVector.capacity}, elem{new T[capacity]} //copy constructor
+    explicit vectorType(int s): size{0}, capacity{s}, elem{new T[s]}{} //alternate constructor
+	
+    vectorType(const vectorType& newVector): size{newVector.size}, capacity{newVector.capacity}, elem{new T[capacity]} //copy constructor
 	{
 		for(int i = 0; i < size; i++)
 			elem[i] = newVector.elem[i];
 	}
 
-	vector& operator=(const vector& newVector) //copy assignment
+	// IMPORTANT
+	// If the type is a pointer you MUST delete the data pointed to by pointers in this vector before
+	// using this copy assignment function. If this is not done there will be a memory leak.
+    vectorType& operator=(const vectorType& newVector) //copy assignment
 	{
 		T *p = new T[newVector.size];
 		copy(newVector.elem, newVector.elem + newVector.size, p);
@@ -56,14 +40,17 @@ public:
 		return *this;
 	}
 
-		vector(const vector&& temp): size{temp.size}, capacity{temp.capacity}, elem{temp.elem} //move constructor
+        vectorType(const vectorType&& temp): size{temp.size}, capacity{temp.capacity}, elem{temp.elem} //move constructor
 	{
 		temp.size = 0;
 		temp.capacity = 0;
 		temp.elem = nullptr;
 	}
 
-		vector& operator=(vector&& temp) //move assignment
+	// IMPORTANT
+	// If the type is a pointer you MUST delete the data pointed to by pointers in this vector before
+	// using this move assignment function. If this is not done there will be a memory leak.
+        vectorType& operator=(vectorType&& temp) //move assignment
 	{
 		delete [] elem;
 		elem = nullptr;
@@ -76,7 +63,11 @@ public:
 		return *this;
 	}
 
-	~vector() //destructor
+	// IMPORTANT
+	// If the type is a pointer you MUST delete the data pointed to by pointers in this vector before
+	// using this destructor (only if the destructor is explicitly called). If this is not done there
+	// will be a memory leak.
+    ~vectorType() //destructor
 	{
 	delete[] elem;
 	}
@@ -177,6 +168,9 @@ public:
 		return p;
 	}
 
+	// IMPORTANT
+	// If the type is a pointer you MUST delete the data pointed to by this pointer before
+	// using this function. If this is not done there will be a memory leak.
 	iterator erase(iterator p)
 	{
 		if (p == end())
@@ -187,352 +181,9 @@ public:
 		--size;
 		return p;
 	}
-
-    void parse()
-    {
-        string data= "";
-        string shapeType = "";
-        int num = 0;
-        int d = 0;
-        string o = "";
-        std::ifstream shapesFile;
-        //change to current shape.
-        shapesFile.open("/home/cs1c/Documents/CS1Cproject/CS1Cofficial/shapes.txt");
-        if(shapesFile.fail())
-            qDebug() << "fail";
-        elem = new Shape*[10];
-
-        while(!shapesFile.eof())
-        {
-            //look for new shape
-          getline(shapesFile,data, '-');
-          //skip to ID
-          getline(shapesFile, data, ' ');
-
-          //Get ID of the shape
-          getline(shapesFile, o , '\r');
-          //store shape
-          d = stoi(o);
-          //get to shape type
-          getline(shapesFile, data, ' ');
-          //Get shape type
-          getline(shapesFile, data, '\r');
-          //store shapeType
-          shapeType = data;
-
-          if(shapeType == "Line")
-          {
-              int x1 = 0;
-              int x2 = 0;
-              int y1 = 0;
-              int y2 = 0;
-              elem[num] = new Line;
-              // set id
-              elem[num]->setID(d);
-              //set dimmentsion
-               getline(shapesFile, data, ' ');
-
-               getline(shapesFile, data, ',');
-               x1 = stoi(data);
-
-               getline(shapesFile, data, ',');
-               y1 = stoi(data);
-               getline(shapesFile, data, ',');
-               x2 = stoi(data);
-               getline(shapesFile, data, '\r');
-               y2 = stoi(data);
-
-               elem[num]->setCord(x1,y1,x2,y2);
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data, '\r');
-               elem[num]->setColor(data);
-               //get and set pen width
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data , '\r');
-               d = stoi(data);
-               elem[num]->setWidth(d);
-               //get and set penstyle
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data , '\r');
-               elem[num]->setPenStyle(data);
-               //get and set pen cap style
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data , '\r');
-               elem[num]->setCapStyle(data);
-               //get and set pen join style
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data , '\r');
-               elem[num]->setJoinStyle(data);
-}
-          else if(shapeType == "Ellipse")
-          {
-              {
-                        int x = 0;
-                        int y = 0;
-                        int a = 0;
-                        int b = 0;
-                        elem[num] = new Ellipse;
-                        // set id
-                        elem[num]->setID(d);
-                         //set dimmensions
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data, ',');
-                         x = stoi(data);
-                         getline(shapesFile, data, ',');
-                         y = stoi(data);
-                         getline(shapesFile, data, ',');
-                         a= stoi(data);
-                         getline(shapesFile, data, '\r');
-                         b = stoi(data);
-
-                         elem[num]->setCord(x,y,a,b);
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data, '\r');
-                         elem[num]->setColor(data);
-                         //get and set pen width
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data , '\r');
-                         d = stoi(data);
-                         elem[num]->setWidth(d);
-                         //get and set penstyle
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data , '\r');
-                         elem[num]->setPenStyle(data);
-                         //get and set pen cap style
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data , '\r');
-                         elem[num]->setCapStyle(data);
-                         //get and set pen join style
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data , '\r');
-                         elem[num]->setJoinStyle(data);
-                         //get and set burshColor;
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data , '\r');
-
-                         elem[num]->setBrushColor(data);
-                         //get and set brush style;
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data , '\r');
-
-                         elem[num]->setBrushStyle(data);
-
-              }
-          }
-          else if(shapeType == "Circle")
-          {
-
-                        int x = 0;
-                        int y = 0;
-                        int a = 0;
-                        int b = 0;
-                        elem[num] = new Circle;
-                        // set id
-                        elem[num]->setID(d);
-                         //set dimmensions
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data, ',');
-                         x = stoi(data);
-                         getline(shapesFile, data, ',');
-                         y = stoi(data);
-                         getline(shapesFile, data, '\r');
-                         a = stoi(data);
-
-                         elem[num]->setCord(x,y,a,b);
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data, '\r');
-
-                         elem[num]->setColor(data);
-                         //get and set pen width
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data , '\r');
-                         d = stoi(data);
-                         elem[num]->setWidth(d);
-                         //get and set penstyle
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data , '\r');
-                         elem[num]->setPenStyle(data);
-                         //get and set pen cap style
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data , '\r');
-                         elem[num]->setCapStyle(data);
-                         //get and set pen join style
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data , '\r');
-                         elem[num]->setJoinStyle(data);
-                         //get and set burshColor;
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data , '\r');
-                         elem[num]->setBrushColor(data);
-                         //get and set brush style;
-                         getline(shapesFile, data, ' ');
-                         getline(shapesFile, data , '\r');
-
-                         elem[num]->setBrushStyle(data);
-
-
-          }
-          else if(shapeType == "Square")
-          {
-                    int x = 0;
-                    int y = 0;
-                    int l = 0;
-                    int w = 0;
-                    elem[num] = new Square;
-                    // set id
-                    elem[num]->setID(d);
-                     //set dimmensions
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data, ',');
-                     x = stoi(data);
-                     getline(shapesFile, data, ',');
-                     y = stoi(data);
-                     getline(shapesFile, data, '\r');
-                     l = stoi(data);
-
-                     elem[num]->setCord(x,y,l,w);
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data, '\r');
-                     elem[num]->setColor(data);
-                     //get and set pen width
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data , '\r');
-                     d = stoi(data);
-                     elem[num]->setWidth(d);
-                     //get and set penstyle
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data , '\r');
-                     elem[num]->setPenStyle(data);
-                     //get and set pen cap style
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data , '\r');
-                     elem[num]->setCapStyle(data);
-                     //get and set pen join style
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data , '\r');
-                     elem[num]->setJoinStyle(data);
-                     //get and set burshColor;
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data , '\r');
-                     elem[num]->setBrushColor(data);
-                     //get and set brush style;
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data , '\r');
-                     elem[num]->setBrushStyle(data);
-
-          }
-          else if(shapeType == "Text")
-          {
-                    int x = 0;
-                    int y = 0;
-                    int l = 0;
-                    int w = 0;
-                    elem[num] = new Text;
-                    // set id
-                    elem[num]->setID(d);
-                     //set dimmensions
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data, ',');
-                     x = stoi(data);
-                     getline(shapesFile, data, ',');
-                     y = stoi(data);
-                     getline(shapesFile, data, ',');
-                     l = stoi(data);
-                     getline(shapesFile, data, '\r');
-                     w = stoi(data);
-
-                     elem[num]->setCord(x,y,l,w);
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data, '\r');
-                     elem[num]->setText(data);
-                     //Set penColor
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data, '\r');
-                     elem[num]->setColor(data);
-                     //Set Allignment
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data, '\r');
-                     elem[num]->setAlignment(data);
-                     //set text size
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data, '\r');
-                     x = stoi(data);
-                     elem[num]->setPointSize(x);
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data, '\r');
-                     elem[num]->setFamily(data);
-                     getline(shapesFile, data, ' ');
-                     getline(shapesFile, data, '\r');
-
-
-qDebug() << QString::fromStdString(data);
-
-          }
-    else if(shapeType == "Rectangle")
-    {
-              int x = 0;
-              int y = 0;
-              int l = 0;
-              int w = 0;
-              elem[num] = new Rectangle;
-              // set id
-              elem[num]->setID(d);
-               //set dimmensions
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data, ',');
-               x = stoi(data);
-               getline(shapesFile, data, ',');
-               y = stoi(data);
-               getline(shapesFile, data, ',');
-               l = stoi(data);
-               getline(shapesFile, data, '\r');
-               w = stoi(data);
-
-               elem[num]->setCord(x,y,l,w);
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data, '\r');
-               elem[num]->setColor(data);
-               //get and set pen width
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data , '\r');
-               d = stoi(data);
-               elem[num]->setWidth(d);
-               //get and set penstyle
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data , '\r');
-               elem[num]->setPenStyle(data);
-               //get and set pen cap style
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data , '\r');
-               elem[num]->setCapStyle(data);
-               //get and set pen join style
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data , '\r');
-               elem[num]->setJoinStyle(data);
-               //get and set burshColor;
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data , '\r');
-               elem[num]->setBrushColor(data);
-               //get and set brush style;
-               getline(shapesFile, data, ' ');
-               getline(shapesFile, data , '\r');
-               elem[num]->setBrushStyle(data);
-
-    }
-          num++;
-        }//End of while loop
-      //  QString b =data;
-      //  qDebug() << QString::fromStdString(data);
-    }
-
-    Shape* getShapeV(const int i)
-    {
-        return elem[i];
-    }
 };
 
 #endif /* VECTOR_H_ */
-
 
 
 

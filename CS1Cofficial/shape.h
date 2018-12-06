@@ -18,6 +18,8 @@ private:
     /* for namespace Qt::___ refer to the following link for documentation - "http://doc.qt.io/qt-5/qt.html"*/
 
     int shapeId;
+    string shapeType; // Convert: const QString str = QString::fromStdString(latitude);
+
     Qt::GlobalColor penColor;
     // pen color https://doc.qt.io/archives/qtjambi-4.5.2_01/com/trolltech/qt/core/Qt.GlobalColor.html
     int penWidth;
@@ -41,14 +43,24 @@ private:
     QPen myPen;
     QBrush myBrush;
 public:
+    int getShapeId(){
+           return shapeId;
+    }
+
+    string getTextString(){
+        return shapeType;
+    }
+
+    void setShapeType(string ShapeType){
+        shapeType = ShapeType;
+    }
+
     //pure virtual functions:
     virtual void draw(QPainter &p) = 0;
     virtual void move() = 0;
     virtual double getPerimeter() = 0;
     virtual double getArea() = 0;
-        //*********//
     virtual void setText(string myText){}
-      // Setters //
     virtual void setCord(int a1,int b1,int a2,int b2) = 0;
     //Covert Strings to QColors and QStyles
     Qt::GlobalColor myColor(string scolor)
