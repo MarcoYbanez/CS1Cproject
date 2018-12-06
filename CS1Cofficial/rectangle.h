@@ -15,6 +15,8 @@ private:
     int y1; //(x1,y1) top left point
     int l; //length
     int w; //width
+    int p;
+    int a;
 public:
     Rectangle() : Shape()
     {
@@ -48,29 +50,18 @@ public:
 
     }
 
-    void perimeter()
+    double getPerimeter()
     {
-      int p;
       p = (2*l) + (2*w);
-      //cout << "The perimeter is: " << p << endl;
+      return p;
     }
 
-    void area()
+    double getArea()
     {
-      int a;
       a = l*w;
-     // cout << "The area is: " << a << endl;
-
-    
+     return a;
     }
 
-    void getData()
-    {
-        //cout << "What is the length of the rectangle? ";
-        //cin >> l;
-        //cout << "What is the width of the rectangle? ";
-        //cin >> w;
-    }
     
     Rectangle(Rectangle &other) : Shape()
     {

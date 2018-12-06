@@ -55,24 +55,21 @@ void setCord(int a1, int b1, int a2, int b2)
 
      p.setPen(getPen());
      p.drawLine(x1,y1,x2,y2);
-
-
-
  }
 
  void move()
  {
-
+    int temp = 0; //set as temp to allow compile
  }
 
- void perimeter()
+ double getPerimeter()
  {
-
+    return -1;
  }
 
- void area()
+ double getArea()
  {
-
+    return -1;
  }
 
 void getData()
