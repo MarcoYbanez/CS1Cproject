@@ -18,8 +18,8 @@ private:
     int y; //(x1,y1) top left point
     int a; //semi-major axis
     int b; //semi-minor axis
-    int area;
-    int p;
+    double area;
+    double p;
 public:
     Ellipse(): Shape()
     {
@@ -53,7 +53,7 @@ public:
 
     }
 
-    int getPerimeter()
+    double getPerimeter()
     {
       double h = 0;
       double base1 = (a-b), base2 = (a+b), power = 2;
@@ -63,7 +63,7 @@ public:
       return p;
     
     }
-    int getArea()
+    double getArea()
     {
       area = PI * a * b;
       return area;

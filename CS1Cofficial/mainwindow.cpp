@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    drawWt *n = new drawWt;
+
     ui->setupUi(this);
     ui->availableShapesList->addItem("Circle");
     ui->availableShapesList->addItem("Ellipse");
@@ -23,8 +25,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->availableShapesList->addItem("Rectangle");
     ui->availableShapesList->addItem("Square");
     ui->availableShapesList->addItem("Text");
-    ui->availableShapesList->addItem("Custom");
-
     /*
     logIn *l = new logIn();
     l->show();
@@ -45,12 +45,13 @@ void MainWindow::on_contactUs_btn_clicked()
 void MainWindow::on_draw_btn_clicked()
 {
 
-    int selectedShape = ui->availableShapesList->currentRow();
+    int selectedShape = ui->availableShapesList->currentRow();  //returns int for the value that user selects
+                                                                //once button is clicked... int passes to draw
 
 
 /*
  * Populate array before this point
- * Confirm order
+ * Confirm order with the vector
  *
  *
     shapeV.parse();
@@ -59,4 +60,10 @@ void MainWindow::on_draw_btn_clicked()
     draw->setShape(currentShape);
     draw->show();
 */
+}
+
+void MainWindow::on_login_btn_clicked()
+{
+    logIn *l = new logIn;
+    l->show();
 }

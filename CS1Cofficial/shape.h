@@ -44,8 +44,8 @@ public:
     //pure virtual functions:
     virtual void draw(QPainter &p) = 0;
     virtual void move() = 0;
-    virtual int getPerimeter() = 0;
-    virtual int getArea() = 0;
+    virtual double getPerimeter() = 0;
+    virtual double getArea() = 0;
         //*********//
     virtual void setText(string myText){}
       // Setters //

@@ -50,13 +50,13 @@ public:
 
     }
 
-    int getPerimeter()
+    double getPerimeter()
     {
       p = (2*l) + (2*w);
       return p;
     }
 
-    int getArea()
+    double getArea()
     {
       a = l*w;
      return a;

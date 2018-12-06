@@ -56,7 +56,7 @@ public:
 
     }
 
-    int getPerimeter()
+    double getPerimeter()
     {
       double h=0;
       double base1 = (a-b), base2 = (a+b), power = 2;
@@ -66,7 +66,7 @@ public:
    return p;
     }
 
-    int getArea()
+    double getArea()
     {
       area = PI * a * b;
     return area;

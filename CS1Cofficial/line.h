@@ -8,6 +8,7 @@
 #include <QPoint>
 #include "shape.h"
 #include <QPainter>
+#include "drawwt.h"
 
 
 class Line : public Shape
@@ -54,24 +55,27 @@ void setCord(int a1, int b1, int a2, int b2)
 
      p.setPen(getPen());
      p.drawLine(x1,y1,x2,y2);
-
  }
 
  void move()
  {
-
+    int temp = 0; //set as temp to allow compile
  }
 
- int getPerimeter()
+ double getPerimeter()
  {
-     return -1;
+    return -1;
  }
 
- int getArea()
+ double getArea()
  {
-     return -1;
+    return -1;
  }
 
+void getData()
+{
+
+}
 
 };
 
