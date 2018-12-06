@@ -18,14 +18,10 @@ public:
     explicit drawWt(QWidget *parent = nullptr);
     void setShape(Shape * currentShape);
 
-    //enum Shape {
-        //    Line, Points, Polyline, Polygon, Rect, RoundedRect, Ellipse, Arc,
-     //       Chord, Pie, Path, Text, Pixmap
-      //  };
-
-signals:
+   signals:
 protected:
     void paintEvent(QPaintEvent *);
+
 
 public slots:
 private:
