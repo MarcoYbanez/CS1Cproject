@@ -25,24 +25,27 @@ private:
     QBrush pGonBrush;
 
 public:
-    void draw()
+    void draw(QPainter& p)
     {
         //to be implemented
     }
 
+    void setCord(int a1,int b1,int a2,int b2){
+
+    }
     void move()
     {
 
     }
 
-    int getPerimeter()
+    double getPerimeter()
     {
         p = sqrt(pow((x2-x1),2) + pow((y2-y1),2)) + sqrt(pow((x3-x2),2) + pow((y3-y2),2)) + sqrt(pow((x4-x3),2) + pow((y4-y3),2)) +
                 sqrt(pow((x4-x1),2) + pow((y4-y1),2));
         return p;
     }
 
-    int getArea()
+    double getArea()
     {
         a= 0.5*((x1*y2 - x2*y1) + (x2*y3 - x3*y2) + (x3*y4 - x4*y3) + (x4*y1 - x1*y4));
         return a;

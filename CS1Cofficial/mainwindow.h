@@ -30,10 +30,12 @@ private slots:
 
     void on_login_btn_clicked();
 
+    void on_pushButton_4_clicked();
+
 private:
     Ui::MainWindow *ui;
      Shape * currentShape;
-     vector<Shape*> shapeV;
+     vectorType<Shape*> shapeV;
 };
 
 #endif // MAINWINDOW_H

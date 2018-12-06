@@ -6,6 +6,9 @@
 #include <shape.h>
 #include "ellipse.h"
 #include "rectangle.h"
+#include "addremove.h"
+#include "data.h"
+
 
 #include <QtWidgets>
 #include "drawwt.h"
@@ -17,18 +20,12 @@ MainWindow::MainWindow(QWidget *parent) :
     drawWt *n = new drawWt;
 
     ui->setupUi(this);
-    ui->availableShapesList->addItem("Circle");
-    ui->availableShapesList->addItem("Ellipse");
-    ui->availableShapesList->addItem("Line");
-    ui->availableShapesList->addItem("Polygon");
-    ui->availableShapesList->addItem("Polyline");
-    ui->availableShapesList->addItem("Rectangle");
-    ui->availableShapesList->addItem("Square");
-    ui->availableShapesList->addItem("Text");
-    /*
-    logIn *l = new logIn();
-    l->show();
-    */
+
+    for(int i = 0; i < data::shapeVector.getSize(); i++){
+            QString temp(data::shapeVector[i]->getTextString().c_str());
+        ui->availableShapesList->addItem(temp);
+
+    }
 }
 
 MainWindow::~MainWindow()
@@ -66,4 +63,10 @@ void MainWindow::on_login_btn_clicked()
 {
     logIn *l = new logIn;
     l->show();
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    addRemove* add = new addRemove;
+    add->show();
 }

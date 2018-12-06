@@ -30,7 +30,8 @@ SOURCES += \
         mainwindow.cpp \
     contact.cpp \
     login.cpp \
-    drawwt.cpp
+    drawwt.cpp \
+    addremove.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,12 +48,15 @@ HEADERS += \
     vector.h \
     square.h \
     circle.h \
-    text.h
+    text.h \
+    addremove.h \
+    data.h
 
 FORMS += \
         mainwindow.ui \
     contact.ui \
-    login.ui
+    login.ui \
+    addremove.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

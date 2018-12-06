@@ -20,7 +20,12 @@ private:
     int y4;
     QPen pLinePen;
 public:
-    void draw()
+
+    void setCord(int a1,int b1,int a2,int b2){
+
+    }
+
+    void draw(QPainter &p)
     {
         //to be implemented
     
@@ -31,12 +36,12 @@ public:
 
     }
 
-    int getPerimeter()
+    double getPerimeter()
     {
         return 0;
     }
 
-    int getArea()
+    double getArea()
     {
         return 0;
     }
