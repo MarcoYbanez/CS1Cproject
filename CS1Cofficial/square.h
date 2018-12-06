@@ -13,11 +13,12 @@ private:
     int x;
     int y;
     int l;
+    int p;
+    int a;
 public:
     Square() : Shape()
     {
         l = 0;
-
     }
 
     void setCord(int a1,int b1,int a2,int b2)
@@ -42,29 +43,19 @@ public:
 
     }
 
-    void perimeter()
+    double getPerimeter()
     {
-      int p;
-      p = 1*4;
-      //cout << "The perimeter is: " << p << endl;
+      p = l*4;
+      return p;
     }
 
-    void area()
+    double getArea()
     {
-      int a;
       a = l*l;
-     // cout << "The area is: " << a << endl;
-
+     return a;
 
     }
 
-    void getData()
-    {
-        //cout << "What is the length of the rectangle? ";
-        //cin >> l;
-        //cout << "What is the width of the rectangle? ";
-        //cin >> w;
-    }
 };
 
 #endif // SQUARE_H
