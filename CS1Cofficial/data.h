@@ -3,13 +3,11 @@
 
 #include "vector.h"
 #include "shape.h"
-#include "shape.h"
 #include "ellipse.h"
 #include "line.h"
 #include "polygon.h"
 #include "polyline.h"
 #include "rectangle.h"
-#include "shape.h"
 #include "text.h"
 
 namespace data

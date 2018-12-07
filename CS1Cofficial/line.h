@@ -8,7 +8,6 @@
 #include <QPoint>
 #include "shape.h"
 #include <QPainter>
-#include "drawwt.h"
 
 
 class Line : public Shape
@@ -75,6 +74,26 @@ void setCord(int a1, int b1, int a2, int b2)
 void getData()
 {
 
+}
+
+int getX()
+{
+    return x1;
+}
+
+int getY()
+{
+    return y1;
+}
+
+int getX2()
+{
+    return x2;
+}
+
+int getY2()
+{
+    return y2;
 }
 
 };
