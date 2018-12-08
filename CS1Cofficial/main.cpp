@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 
 void parse()
     {
-        string file = "/home/cs1c/Desktop/AlexisAdd/CS1Cproject/CS1Cofficial/shapes.txt";
+        string file = "/Users/imaad/Documents/CS1Cproject2/CS1Cofficial/shapes.txt";
         string Data= "";
         string shapeType = "";
         int num = 0;
