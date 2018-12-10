@@ -21,6 +21,27 @@ private:
     QPen pLinePen;
 public:
 
+    /*
+    Polyline():Shape(2,Qt::green,6,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin)
+    {
+        pLinePen.setColor(penColor);
+        pLinePen.setWidth(penWidth);
+        pLinePen.setStyle(penStyle);
+        pLinePen.setCapStyle(capStyle);
+        pLinePen.setJoinStyle(joinStyle);
+        painter.setPen(pLinePen);
+        x1 = 460;
+        y1 = 90;
+        x2 = 470;
+        y2 = 20;
+        x3 = 530;
+        y3 = 40;
+        x4 = 540;
+        y4 = 80;
+        //ShapeDimensions: 460, 90, 470, 20, 530, 40, 540, 80
+    }
+    */
+
     void setCord(int a1,int b1,int a2,int b2){
 
     }
@@ -72,26 +93,48 @@ public:
              };
         return points;
     }
-    /*
-    Polyline():Shape(2,Qt::green,6,Qt::SolidLine,Qt::FlatCap,Qt::MiterJoin)
+
+    int getX()
     {
-        pLinePen.setColor(penColor);
-        pLinePen.setWidth(penWidth);
-        pLinePen.setStyle(penStyle);
-        pLinePen.setCapStyle(capStyle);
-        pLinePen.setJoinStyle(joinStyle);
-        painter.setPen(pLinePen);
-        x1 = 460;
-        y1 = 90;
-        x2 = 470;
-        y2 = 20;
-        x3 = 530;
-        y3 = 40;
-        x4 = 540;
-        y4 = 80;
-        //ShapeDimensions: 460, 90, 470, 20, 530, 40, 540, 80
+        return x1;
     }
-    */
+
+    int getY()
+    {
+        return y1;
+    }
+
+    int getX2()
+    {
+        return x2;
+    }
+
+    int getY2()
+    {
+        return y2;
+    }
+
+    int getX3()
+    {
+        return x3;
+    }
+
+    int getY3()
+    {
+        return y3;
+    }
+
+    int getX4()
+    {
+        return x4;
+    }
+
+    int getY4()
+    {
+        return y4;
+    }
+
+
 };
 
 #endif // POLYLINE_H

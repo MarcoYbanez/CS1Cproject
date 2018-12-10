@@ -13,8 +13,8 @@ private:
     int x;
     int y;
     int l;
-    int p;
-    int a;
+    double p;
+    double a;
 public:
     Square() : Shape()
     {
@@ -54,6 +54,21 @@ public:
       a = l*l;
      return a;
 
+    }
+
+    int getX()
+    {
+        return x;
+    }
+
+    int getY()
+    {
+        return y;
+    }
+
+    int getL()
+    {
+        return l;
     }
 
 };

@@ -17,8 +17,8 @@ private:
     int y; //(x1,y1) top left point
     int l; //length
     int w; //width
-    int p;
-    int a;
+    double p;
+    double a;
     string text;
     //dimensions for a textbox-rectangle
 public:
@@ -64,7 +64,32 @@ public:
     {
         a=l*w;
         return a;
-    }   
+    }
+
+    string getText()
+    {
+        return text;
+    }
+
+    int getX()
+    {
+        return x;
+    }
+
+    int getY()
+    {
+        return y;
+    }
+
+    int getL()
+    {
+        return l;
+    }
+
+    int getW()
+    {
+        return w;
+    }
 };
 
 

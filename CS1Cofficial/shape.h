@@ -43,6 +43,16 @@ private:
     QPen myPen;
     QBrush myBrush;
 public:
+
+
+    //pure virtual functions:
+    virtual void draw(QPainter &p) = 0;
+    virtual void move() = 0;
+    virtual double getPerimeter() = 0;
+    virtual double getArea() = 0;
+    virtual void setText(string myText){}
+    virtual void setCord(int a1,int b1,int a2,int b2) = 0;
+
     int getShapeId(){
            return shapeId;
     }
@@ -51,19 +61,88 @@ public:
         return shapeType;
     }
 
+    Qt::GlobalColor getQPenColor()
+    {
+        return penColor;
+    }
+
+    int getQPenWidth()
+    {
+        return penWidth;
+    }
+
+    Qt::PenStyle getQPenStyle()
+    {
+        return penStyle;
+    }
+
+    Qt::PenCapStyle getQPenCapStyle()
+    {
+        return capStyle;
+    }
+
+    Qt::PenJoinStyle getQPenJoinStyle()
+    {
+        return joinStyle;
+    }
+
+    Qt::GlobalColor getQBrushColor()
+    {
+        return brushColor;
+    }
+
+    Qt::BrushStyle getQBrushStyle()
+    {
+        return brushStyle;
+    }
+
+    string getQTextString()
+    {
+        return textString;
+    }
+
+    Qt::GlobalColor getQTextColor()
+    {
+        return textColor;
+    }
+
+    Qt::AlignmentFlag getQAlignmentFlag()
+    {
+        return textAlignment;
+    }
+
+    int getQTextPointSize()
+    {
+        return textPointSize;
+    }
+
+    string getQTextFontFamily()
+    {
+        return textFontFamily;
+    }
+
+    string getQFontFamily()
+    {
+        return textFontFamily;
+    }
+
+    string getQFontStyle()
+    {
+        return fontStyle;
+    }
+
+    Weight getQTextFontWeight()
+    {
+        return textFontWeight;
+    }
+
+
+
+
     void setShapeType(string ShapeType){
         shapeType = ShapeType;
     }
 
-    //pure virtual functions:
-    virtual void draw(QPainter &p) = 0;
-    virtual void move() = 0;
-    virtual double getPerimeter() = 0;
-    virtual double getArea() = 0;
-    virtual void setText(string myText){
-        myText = "";
-    }
-    virtual void setCord(int a1,int b1,int a2,int b2) = 0;
     //Covert Strings to QColors and QStyles
     Qt::GlobalColor myColor(string scolor)
     {
