@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>856</width>
-    <height>511</height>
+    <height>648</height>
    </rect>
   </property>
   <property name="palette">
@@ -3195,7 +3195,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="drawWt" name="drawWidget" native="true">
+      <widget class="drawWt" name="canvas" native="true">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -3204,6 +3204,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="accessibleName">
+        <string>canvas</string>
        </property>
       </widget>
      </widget>
@@ -3222,7 +3225,7 @@
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
+    <enum>LeftToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
@@ -3251,12 +3254,28 @@
    <slot>update()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>450</x>
-     <y>93</y>
+     <x>844</x>
+     <y>80</y>
     </hint>
     <hint type="destinationlabel">
      <x>427</x>
      <y>226</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>draw_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>canvas</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>479</x>
+     <y>351</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>741</x>
+     <y>320</y>
     </hint>
    </hints>
   </connection>

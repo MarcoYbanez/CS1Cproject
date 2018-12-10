@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'contact.h'
+** Meta object code from reading C++ file 'drawwt.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../CS1Cofficial/contact.h"
+#include "../../CS1Cofficial/drawwt.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'contact.h' doesn't include <QObject>."
+#error "The header file 'drawwt.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.9.1. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -20,25 +20,25 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_contact_t {
+struct qt_meta_stringdata_drawWt_t {
     QByteArrayData data[1];
-    char stringdata0[8];
+    char stringdata0[7];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_contact_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_drawWt_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_contact_t qt_meta_stringdata_contact = {
+static const qt_meta_stringdata_drawWt_t qt_meta_stringdata_drawWt = {
     {
-QT_MOC_LITERAL(0, 0, 7) // "contact"
+QT_MOC_LITERAL(0, 0, 6) // "drawWt"
 
     },
-    "contact"
+    "drawWt"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_contact[] = {
+static const uint qt_meta_data_drawWt[] = {
 
  // content:
        7,       // revision
@@ -54,7 +54,7 @@ static const uint qt_meta_data_contact[] = {
        0        // eod
 };
 
-void contact::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void drawWt::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     Q_UNUSED(_o);
     Q_UNUSED(_id);
@@ -62,28 +62,28 @@ void contact::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
     Q_UNUSED(_a);
 }
 
-const QMetaObject contact::staticMetaObject = {
-    { &QDialog::staticMetaObject, qt_meta_stringdata_contact.data,
-      qt_meta_data_contact,  qt_static_metacall, nullptr, nullptr}
+const QMetaObject drawWt::staticMetaObject = {
+    { &QWidget::staticMetaObject, qt_meta_stringdata_drawWt.data,
+      qt_meta_data_drawWt,  qt_static_metacall, nullptr, nullptr}
 };
 
 
-const QMetaObject *contact::metaObject() const
+const QMetaObject *drawWt::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *contact::qt_metacast(const char *_clname)
+void *drawWt::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_contact.stringdata0))
-        return static_cast<void*>(const_cast< contact*>(this));
-    return QDialog::qt_metacast(_clname);
+    if (!strcmp(_clname, qt_meta_stringdata_drawWt.stringdata0))
+        return static_cast<void*>(const_cast< drawWt*>(this));
+    return QWidget::qt_metacast(_clname);
 }
 
-int contact::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int drawWt::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QDialog::qt_metacall(_c, _id, _a);
+    _id = QWidget::qt_metacall(_c, _id, _a);
     return _id;
 }
 QT_WARNING_POP
