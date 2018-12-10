@@ -60,7 +60,9 @@ public:
     virtual void move() = 0;
     virtual double getPerimeter() = 0;
     virtual double getArea() = 0;
-    virtual void setText(string myText){}
+    virtual void setText(string myText){
+        myText = "";
+    }
     virtual void setCord(int a1,int b1,int a2,int b2) = 0;
     //Covert Strings to QColors and QStyles
     Qt::GlobalColor myColor(string scolor)

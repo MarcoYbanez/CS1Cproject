@@ -17,8 +17,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    drawWt *n = new drawWt;
-
     ui->setupUi(this);
 
     for(int i = 0; i < data::shapeVector.getSize(); i++){
@@ -26,6 +24,13 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->availableShapesList->addItem(temp);
 
     }
+
+    Ellipse *e = new Ellipse;
+    ui->canvas->setShape(e);
+
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -43,20 +48,14 @@ void MainWindow::on_draw_btn_clicked()
 {
 
     int selectedShape = ui->availableShapesList->currentRow();  //returns int for the value that user selects
-                                                                //once button is clicked... int passes to draw
+    //Erase after complete testing                                                             //once button is clicked... int passes to draw
+    Line * l = new Line;
+   // Rectangle *l = new Rectangle;
+    //============
+    //pass shape pointer to setShape to call the draw function of the shape.
 
-
-/*
- * Populate array before this point
- * Confirm order with the vector
- *
- *
-    shapeV.parse();
-    currentShape = shapeV.getShapeV(7);
-    drawWt * draw = new drawWt;
-    draw->setShape(currentShape);
-    draw->show();
-*/
+    ui->canvas->setShape(l);
+    ui->canvas->update();
 }
 
 void MainWindow::on_login_btn_clicked()

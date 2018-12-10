@@ -40,7 +40,7 @@ public:
         x = a1;
         y = b1;
         a = a2;
-        //b = b2;
+        b = b2;
         }
 
     void draw(QPainter &p)

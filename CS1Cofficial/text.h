@@ -35,7 +35,7 @@ public:
         l = a2;
         w = b2;
     }
-    void setText(string myText)
+    void setText(string myText) override
     {
         text = myText;
     }

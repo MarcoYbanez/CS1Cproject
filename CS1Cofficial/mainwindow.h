@@ -8,6 +8,7 @@
 #include <QWidget>
 #include "shape.h"
 #include "vector.h"
+#include "drawwt.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,10 +33,13 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
      Shape * currentShape;
      vectorType<Shape*> shapeV;
+     drawWt *d ;
 };
 
 #endif // MAINWINDOW_H
