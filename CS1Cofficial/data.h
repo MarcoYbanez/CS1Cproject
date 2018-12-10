@@ -14,6 +14,6 @@ namespace data
 {
     static vectorType<Shape*> shapeVector;
     static vectorType<Shape*> drawVector;
-};
+}
 
 #endif /* DATA_H_ */

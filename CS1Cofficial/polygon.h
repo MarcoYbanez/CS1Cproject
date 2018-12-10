@@ -54,9 +54,21 @@ public:
         //to be implemented
     }
 
-    void setCord(int a1,int b1,int a2,int b2){
+    void setCord(int a1,int b1,int a2,int b2, int a3,int b3,int a4,int b4){
+        x1 = a1;
+        y1 = b2;
+        x2 = a2;
+        y2 = b2;
+        x3 = a3;
+        y3 = b3;
+        x4 = a4;
+        y4 = b4;
 
     }
+     void setCord(int a1,int b1,int a2,int b2){
+
+     }
+
     void move()
     {
 

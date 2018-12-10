@@ -67,3 +67,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     logo.png \
     shapes.txt
+
+RESOURCES += \
+    assets/assets.qrc

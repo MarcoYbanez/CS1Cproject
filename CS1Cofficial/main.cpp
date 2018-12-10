@@ -77,7 +77,8 @@ int main(int argc, char *argv[])
 
 void parse()
     {
-        string file = "/Users/imaad/Documents/CS1Cproject2/CS1Cofficial/shapes.txt";
+
+        string file = "/home/cs1c/Documents/CS1Cofficial/shapes.txt";
         string Data= "";
         string shapeType = "";
         int num = 0;
@@ -141,8 +142,6 @@ void parse()
                getline(shapesFile, Data, '\r');
                y2 = stoi(Data);
 
-               qDebug() << "--LINE--";
-
                elem->setCord(x1,y1,x2,y2);
                getline(shapesFile, Data, ' ');
                getline(shapesFile, Data, '\r');
@@ -167,6 +166,139 @@ void parse()
 			   
 			   data::shapeVector.push_back(elem);
 }
+          else if(shapeType == "Polygon")
+          {
+              int x1 = 0;
+              int x2 = 0;
+              int x3 = 0;
+              int x4 = 0;
+              int y1 = 0;
+              int y2 = 0;
+              int y3 = 0;
+              int y4 = 0;
+              Polygon* elem = new Polygon;
+              // set id
+              elem->setID(d);
+                elem->setShapeType(shapeType);
+
+              //set dimmension
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data, ',');
+               x1 = stoi(Data);
+
+               getline(shapesFile, Data, ',');
+               y1 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x2 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               y2 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x3 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               y3 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x4 = stoi(Data);
+               getline(shapesFile, Data, '\r');
+               y4 = stoi(Data);
+
+               elem->setCord(x1,y1,x2,y2,x3,y3,x4,y4);
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data, '\r');
+               elem->setColor(Data);
+               //get and set pen width
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               d = stoi(Data);
+               elem->setWidth(d);
+               //get and set penstyle
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setPenStyle(Data);
+               //get and set pen cap style
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setCapStyle(Data);
+               //get and set pen join style
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setJoinStyle(Data);
+               //get and set burshColor;
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+
+               elem->setBrushColor(Data);
+               //get and set brush style;
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+
+               elem->setBrushStyle(Data);
+
+               data::shapeVector.push_back(elem);
+              qDebug() << QString::fromStdString(Data);
+          }
+          else if (shapeType == "Polyline")
+          {
+
+              int x1 = 0;
+              int x2 = 0;
+              int x3 = 0;
+              int x4 = 0;
+              int y1 = 0;
+              int y2 = 0;
+              int y3 = 0;
+              int y4 = 0;
+              Polyline* elem = new Polyline;
+              // set id
+              elem->setID(d);
+                elem->setShapeType(shapeType);
+
+              //set dimmension
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data, ',');
+               x1 = stoi(Data);
+
+               getline(shapesFile, Data, ',');
+               y1 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x2 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               y2 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x3 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               y3 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x4 = stoi(Data);
+               getline(shapesFile, Data, '\r');
+               y4 = stoi(Data);
+
+               elem->setCord(x1,y1,x2,y2,x3,y3,x4,y4);
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data, '\r');
+               elem->setColor(Data);
+               //get and set pen width
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               d = stoi(Data);
+               elem->setWidth(d);
+               //get and set penstyle
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setPenStyle(Data);
+               //get and set pen cap style
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setCapStyle(Data);
+               //get and set pen join style
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setJoinStyle(Data);
+
+
+               data::shapeVector.push_back(elem);
+              qDebug() << QString::fromStdString(Data);
+              qDebug() << QString::fromStdString(Data);
+          }
           else if(shapeType == "Ellipse")
           {
               {

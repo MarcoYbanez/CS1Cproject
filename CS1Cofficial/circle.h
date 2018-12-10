@@ -40,7 +40,7 @@ public:
         x = a1;
         y = b1;
         ax = a2;
-        //b = b2;
+        bx = b2;
         }
 
     void draw(QPainter &p)
@@ -70,7 +70,6 @@ public:
     {
       a = PI * ax * bx;
     return a;
-
     }
 
     int getX()
