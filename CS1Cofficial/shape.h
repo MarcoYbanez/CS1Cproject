@@ -9,8 +9,6 @@
 using std::string;
 enum StyleHint { Helvetica, SansSerif = Helvetica, Times, Serif = Times, Courier, TypeWriter = Courier, OldEnglish, Decorative = OldEnglish, System, AnyStyle };
 enum  Style { StyleNormal, StyleItalic, StyleOblique };
-enum  	Weight { Light = 25, Normal = 50, DemiBold = 63, Bold = 75,
-  Black = 87 };
 
 class Shape
 {
@@ -38,7 +36,7 @@ private:
     int textPointSize;
     string textFontFamily;
     string  fontStyle;
-    Weight textFontWeight;
+    int textFontWeight;
 
     //
     QPen myPen;
@@ -78,6 +76,14 @@ public:
             return Qt::black;
         else if(scolor == "magenta")
                 return Qt::magenta;
+        else if(scolor == "green")
+                return Qt::green;
+        else if(scolor == "cyan")
+                return Qt::cyan;
+        else if(scolor == "yellow")
+                return Qt::yellow;
+        else if(scolor == "gray")
+                return Qt::gray;
 
     }
 
@@ -165,21 +171,24 @@ public:
     {
         if(myAlignment == "AlignCenter")
             return Qt::AlignCenter;
+        else if(myAlignment == "AlignLeft")
+            return Qt::AlignLeft;
+        else if(myAlignment == "AlignRight")
+            return Qt::AlignRight;
+        else if(myAlignment == "AlignTop")
+            return Qt::AlignTop;
+        else if(myAlignment == "AlignBottom")
+            return Qt::AlignBottom;
     }
     Style turnFontStyle(string myStile)
     {
         if(myStile == "StyleNormal")
             return StyleNormal;
+        else if(myStile == "StyleItalic")
+            return StyleItalic;
+        else if(myStile == "StyleOblique")
+            return StyleOblique;
     }
-
-    Weight getMyFontWeight(string myFontWeight)
-    {
-        if(myFontWeight == "Bold")
-        return Bold;
-        else if(myFontWeight == "Normal")
-            return Normal;
-    }
-
     string getFontFamily()
     {
         return textFontFamily;
@@ -277,7 +286,7 @@ public:
 
     void stFontWeight(string myFontWeight)
     {
-        textFontWeight = getMyFontWeight(myFontWeight);
+        textFontWeight = stoi(myFontWeight);
     }
 
     string getFontStyle()
@@ -288,7 +297,12 @@ public:
     {
         return textPointSize;
     }
-    Weight getWeight()
+    int getWeight()
+    {
+        return textFontWeight;
+    }
+
+    int getFontWeight()
     {
         return textFontWeight;
     }
