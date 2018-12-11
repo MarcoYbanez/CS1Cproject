@@ -15,8 +15,8 @@ private:
     int y1; //(x1,y1) top left point
     int l; //length
     int w; //width
-    int p;
-    int a;
+    double p;
+    double a;
 public:
     Rectangle() : Shape()
     {

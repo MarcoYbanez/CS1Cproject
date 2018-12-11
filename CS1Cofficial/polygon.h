@@ -19,8 +19,8 @@ private:
     int y3;
     int x4;
     int y4;
-    int p;
-    int a;
+    double p;
+    double a;
     QPen pGonPen;
     QBrush pGonBrush;
 
