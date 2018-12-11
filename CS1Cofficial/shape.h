@@ -130,14 +130,6 @@ public:
         return fontStyle;
     }
 
-    Weight getQTextFontWeight()
-    {
-        return textFontWeight;
-    }
-
-
-
-
     void setShapeType(string ShapeType){
         shapeType = ShapeType;
     }

@@ -40,6 +40,7 @@ private:
      Shape * currentShape;
      vectorType<Shape*> shapeV;
      drawWt *d ;
+     void parse();
 };
 
 #endif // MAINWINDOW_H
