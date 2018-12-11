@@ -69,3 +69,8 @@ void MainWindow::on_pushButton_4_clicked()
     addRemove* add = new addRemove;
     add->show();
 }
+
+void MainWindow::on_move_btn_clicked()
+{
+
+}

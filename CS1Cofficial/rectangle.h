@@ -11,12 +11,12 @@
 class Rectangle : public Shape
 {
 private:
-    int x;
-    int y; //(x1,y1) top left point
+    int x1;
+    int y1; //(x1,y1) top left point
     int l; //length
     int w; //width
-    double p;
-    double a;
+    int p;
+    int a;
 public:
     Rectangle() : Shape()
     {
@@ -31,8 +31,8 @@ public:
 
     void setCord(int a1,int b1,int a2,int b2)
     {
-        x = a1;
-        y = b1;
+        x1 = a1;
+        y1 = b1;
         l = a2;
         w = b2;
     }
@@ -40,7 +40,7 @@ public:
     {
         p.setPen(getPen());
         p.setBrush(getBrush());
-        QRect rect = QRect(x, y, l, w);
+        QRect rect = QRect(x1, y1, l, w);
         p.drawRect(rect);
 
     }
@@ -60,26 +60,6 @@ public:
     {
       a = l*w;
      return a;
-    }
-
-    int getX()
-    {
-        return x;
-    }
-
-    int getY()
-    {
-        return y;
-    }
-
-    int getL()
-    {
-        return l;
-    }
-
-    int getW()
-    {
-        return w;
     }
 
     

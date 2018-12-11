@@ -29,6 +29,16 @@ public:
         if (contact->objectName().isEmpty())
             contact->setObjectName(QStringLiteral("contact"));
         contact->resize(400, 300);
+        QPalette palette;
+        QBrush brush(QColor(255, 255, 255, 255));
+        brush.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Base, brush);
+        palette.setBrush(QPalette::Active, QPalette::Window, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Base, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Window, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Base, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Window, brush);
+        contact->setPalette(palette);
         contact->setAutoFillBackground(true);
         logo_pic = new QLabel(contact);
         logo_pic->setObjectName(QStringLiteral("logo_pic"));

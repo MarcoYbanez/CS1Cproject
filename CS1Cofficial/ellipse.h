@@ -16,27 +16,27 @@ class Ellipse : public Shape
 private:
     int x;
     int y; //(x1,y1) top left point
-    int ax; //semi-major axis
-    int bx; //semi-minor axis
-    double a;
+    int a; //semi-major axis
+    int b; //semi-minor axis
+    double area;
     double p;
 public:
     Ellipse(): Shape()
     {
-      ax = 0;
-      bx = 0;
+      a = 0;
+      b = 0;
     }
     
     Ellipse(int a1, int b1): Shape()
     {
-      ax = a1;
-      bx = b1;
+      a = a1;
+      b = b1;
     }
 
     Ellipse(const Ellipse & other): Shape()
     {
-      this->ax = other.ax;
-      this->bx = other.bx;
+      this->a = other.a;
+      this->b = other.b;
     }
     
     void draw(QPainter &p)
@@ -56,7 +56,7 @@ public:
     double getPerimeter()
     {
       double h = 0;
-      double base1 = (ax-bx), base2 = (ax+bx), power = 2;
+      double base1 = (a-b), base2 = (a+b), power = 2;
       h = pow(base1, power)/pow(base2, power);
       double square = sqrt(4-3*h);
       p = PI*base2*(1+3*h/10+square);
@@ -65,36 +65,16 @@ public:
     }
     double getArea()
     {
-      a = PI * ax * bx;
-      return a;
+      area = PI * a * b;
+      return area;
     }
 
     void setCord(int a1,int b1,int a2,int b2)
     {
         x = a1;
         y = b1;
-        ax = a2;
-        bx = b2;
-    }
-
-    int getX()
-    {
-        return x;
-    }
-
-    int getY()
-    {
-        return y;
-    }
-
-    int getAx()
-    {
-        return ax;
-    }
-
-    int getBx()
-    {
-        return bx;
+        a = a2;
+        b = b2;
     }
 
 };

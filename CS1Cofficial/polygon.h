@@ -19,36 +19,12 @@ private:
     int y3;
     int x4;
     int y4;
-    double p;
-    double a;
+    int p;
+    int a;
     QPen pGonPen;
     QBrush pGonBrush;
 
 public:
-
-    /*
-    Polygon():Shape(3,Qt::cyan,6,Qt::DashDotDotLine,Qt::FlatCap,Qt::MiterJoin,Qt::yellow,Qt::SolidPattern)
-    {
-        pGonPen.setColor(penColor);
-        pGonPen.setWidth(penWidth);
-        pGonPen.setStyle(penStyle);
-        pGonPen.setCapStyle(capStyle);
-        pGonPen.setJoinStyle(joinStyle);
-        painter.setPen(pGonPen);
-        pGonBrush.setColor(brushColor);
-        pGonBrush.setStyle(brushStyle);
-        x1 = 900;
-        y1 = 90;
-        x2 = 910;
-        y2 = 20;
-        x3 = 970;
-        y3 = 40;
-        x4 = 980;
-        y4 = 80;
-        //ShapeDimensions: 900, 90, 910, 20, 970, 40, 980, 80
-    }
-    */
-
     void draw(QPainter& p)
     {
         //to be implemented
@@ -107,48 +83,28 @@ public:
              };
         return points;
     }
-
-    int getX()
+    /*
+    Polygon():Shape(3,Qt::cyan,6,Qt::DashDotDotLine,Qt::FlatCap,Qt::MiterJoin,Qt::yellow,Qt::SolidPattern)
     {
-        return x1;
+        pGonPen.setColor(penColor);
+        pGonPen.setWidth(penWidth);
+        pGonPen.setStyle(penStyle);
+        pGonPen.setCapStyle(capStyle);
+        pGonPen.setJoinStyle(joinStyle);
+        painter.setPen(pGonPen);
+        pGonBrush.setColor(brushColor);
+        pGonBrush.setStyle(brushStyle);
+        x1 = 900;
+        y1 = 90;
+        x2 = 910;
+        y2 = 20;
+        x3 = 970;
+        y3 = 40;
+        x4 = 980;
+        y4 = 80;
+        //ShapeDimensions: 900, 90, 910, 20, 970, 40, 980, 80
     }
-
-    int getY()
-    {
-        return y1;
-    }
-
-    int getX2()
-    {
-        return x2;
-    }
-
-    int getY2()
-    {
-        return y2;
-    }
-
-    int getX3()
-    {
-        return x3;
-    }
-
-    int getY3()
-    {
-        return y3;
-    }
-
-    int getX4()
-    {
-        return x4;
-    }
-
-    int getY4()
-    {
-        return y4;
-    }
-
-
+    */
 };
 
 #endif // POLYGON_H
