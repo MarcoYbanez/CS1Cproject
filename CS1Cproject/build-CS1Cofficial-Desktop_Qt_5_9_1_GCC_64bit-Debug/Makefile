@@ -703,7 +703,8 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_assets.cpp
 qrc_assets.cpp: ../../CS1Cofficial/assets/assets.qrc \
 		../../../Qt/5.9.1/gcc_64/bin/rcc \
-		../../CS1Cofficial/assets/logo.png
+		../../CS1Cofficial/assets/logo.png \
+		../../CS1Cofficial/assets/shapes.txt
 	/home/cs1c/Qt/5.9.1/gcc_64/bin/rcc -name assets ../../CS1Cofficial/assets/assets.qrc -o qrc_assets.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

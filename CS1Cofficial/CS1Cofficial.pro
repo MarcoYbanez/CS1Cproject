@@ -50,8 +50,7 @@ HEADERS += \
     circle.h \
     text.h \
     addremove.h \
-    data.h \
-    listing.h
+    data.h
 
 FORMS += \
         mainwindow.ui \
