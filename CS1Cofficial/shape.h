@@ -392,6 +392,8 @@ public:
     //disable (by marking deleted?):
     Shape(const Shape &);//copy constructor, assignment
 
+    virtual ~Shape(){}
+
 };
 
 #endif // SHAPE_H

@@ -26,7 +26,7 @@ class addRemove : public QWidget
     Q_OBJECT
 
 public:
-    explicit addRemove(QWidget *parent = nullptr);
+    explicit addRemove(vectorType<Shape*>&, QWidget *parent = nullptr);
     ~addRemove();
 
 private slots:
@@ -58,6 +58,7 @@ private slots:
 
 private:
     Shape* shapeInput;
+    vectorType<Shape*> shapeVector;
     Ui::addRemove *ui;
 };
 

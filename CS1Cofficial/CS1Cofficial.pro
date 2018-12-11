@@ -49,8 +49,8 @@ HEADERS += \
     square.h \
     circle.h \
     text.h \
-    addremove.h \
-    data.h
+    data.h \
+    addremove.h
 
 FORMS += \
         mainwindow.ui \

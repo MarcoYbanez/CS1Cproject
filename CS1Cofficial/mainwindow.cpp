@@ -15,17 +15,18 @@
 #include <QtWidgets>
 #include "drawwt.h"
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(vectorType<Shape*>& v, vectorType<Shape*>& v2, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
+    shapeVector = v;
+    drawVector = v2;
     //have once a shape is saved create a signal and slot between that button and here.
     ui->setupUi(this);
-    parse();
+    //parse();
 
-    for(int i = 0; i < data::shapeVector.getSize(); i++){
-            QString temp(data::shapeVector[i]->getTextString().c_str());
+    for(int i = 0; i < shapeVector.getSize(); i++){
+            QString temp(shapeVector[i]->getTextString().c_str());
             ui->availableShapesList->addItem(temp);
 
     }
@@ -51,9 +52,9 @@ void MainWindow::on_draw_btn_clicked()
 
     int selectedShape = ui->availableShapesList->currentRow();  //returns int for the value that user selects
     qDebug() << selectedShape;
-    ui->canvas->setShape(data::shapeVector[selectedShape]);
+    ui->canvas->setShape(shapeVector[selectedShape]);
 
-    data::drawVector.push_back(data::shapeVector[selectedShape]);
+    data::drawVector.push_back(shapeVector[selectedShape]);
 
 
     ui->canvas->update();
@@ -72,8 +73,19 @@ void MainWindow::on_login_btn_clicked()
 
 void MainWindow::on_pushButton_4_clicked()
 {
-    addRemove* add = new addRemove;
+    addRemove* add = new addRemove(shapeVector);
+    for(int i = 0; i < ui->availableShapesList->count(); i++)
+    {
+        delete ui->availableShapesList->item(i);
+    }
+    ui->availableShapesList->clear();
     add->show();
+
+    for(int i = 0; i < shapeVector.getSize(); i++){
+            QString temp(shapeVector[i]->getTextString().c_str());
+            ui->availableShapesList->addItem(temp);
+
+    }
 }
 
 void MainWindow::on_move_btn_clicked()
@@ -81,9 +93,9 @@ void MainWindow::on_move_btn_clicked()
 
 }
 
-void MainWindow::parse()
+/*void MainWindow::parse(vector<Shape*>& v)
     {
-        string file = "/home/cs1c/Desktop/This/CS1Cproject/CS1Cofficial/shapes.txt";
+        string file = "/home/cs1c/Documents/CS1Cproject/CS1Cofficial/shapes.txt";
         string Data= "";
         string shapeType = "";
         int num = 0;
@@ -582,5 +594,26 @@ void MainWindow::parse()
         }//End of while loop
       //  QString b =Data;
       //  qDebug() << QString::fromStdString(Data);
-    }
+    }*/
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    if(ui->currentShapes->count() > 0 && ui->currentShapes->currentRow() + 1)
+    {
+        QString ID = ui->currentShapes->currentItem()->text();
+        for(Shape** i = drawVector.begin(); i != drawVector.end(); i++)
+        {
+            QString temp((**i).getShapeId());
+            if(temp == ID)
+                {
+                    delete *i;
+                    drawVector.erase(i);
+                    break;
+                }
+        }
+
+        delete ui->currentShapes->currentItem();
+        ui->currentShapes->removeItemWidget(ui->currentShapes->currentItem());
+    }
+}
