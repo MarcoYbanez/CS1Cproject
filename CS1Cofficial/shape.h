@@ -11,6 +11,7 @@ enum StyleHint { Helvetica, SansSerif = Helvetica, Times, Serif = Times, Courier
 enum  Style { StyleNormal, StyleItalic, StyleOblique };
 enum  	Weight { Light = 25, Normal = 50, DemiBold = 63, Bold = 75,
   Black = 87 };
+
 class Shape
 {
 private:
@@ -88,6 +89,12 @@ public:
             return Qt::SolidLine;
         else if(thispenStyle == "DashLine")
             return Qt::DashLine;
+        else if(thispenStyle == "DotLine")
+            return Qt::DotLine;
+        else if(thispenStyle == "DashDotDotLine")
+            return Qt::DashDotDotLine;
+        else if(thispenStyle == "CustomeDashLine")
+            return Qt::CustomDashLine;
 
     }
 
@@ -107,18 +114,53 @@ public:
             return Qt::MiterJoin;
         if(thisJoinStyle == "RoundJoin")
             return Qt::RoundJoin;
+        if(thisJoinStyle == "BevelJoin")
+            return Qt::BevelJoin;
     }
+
     Qt::BrushStyle getBrushStyle(string thisBrushStyle)
     {
+
         if(thisBrushStyle == "VerPattern")
-            return Qt::VerPattern;
+           { return Qt::VerPattern;}
+        else if(thisBrushStyle == "Dense1Pattern")
+            return Qt::Dense1Pattern;
+        else if(thisBrushStyle == "Dense2Pattern")
+            return Qt::Dense2Pattern;
+        else if(thisBrushStyle == "Dense3Pattern")
+            return Qt::Dense3Pattern;
+        else if(thisBrushStyle == "Dense4Pattern")
+            return Qt::Dense4Pattern;
+        else if(thisBrushStyle == "Dense5Pattern")
+            return Qt::Dense5Pattern;
+        else if(thisBrushStyle == "Dense6Pattern")
+            return Qt::Dense6Pattern;
+        else if(thisBrushStyle == "Dense7Pattern")
+            return Qt::Dense7Pattern;
         else if(thisBrushStyle == "HorPattern")
             return Qt::HorPattern;
+        else if(thisBrushStyle == "VerPattern")
+            return Qt::VerPattern;
+        else if(thisBrushStyle == "CrossPattern")
+            return Qt::CrossPattern;
+        else if(thisBrushStyle == "BDiagPattern")
+            return Qt::BDiagPattern;
+        else if(thisBrushStyle == "FDiagPattern")
+            return Qt::FDiagPattern;
+        else if(thisBrushStyle == "DiagCrossPattern")
+            return Qt::DiagCrossPattern;
+        else if(thisBrushStyle == "LinearGradientPattern")
+            return Qt::LinearGradientPattern;
+        else if(thisBrushStyle == "RadialGradientPattern")
+            return Qt::RadialGradientPattern;
+        else if(thisBrushStyle == "ConicalGradientPattern")
+            return Qt::ConicalGradientPattern;
         else if(thisBrushStyle == "SolidPattern")
             return Qt::SolidPattern;
         else if(thisBrushStyle == "NoBrush")
-                return Qt::NoBrush;
+            return Qt::NoBrush;
     }
+
     Qt::AlignmentFlag getAlignment(string myAlignment)
     {
         if(myAlignment == "AlignCenter")
