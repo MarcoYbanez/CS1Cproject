@@ -3,21 +3,22 @@
 #include "data.h"
 #include <stdlib.h>
 
-addRemove::addRemove(QWidget *parent) :
+addRemove::addRemove(vectorType<Shape*>& v, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::addRemove)
 {
+    shapeVector = v;
     ui->setupUi(this);
 
     ui->stackedWidget->setCurrentWidget(ui->blank);
 
     shapeInput = nullptr;
 
-    for(int i = 0; i < data::shapeVector.getSize(); i++)
+    for(int i = 0; i < shapeVector.getSize(); i++)
     {
-        QString temp(data::shapeVector[i]->getShapeId());
+        QString temp(std::to_string(shapeVector[i]->getShapeId()).c_str());
         ui->selectShape->addItem(temp);
-        QString temp2(data::shapeVector[i]->getTextString().c_str());
+        QString temp2(shapeVector[i]->getTextString().c_str());
         ui->shapeName->addItem(temp2);
     }
 }
@@ -50,13 +51,13 @@ void addRemove::on_buttonBox_accepted()
     {
         // Find and Delete Shape From Vector
         QString ID = ui->selectShape->currentItem()->text();
-        for(Shape** i = data::shapeVector.begin(); i != data::shapeVector.end(); i++)
+        for(Shape** i = shapeVector.begin(); i != shapeVector.end(); i++)
         {
             QString temp((**i).getShapeId());
             if(temp == ID)
                 {
                     delete *i;
-                    data::shapeVector.erase(i);
+                    shapeVector.erase(i);
                     break;
                 }
         }
@@ -118,7 +119,14 @@ void addRemove::on_semiMinorAxis_editingFinished()
     double b = ui->semiMinorAxis->text().toDouble(&pass2);
 
     if(pass && pass2)
+    {
        shapeInput = new Ellipse(a, b);
+       shapeInput->setShapeType("Ellipse");
+       if(shapeVector.getSize() > 0)
+            shapeInput->setID(shapeVector[shapeVector.getSize() - 1]->getShapeId() + 1);
+       else
+            shapeInput->setID(1);
+    }
 }
 
 void addRemove::on_lineY2_editingFinished()
@@ -130,7 +138,14 @@ void addRemove::on_lineY2_editingFinished()
     double y2 = ui->lineY2->text().toDouble(&pass[3]);
 
     if(pass[0] && pass[1] && pass[2] && pass[3])
+    {
        shapeInput = new Line(x1, y1, x2, y2);
+       shapeInput->setShapeType("Line");
+       if(shapeVector.getSize() > 0)
+            shapeInput->setID(shapeVector[shapeVector.getSize() - 1]->getShapeId() + 1);
+       else
+            shapeInput->setID(1);
+    }
 }
 
 void addRemove::on_textWidth_editingFinished()
@@ -143,9 +158,16 @@ void addRemove::on_textWidth_editingFinished()
     double y = ui->textY->text().toDouble(&pass[3]);
 
     if(pass[0] && pass[1] && pass[2] && pass[3])
+    {
        shapeInput = new Text();
         shapeInput->setCord(x, y, length, width);
         shapeInput->setText(str);
+        shapeInput->setShapeType("Text");
+        if(shapeVector.getSize() > 0)
+             shapeInput->setID(shapeVector[shapeVector.getSize() - 1]->getShapeId() + 1);
+        else
+             shapeInput->setID(1);
+    }
 }
 
 void addRemove::on_rectWidth_editingFinished()
@@ -158,23 +180,30 @@ void addRemove::on_rectWidth_editingFinished()
     {
        shapeInput = new Rectangle(length, width);
        shapeInput->setShapeType("Rectangle");
-       shapeInput->setID(data::shapeVector[data::shapeVector.getSize() - 1]->getShapeId() + 1);
+       if(shapeVector.getSize() > 0)
+            shapeInput->setID(shapeVector[shapeVector.getSize() - 1]->getShapeId() + 1);
+       else
+            shapeInput->setID(1);
     }
 }
 
 void addRemove::on_confirmAdd_accepted()
 {
     // Add to Remove's list
-    QString temp(shapeInput->getShapeId());
-    ui->selectShape->addItem(temp);
-    QString temp2(shapeInput->getTextString().c_str());
-    ui->shapeName->addItem(temp2);
+    if(shapeInput != nullptr)
+    {
+        QString temp(std::to_string(shapeInput->getShapeId()).c_str());
+        ui->selectShape->addItem(temp);
+        QString temp2(shapeInput->getTextString().c_str());
+        ui->shapeName->addItem(temp2);
 
-    // Add to Vector
-    data::shapeVector.push_back(shapeInput);
+        // Add to Vector
+        shapeVector.push_back(shapeInput);
 
-    // Clear All Input
-    clearAddInput();
+        // Clear All Input
+        clearAddInput();
+        shapeInput = nullptr;
+    }
 }
 
 void addRemove::on_confirmAdd_rejected()
@@ -197,6 +226,9 @@ void addRemove::clearAddInput()
     ui->lineY2->clear();
     ui->textString->clear();
     ui->textLength->clear();
+    ui->textWidth->clear();
+    ui->textX->clear();
+    ui->textY->clear();
     ui->semiMajorAxis->clear();
     ui->semiMinorAxis->clear();
 }

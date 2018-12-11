@@ -19,7 +19,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(vectorType<Shape*>&, vectorType<Shape*>&, QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -35,12 +35,14 @@ private slots:
 
     void on_move_btn_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
      Shape * currentShape;
-     vectorType<Shape*> shapeV;
-     drawWt *d ;
-     void parse();
+     vectorType<Shape*> shapeVector;
+     vectorType<Shape*> drawVector;
+     drawWt *d;
 };
 
 #endif // MAINWINDOW_H

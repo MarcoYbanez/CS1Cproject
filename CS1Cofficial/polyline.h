@@ -39,6 +39,12 @@ public:
     void draw(QPainter &p)
     {
         //to be implemented
+        QVector<QPoint> polyPoints;
+        polyPoints << QPoint( x1, y1 ) << QPoint(x2,y2 ) << QPoint( x3,y3 ) << QPoint( x4,y4 );
+
+        p.setPen(getPen());
+        p.setBrush(getBrush());
+        p.drawPolyline(polyPoints);
     
     }
 
@@ -57,11 +63,11 @@ public:
         return 0;
     }
 
-    QPen getPen()
+  /*  QPen getPen()
     {
         return pLinePen;
     }
-
+*/
     QPoint* getPoints()
     {
         static QPoint points[4] = {

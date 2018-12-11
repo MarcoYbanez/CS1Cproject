@@ -21,13 +21,18 @@ private:
     int y4;
     double p;
     double a;
-    QPen pGonPen;
-    QBrush pGonBrush;
+    //QPen pGonPen;
+    //QBrush pGonBrush;
 
 public:
     void draw(QPainter& p)
     {
-        //to be implemented
+        QVector<QPoint> polyPoints;
+        polyPoints << QPoint( x1, y1 ) << QPoint(x2,y2 ) << QPoint( x3,y3 ) << QPoint( x4,y4 );
+
+        p.setPen(getPen());
+        p.setBrush(getBrush());
+        p.drawPolygon(polyPoints);
     }
 
     void setCord(int a1,int b1,int a2,int b2, int a3,int b3,int a4,int b4){
@@ -62,7 +67,7 @@ public:
         a= 0.5*((x1*y2 - x2*y1) + (x2*y3 - x3*y2) + (x3*y4 - x4*y3) + (x4*y1 - x1*y4));
         return a;
     }
-
+/*
     QPen getPen()
     {
         return pGonPen;
@@ -72,7 +77,7 @@ public:
     {
         return pGonBrush;
     }
-
+*/
     QPoint* getPoints()
     {
         static   QPoint points[4] = {
