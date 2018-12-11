@@ -50,21 +50,18 @@ void MainWindow::on_draw_btn_clicked()
 {
 
     int selectedShape = ui->availableShapesList->currentRow();  //returns int for the value that user selects
-
-
-
     qDebug() << selectedShape;
-
-
-    //Erase after complete testing                                                             //once button is clicked... int passes to draw
-    //Line * l = new Line;
-   // Rectangle *l = new Rectangle;
-    //============
-    //pass shape pointer to setShape to call the draw function of the shape.
-
     ui->canvas->setShape(data::shapeVector[selectedShape]);
 
+    data::drawVector.push_back(data::shapeVector[selectedShape]);
+
+
     ui->canvas->update();
+
+            QString temp(data::drawVector[data::drawVector.getSize() -1]->getTextString().c_str());
+            ui->currentShapes->addItem(temp);
+
+
 }
 
 void MainWindow::on_login_btn_clicked()
