@@ -18,6 +18,8 @@ private:
 public:
     Square() : Shape()
     {
+        int x = 0;
+        int y = 0;
         l = 0;
     }
 
@@ -38,9 +40,10 @@ public:
 
     }
 
-    void move()
+    void move(int x, int y)
     {
-
+        this->x = x;
+        this->y = y;
     }
 
     double getPerimeter()

@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 
 void parse(vectorType<Shape*>& shapeVector)
     {
-        string file = "/home/cs1c/Documents/CS1Cproject/CS1Cofficial/shapes.txt";
+        string file = "/Users/imaad/Documents/CS1Cproject2/CS1Cproject/CS1Cofficial/shapes.txt";
         string Data= "";
         string shapeType = "";
         int num = 0;

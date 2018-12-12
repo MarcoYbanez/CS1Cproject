@@ -1,7 +1,7 @@
 #include "idlist.h"
+#include "ui_idlist.h"
 #include "shape.h"
 #include "vector.h"
-#include "data.h"
 #include "circle.h"
 #include "ellipse.h"
 #include "line.h"
@@ -10,116 +10,76 @@
 #include "rectangle.h"
 #include "square.h"
 #include "text.h"
-#include "ui_idlist.h"
+#include <math.h>
+#include <iterator>
+#include <stdlib.h>
 
-idList::idList(QWidget *parent) :
+template <typename T>
+struct Cmp_by_id {
+   bool operator()(const T s1, const T s2) const
+   { return s1->getShapeId() > s2->getShapeId();}
+};
+
+
+idList::idList(vectorType<Shape*>& v, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::idList)
 {
     ui->setupUi(this);
 
-   ui->listWidget->addItem("1");
-   ui->listWidget->addItem("Line");
-   ui->listWidget->addItem("20, 90, 100, 20");
-   ui->listWidget->addItem("blue");
-   ui->listWidget->addItem("2");
-   ui->listWidget->addItem("DashDotLine");
-   ui->listWidget->addItem("FlatCap");
-   ui->listWidget->addItem("MiterJoin");
+    shapeVector = v;
 
-   ui->listWidget->addItem(" ");
-   ui->listWidget->addItem("2");
-   ui->listWidget->addItem("Polyline");
-   ui->listWidget->addItem("460,90,470,20,530,40,540,80");
-   ui->listWidget->addItem("green");
-   ui->listWidget->addItem("6");
-   ui->listWidget->addItem("SolidLine");
-   ui->listWidget->addItem("FlatCap");
-   ui->listWidget->addItem("MiterJoin");
 
-   ui->listWidget->addItem(" ");
-   ui->listWidget->addItem("3");
-   ui->listWidget->addItem("Polygon");
-   ui->listWidget->addItem("900, 90, 910, 20, 970, 40, 980, 80");
-   ui->listWidget->addItem("cyan");
-   ui->listWidget->addItem("6");
-   ui->listWidget->addItem("DashDotDotLine");
-   ui->listWidget->addItem("FlatCap");
-   ui->listWidget->addItem("MiterJoin");
-   ui->listWidget->addItem("yellow");
-   ui->listWidget->addItem("SolidPattern");
+    int ids[8];
+    string type[8];
+    double areas[8];
+    double perimeters[8];
 
+    QString idsStr[8];
+    QString typeStr[8];
+    QString areasStr[8];
+    QString perimetersStr[8];
+
+
+
+
+   selection_sort(shapeVector.begin(), shapeVector.end(), Cmp_by_id<Shape*>());
+
+   for (int i = 0; i < shapeVector.getSize(); i++)
+   {
+           perimeters[i] = shapeVector[i]->getPerimeter();
+           type[i] = shapeVector[i]->getTextString();
+           ids[i] = shapeVector[i]->getShapeId();
+           areas[i] = shapeVector[i]->getArea();
+   }
+
+
+
+    //converting to qstring
+    for (int i = 0; i < 8; i++)
+    {
+       areasStr[i] = QString::number(areas[i]);
+       typeStr[i] = QString::fromStdString(type[i]);
+       idsStr[i] = QString::number(ids[i]);
+       perimetersStr[i] = QString::number(perimeters[i]);
+
+    }
+
+    for (int i = 0; i < 8; i++)
+    {
+    ui->listWidget->addItem(idsStr[i]);
+    ui->listWidget->addItem(typeStr[i]);
+    ui->listWidget->addItem(perimetersStr[i]);
+    ui->listWidget->addItem(areasStr[i]);
     ui->listWidget->addItem(" ");
-    ui->listWidget->addItem("4");
-    ui->listWidget->addItem("Rectangle");
-    ui->listWidget->addItem("20, 200, 170, 100");
-    ui->listWidget->addItem("blue");
-    ui->listWidget->addItem("0");
-    ui->listWidget->addItem("DashLine");
-    ui->listWidget->addItem("RoundCap");
-    ui->listWidget->addItem("RoundJoin");
-    ui->listWidget->addItem("red");
-    ui->listWidget->addItem("VerPattern");
-
-
-    ui->listWidget->addItem(" ");
-    ui->listWidget->addItem("5");
-    ui->listWidget->addItem("Sqaure");
-    ui->listWidget->addItem("250, 150, 200");
-    ui->listWidget->addItem("red");
-    ui->listWidget->addItem("0");
-    ui->listWidget->addItem("SolidLine");
-    ui->listWidget->addItem("RoundCap");
-    ui->listWidget->addItem("RoundJoin");
-    ui->listWidget->addItem("blue");
-    ui->listWidget->addItem("HorPattern");
-
-
-
-    ui->listWidget->addItem(" ");
-    ui->listWidget->addItem("6");
-    ui->listWidget->addItem("Ellipse");
-    ui->listWidget->addItem("520, 200, 170, 100");
-    ui->listWidget->addItem("black");
-    ui->listWidget->addItem("12");
-    ui->listWidget->addItem("SolidLine");
-    ui->listWidget->addItem("FlatCap");
-    ui->listWidget->addItem("MiterJoin");
-    ui->listWidget->addItem("white");
-    ui->listWidget->addItem("NoBrush");
-
-
-
-    ui->listWidget->addItem(" ");
-    ui->listWidget->addItem("7");
-    ui->listWidget->addItem("Circle");
-    ui->listWidget->addItem("black");
-    ui->listWidget->addItem("12");
-    ui->listWidget->addItem("SolidLine");
-    ui->listWidget->addItem("FlatCap");
-    ui->listWidget->addItem("MiterJoin");
-    ui->listWidget->addItem("magenta");
-    ui->listWidget->addItem("SolidPattern");
-
-
-
-
-    ui->listWidget->addItem(" ");
-    ui->listWidget->addItem("8");
-    ui->listWidget->addItem("Text");
-    ui->listWidget->addItem("250, 425, 500, 50");
-    ui->listWidget->addItem("Class Project 2 - 2D Graphics Modeler");
-    ui->listWidget->addItem("blue");
-    ui->listWidget->addItem("AlignCenter");
-    ui->listWidget->addItem("10");
-    ui->listWidget->addItem("Comic Sans MS");
-    ui->listWidget->addItem("FlatCap");
-    ui->listWidget->addItem("Normal");
+    }
 
 
 }
+
 
 idList::~idList()
 {
     delete ui;
 }
+

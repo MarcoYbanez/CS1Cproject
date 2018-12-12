@@ -51,24 +51,21 @@ public:
         p.drawEllipse(QPointF(x,y),ax, ax );
     }
 
-    void move()
+    void move(int x, int y)
     {
-
+        this->x = x;
+        this->y = y;
     }
 
     double getPerimeter()
     {
-      double h=0;
-      double base1 = (ax-bx), base2 = (ax+bx), power = 2;
-      h = pow(base1, power)/pow(base2, power);
-      double square = sqrt(4-3*h);
-      p = PI*base2*(1+3*h/10+square);
+      p = 2 * PI * ax;
       return p;
     }
 
     double getArea()
     {
-      a = PI * ax * bx;
+      a = PI * ax*ax;
     return a;
     }
 

@@ -1,7 +1,6 @@
 #include "arealist.h"
 #include "shape.h"
 #include "vector.h"
-#include "data.h"
 #include "circle.h"
 #include "ellipse.h"
 #include "line.h"
@@ -12,13 +11,66 @@
 #include "text.h"
 #include "ui_arealist.h"
 
-areaList::areaList(QWidget *parent) :
+template <typename T>
+struct Cmp_by_area {
+   bool operator()(const T s1, const T s2) const
+   { return s1->getArea() > s2->getArea(); }
+};
+
+
+areaList::areaList(vectorType<Shape*>& v, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::areaList)
 {
     ui->setupUi(this);
 
 
+    shapeVector = v;
+
+    int idsA[8];
+    string typeA[8];
+    double areasA[8];
+    double perimetersA[8];
+
+    QString idsAStr[8];
+    QString typeAStr[8];
+    QString areasAStr[8];
+    QString perimetersAStr[8];
+    QStringList ids;
+    QString str = "Shape";
+
+    selection_sort(shapeVector.begin(), shapeVector.end(), Cmp_by_area<Shape*>());
+
+    for (int i = 0; i < shapeVector.getSize(); i++)
+    {
+            areasA[i] = shapeVector[i]->getArea();
+            typeA[i] = shapeVector[i]->getTextString();
+            idsA[i] = shapeVector[i]->getShapeId();
+            perimetersA[i] = shapeVector[i]->getPerimeter();
+    }
+
+    //converting to qstring
+    for (int i = 0; i < 8; i++)
+    {
+       idsAStr[i] = QString::number(idsA[i]);
+       typeAStr[i] = QString::fromStdString(typeA[i]);
+       areasAStr[i] = QString::number(areasA[i]);
+       perimetersAStr[i] = QString::number(perimetersA[i]);
+
+    }
+
+    for (int i = 0; i < 8; i++)
+    {
+    ui->listWidget->addItem(idsAStr[i]);
+    ui->listWidget->addItem(typeAStr[i]);
+    ui->listWidget->addItem(areasAStr[i]);
+    ui->listWidget->addItem(perimetersAStr[i]);
+    ui->listWidget->addItem(" ");
+    }
+
+
+
+    /*
     double p;
     double a;
 
@@ -70,6 +122,7 @@ areaList::areaList(QWidget *parent) :
     ui->listWidget->addItem(QString::number(p));
     a= 0.5*((900*20 - 910*90) + (910*40 - 970*20) + (970*80 - 980*40) + (980*90 - 900*80));
     ui->listWidget->addItem(QString::number(a));
+    */
 }
 
 areaList::~areaList()
