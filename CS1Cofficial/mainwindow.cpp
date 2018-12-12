@@ -9,7 +9,6 @@
 #include "addremove.h"
 #include "square.h"
 #include "circle.h"
-#include "data.h"
 #include <fstream>
 
 #include <QtWidgets>
@@ -31,7 +30,7 @@ MainWindow::MainWindow(vectorType<Shape*>& v, vectorType<Shape*>& v2, QWidget *p
 
     }
 
-    Ellipse *e = new Ellipse;
+    Ellipse* e = new Ellipse;
     ui->canvas->setShape(e);
 
 }
@@ -54,12 +53,12 @@ void MainWindow::on_draw_btn_clicked()
     qDebug() << selectedShape;
     ui->canvas->setShape(shapeVector[selectedShape]);
 
-    data::drawVector.push_back(shapeVector[selectedShape]);
+    drawVector.push_back(shapeVector[selectedShape]);
 
 
     ui->canvas->update();
 
-            QString temp(data::drawVector[data::drawVector.getSize() -1]->getTextString().c_str());
+            QString temp(drawVector[drawVector.getSize() -1]->getTextString().c_str());
             ui->currentShapes->addItem(temp);
 
 
@@ -159,6 +158,9 @@ void MainWindow::loadAvailableShapes()
 		ui->availableShapesList->addItem(temp);
 		
 		if(shapeVector[i] == nullptr)
-			shapeVector.erase(i);
+        {
+            Shape** toErase = &(shapeVector[i]);
+            shapeVector.erase(toErase);
+        }
 	}
 }
