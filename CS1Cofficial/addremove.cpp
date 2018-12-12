@@ -57,6 +57,7 @@ void addRemove::on_buttonBox_accepted()
             if(temp == ID)
                 {
                     delete *i;
+					*i = nullptr;
                     shapeVector.erase(i);
                     break;
                 }
