@@ -25,6 +25,7 @@ void logIn::on_pushButton_clicked()
 
            access = true;
            this->close();
+
            }
            else
               {
@@ -32,3 +33,21 @@ void logIn::on_pushButton_clicked()
            access = false;
            }
 }
+
+bool logIn::getaccess()
+{
+    bool x;
+    x = access;
+    return x;
+}
+
+void logIn::changeaccess(bool x)
+{
+    access = x;
+}
+
+
+
+
+
+

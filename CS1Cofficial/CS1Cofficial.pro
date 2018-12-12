@@ -31,7 +31,11 @@ SOURCES += \
     contact.cpp \
     login.cpp \
     drawwt.cpp \
-    addremove.cpp
+    addremove.cpp \
+    arealist.cpp \
+    idlist.cpp \
+    perilist.cpp \
+    move.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -50,13 +54,21 @@ HEADERS += \
     circle.h \
     text.h \
     data.h \
-    addremove.h
+    addremove.h \
+    arealist.h \
+    idlist.h \
+    perilist.h \
+    move.h
 
 FORMS += \
         mainwindow.ui \
     contact.ui \
     login.ui \
-    addremove.ui
+    addremove.ui \
+    areaList.ui \
+    idlist.ui \
+    perilist.ui \
+    move.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -10,9 +10,12 @@
 #include "square.h"
 #include "circle.h"
 #include <fstream>
-
+#include "perilist.h"
+#include "arealist.h"
+#include "idlist.h"
 #include <QtWidgets>
 #include "drawwt.h"
+#include "move.h"
 
 MainWindow::MainWindow(vectorType<Shape*>& v, vectorType<Shape*>& v2, QWidget *parent) :
     QMainWindow(parent),
@@ -30,7 +33,7 @@ MainWindow::MainWindow(vectorType<Shape*>& v, vectorType<Shape*>& v2, QWidget *p
 
     }
 
-    Ellipse* e = new Ellipse;
+    Ellipse *e = new Ellipse;
     ui->canvas->setShape(e);
 
 }
@@ -68,62 +71,560 @@ void MainWindow::on_login_btn_clicked()
 {
     logIn *l = new logIn;
     l->show();
-	access = l->getaccess();
+     bool x;
+     x = l->getaccess();
+    if(x = true)
+    {
+        ui->showRights_2->setText("Admin");
+    }else{
+        ui->showRights_2->setText("Guest");
+    }
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+     bool x = false;
+     logIn *l = new logIn;
+     l->changeaccess(x);
+     QMessageBox::information(this, "Log Out", "Logged Off");
+     ui->showRights_2->setText("Guest");
 }
 
 void MainWindow::on_pushButton_4_clicked()
 {
-	if(access)
-	{
-		addRemove* add = new addRemove(shapeVector);
-		add->show();
-		if(!add->isVisible())
-			loadAvailableShapes();
-	}
-}
-
-void MainWindow::on_pushButton_5_clicked()
-{
-    ofstream Outfile;
-    Outfile.open(PUT FILE PATH STRING HERE);
-    Outfile << endl;
-    for (int i = 0; i < shapeVector.getSize(); ++i) {
-        Outfile << "-Shape Id: " << shapeVector[i]->getShapeId() << endl;
-        Outfile << "ShapeType: " << shapeVector[i]->getTextString() << endl;
-        if (shapeVector[i]->getTextString() == "Line")
-            Outfile << "ShapeDimensions: " << shapeVector[i]->getX() << ", " << shapeVector[i]->getY() << ", " << shapeVector[i]->getX2() << ", " << shapeVector[i]->getY2() << endl;
-        else if (shapeVector[i]->getTextString() == "Polyline")
-            Outfile << "ShapeDimensions: " <<shapeVector[i]->getX() << ", " << shapeVector[i]->getY() << ", " << shapeVector[i]->getX2() << ", " << shapeVector[i]->getY2() << ", " << shapeVector[i]->getX3() << ", " << shapeVector[i]->getY3() << ", " << shapeVector[i]->getX4() << ", " << shapeVector[i]->getY4() << endl;
-        else if (shapeVector[i]->getTextString() == "Polygon")
-            Outfile << "ShapeDimensions: " << shapeVector[i]->getX() << ", " << shapeVector[i]->getY() << ", " << shapeVector[i]->getX2() << ", " << shapeVector[i]->getY2() << ", " << shapeVector[i]->getX3() << ", " << shapeVector[i]->getY3() << ", " << shapeVector[i]->getX4() << ", " << shapeVector[i]->getY4() << endl;
-        else if (shapeVector[i]->getTextString() == "Rectangle")
-            Outfile << "ShapeDimensions: " << shapeVector[i]->getX() << ", " << shapeVector[i]->getY() << ", " << shapeVector[i]->getL() << ", " << shapeVector[i]->getW() << endl;
-        else if (shapeVector[i]->getTextString() == "Square")
-            Outfile << "ShapeDimensions: " << shapeVector[i]->getX() << ", " << shapeVector[i]->getY() << ", " << shapeVector[i]->getL() << endl;
-        else if (shapeVector[i]->getTextString() == "Ellipse")
-            Outfile << "ShapeDimensions: " << shapeVector[i]->getX() << ", " << shapeVector[i]->getY() << ", " << shapeVector[i]->getAx() << ", " << shapeVector[i]->getBx() << endl;
-        else if (shapeVector[i]->getTextString() == "Circle")
-            Outfile << "ShapeDimensions: " << shapeVector[i]->getX() << ", " << shapeVector[i]->getY() << ", " << shapeVector[i]->getAx() << ", " << shapeVector[i]->getBx() << endl;
-        else if (shapeVector[i]->getTextString() == "Text")
-            Outfile << "ShapeDimensions: " << shapeVector[i]->getX() << ", " << shapeVector[i]->getY() << ", " << shapeVector[i]->getL() << ", " << shapeVector[i]->getW() << endl;
-        Outfile << "PenColor: " << shapeVector[i]->getQPenColor() << endl;
-        Outfile << "PenWidth: " << shapeVector[i]->getQPenWidth() << endl;
-        Outfile << "PenStyle: " << shapeVector[i]->getQPenStyle() << endl;
-        Outfile << "PenCapStyle: " << shapeVector[i]->getQPenCapStyle() << endl;
-        Outfile << "PenJoinStyle: " << shapeVector[i]->getQPenJoinStyle() << endl;
-        Outfile << endl;
+    addRemove* add = new addRemove(shapeVector);
+    for(int i = 0; i < ui->availableShapesList->count(); i++)
+    {
+        delete ui->availableShapesList->item(i);
     }
-    Outfile.close();
+    ui->availableShapesList->clear();
+    add->show();
 
-    QMessageBox savemsg;
-    savemsg.setText("Your shape data has been saved.");
-    savemsg.exec();
+    for(int i = 0; i < shapeVector.getSize(); i++){
+            QString temp(shapeVector[i]->getTextString().c_str());
+            ui->availableShapesList->addItem(temp);
+
+    }
 }
 
 void MainWindow::on_move_btn_clicked()
 {
+    int selectedShape = ui->availableShapesList->currentRow();  //returns int for the value that user selects
 
+    Move* mover = new Move(shapeVector[selectedShape]);
+    mover->show();
+
+    //(shapeVector[selectedShape])->move(moveX, moveY);
+    //(shapeVector[selectedShape])->move(100, 50);
+
+    //ui->canvas->setShape(data::shapeVector[selectedShape]);
+
+    //ui->canvas->update();
 }
+
+/*void MainWindow::parse(vector<Shape*>& v)
+    {
+        string file = "/home/cs1c/Documents/CS1Cproject/CS1Cofficial/shapes.txt";
+        string Data= "";
+        string shapeType = "";
+        int num = 0;
+        int d = 0;
+        string o = "";
+
+        std::ifstream shapesFile;
+        //change to current shape.
+        shapesFile.open(file);
+        if(shapesFile.fail())
+            qDebug() << "fail";
+
+        Shape* elem;
+
+        while(!shapesFile.eof())
+        {
+
+            //look for new shape
+          getline(shapesFile,Data, '-');
+          //skip to ID
+          getline(shapesFile, Data, ' ');
+
+          //Get ID of the shape
+          getline(shapesFile, o , '\r');
+
+          //store shape
+          d = stoi(o);
+
+          //get to shape type
+          getline(shapesFile, Data, ' ');
+          //Get shape type
+          getline(shapesFile, Data, '\r');
+          //store shapeType
+
+          shapeType = Data;
+
+
+
+          if(shapeType == "Line")
+          {
+
+              int x1 = 0;
+              int x2 = 0;
+              int y1 = 0;
+              int y2 = 0;
+              elem = new Line;
+              // set id
+              elem->setID(d);
+                elem->setShapeType(shapeType);
+
+              //set dimmentsion
+               getline(shapesFile, Data, ' ');
+
+               getline(shapesFile, Data, ',');
+               x1 = stoi(Data);
+
+               getline(shapesFile, Data, ',');
+               y1 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x2 = stoi(Data);
+               getline(shapesFile, Data, '\r');
+               y2 = stoi(Data);
+
+               elem->setCord(x1,y1,x2,y2);
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data, '\r');
+               elem->setColor(Data);
+               //get and set pen width
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               d = stoi(Data);
+               elem->setWidth(d);
+               //get and set penstyle
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setPenStyle(Data);
+               //get and set pen cap style
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setCapStyle(Data);
+               //get and set pen join style
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setJoinStyle(Data);
+
+               data::shapeVector.push_back(elem);
+}
+          else if(shapeType == "Polygon")
+          {
+              int x1 = 0;
+              int x2 = 0;
+              int x3 = 0;
+              int x4 = 0;
+              int y1 = 0;
+              int y2 = 0;
+              int y3 = 0;
+              int y4 = 0;
+              Polygon* elem = new Polygon;
+              // set id
+              elem->setID(d);
+                elem->setShapeType(shapeType);
+
+              //set dimmension
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data, ',');
+               x1 = stoi(Data);
+
+               getline(shapesFile, Data, ',');
+               y1 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x2 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               y2 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x3 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               y3 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x4 = stoi(Data);
+               getline(shapesFile, Data, '\r');
+               y4 = stoi(Data);
+
+               elem->setCord(x1,y1,x2,y2,x3,y3,x4,y4);
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data, '\r');
+               elem->setColor(Data);
+               //get and set pen width
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               d = stoi(Data);
+               elem->setWidth(d);
+               //get and set penstyle
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setPenStyle(Data);
+               //get and set pen cap style
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setCapStyle(Data);
+               //get and set pen join style
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setJoinStyle(Data);
+               //get and set burshColor;
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+
+               elem->setBrushColor(Data);
+               //get and set brush style;
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+
+               elem->setBrushStyle(Data);
+
+               data::shapeVector.push_back(elem);
+              qDebug() << QString::fromStdString(Data);
+          }
+          else if (shapeType == "Polyline")
+          {
+
+              int x1 = 0;
+              int x2 = 0;
+              int x3 = 0;
+              int x4 = 0;
+              int y1 = 0;
+              int y2 = 0;
+              int y3 = 0;
+              int y4 = 0;
+              Polyline* elem = new Polyline;
+              // set id
+              elem->setID(d);
+                elem->setShapeType(shapeType);
+
+              //set dimmension
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data, ',');
+               x1 = stoi(Data);
+
+               getline(shapesFile, Data, ',');
+               y1 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x2 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               y2 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x3 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               y3 = stoi(Data);
+               getline(shapesFile, Data, ',');
+               x4 = stoi(Data);
+               getline(shapesFile, Data, '\r');
+               y4 = stoi(Data);
+
+               elem->setCord(x1,y1,x2,y2,x3,y3,x4,y4);
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data, '\r');
+               elem->setColor(Data);
+               //get and set pen width
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               d = stoi(Data);
+               elem->setWidth(d);
+               //get and set penstyle
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setPenStyle(Data);
+               //get and set pen cap style
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setCapStyle(Data);
+               //get and set pen join style
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setJoinStyle(Data);
+
+
+               data::shapeVector.push_back(elem);
+              qDebug() << QString::fromStdString(Data);
+              qDebug() << QString::fromStdString(Data);
+          }
+          else if(shapeType == "Ellipse")
+          {
+              {
+                        int x = 0;
+                        int y = 0;
+                        int a = 0;
+                        int b = 0;
+                        elem = new Ellipse;
+
+                        elem->setShapeType(shapeType);
+
+                        // set id
+                        elem->setID(d);
+                         //set dimmensions
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data, ',');
+                         x = stoi(Data);
+                         getline(shapesFile, Data, ',');
+                         y = stoi(Data);
+                         getline(shapesFile, Data, ',');
+                         a= stoi(Data);
+                         getline(shapesFile, Data, '\r');
+                         b = stoi(Data);
+
+                         elem->setCord(x,y,a,b);
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data, '\r');
+                         elem->setColor(Data);
+                         //get and set pen width
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data , '\r');
+                         d = stoi(Data);
+                         elem->setWidth(d);
+                         //get and set penstyle
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data , '\r');
+                         elem->setPenStyle(Data);
+                         //get and set pen cap style
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data , '\r');
+                         elem->setCapStyle(Data);
+                         //get and set pen join style
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data , '\r');
+                         elem->setJoinStyle(Data);
+                         //get and set burshColor;
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data , '\r');
+
+                         elem->setBrushColor(Data);
+                         //get and set brush style;
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data , '\r');
+
+                         elem->setBrushStyle(Data);
+
+                         data::shapeVector.push_back(elem);
+              }
+          }
+          else if(shapeType == "Circle")
+          {
+
+                        int x = 0;
+                        int y = 0;
+                        int a = 0;
+                        int b = 0;
+                        elem = new Circle;
+
+                        elem->setShapeType(shapeType);
+
+                        // set id
+                        elem->setID(d);
+                         //set dimmensions
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data, ',');
+                         x = stoi(Data);
+                         getline(shapesFile, Data, ',');
+                         y = stoi(Data);
+                         getline(shapesFile, Data, '\r');
+                         a = stoi(Data);
+
+                         elem->setCord(x,y,a,b);
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data, '\r');
+
+                         elem->setColor(Data);
+                         //get and set pen width
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data , '\r');
+                         d = stoi(Data);
+                         elem->setWidth(d);
+                         //get and set penstyle
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data , '\r');
+                         elem->setPenStyle(Data);
+                         //get and set pen cap style
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data , '\r');
+                         elem->setCapStyle(Data);
+                         //get and set pen join style
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data , '\r');
+                         elem->setJoinStyle(Data);
+                         //get and set burshColor;
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data , '\r');
+                         elem->setBrushColor(Data);
+                         //get and set brush style;
+                         getline(shapesFile, Data, ' ');
+                         getline(shapesFile, Data , '\r');
+
+                         elem->setBrushStyle(Data);
+
+                         data::shapeVector.push_back(elem);
+          }
+          else if(shapeType == "Square")
+          {
+                    int x = 0;
+                    int y = 0;
+                    int l = 0;
+                    int w = 0;
+                    elem = new Square;
+
+                    elem->setShapeType(shapeType);
+
+                    // set id
+                    elem->setID(d);
+                     //set dimmensions
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data, ',');
+                     x = stoi(Data);
+                     getline(shapesFile, Data, ',');
+                     y = stoi(Data);
+                     getline(shapesFile, Data, '\r');
+                     l = stoi(Data);
+
+                     elem->setCord(x,y,l,w);
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data, '\r');
+                     elem->setColor(Data);
+                     //get and set pen width
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data , '\r');
+                     d = stoi(Data);
+                     elem->setWidth(d);
+                     //get and set penstyle
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data , '\r');
+                     elem->setPenStyle(Data);
+                     //get and set pen cap style
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data , '\r');
+                     elem->setCapStyle(Data);
+                     //get and set pen join style
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data , '\r');
+                     elem->setJoinStyle(Data);
+                     //get and set burshColor;
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data , '\r');
+                     elem->setBrushColor(Data);
+                     //get and set brush style;
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data , '\r');
+                     elem->setBrushStyle(Data);
+
+                     data::shapeVector.push_back(elem);
+          }
+          else if(shapeType == "Text")
+          {
+                    int x = 0;
+                    int y = 0;
+                    int l = 0;
+                    int w = 0;
+                    elem = new Text;
+
+                    elem->setShapeType(shapeType);
+
+                    // set id
+                    elem->setID(d);
+                     //set dimmensions
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data, ',');
+                     x = stoi(Data);
+                     getline(shapesFile, Data, ',');
+                     y = stoi(Data);
+                     getline(shapesFile, Data, ',');
+                     l = stoi(Data);
+                     getline(shapesFile, Data, '\r');
+                     w = stoi(Data);
+
+                     elem->setCord(x,y,l,w);
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data, '\r');
+                     elem->setText(Data);
+                     //Set penColor
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data, '\r');
+                     elem->setColor(Data);
+                     //Set Allignment
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data, '\r');
+                     elem->setAlignment(Data);
+                     //set text size
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data, '\r');
+                     x = stoi(Data);
+                     elem->setPointSize(x);
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data, '\r');
+                     elem->setFamily(Data);
+                     getline(shapesFile, Data, ' ');
+                     getline(shapesFile, Data, '\r');
+
+
+//qDebug() << QString::fromStdString(Data);
+
+                     data::shapeVector.push_back(elem);
+          }
+    else if(shapeType == "Rectangle")
+    {
+              int x = 0;
+              int y = 0;
+              int l = 0;
+              int w = 0;
+              elem = new Rectangle;
+
+              elem->setShapeType(shapeType);
+
+              // set id
+              elem->setID(d);
+               //set dimmensions
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data, ',');
+               x = stoi(Data);
+               getline(shapesFile, Data, ',');
+               y = stoi(Data);
+               getline(shapesFile, Data, ',');
+               l = stoi(Data);
+               getline(shapesFile, Data, '\r');
+               w = stoi(Data);
+
+               elem->setCord(x,y,l,w);
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data, '\r');
+               elem->setColor(Data);
+               //get and set pen width
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               d = stoi(Data);
+               elem->setWidth(d);
+               //get and set penstyle
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setPenStyle(Data);
+               //get and set pen cap style
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setCapStyle(Data);
+               //get and set pen join style
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setJoinStyle(Data);
+               //get and set burshColor;
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setBrushColor(Data);
+               //get and set brush style;
+               getline(shapesFile, Data, ' ');
+               getline(shapesFile, Data , '\r');
+               elem->setBrushStyle(Data);
+
+                data::shapeVector.push_back(elem);
+            }
+          num++;
+        }//End of while loop
+      //  QString b =Data;
+      //  qDebug() << QString::fromStdString(Data);
+    }*/
+
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -146,21 +647,21 @@ void MainWindow::on_pushButton_clicked()
     }
 }
 
-void MainWindow::loadAvailableShapes()
+
+void MainWindow::on_peri_btn_clicked()
 {
-	for(int i = 0; i < ui->availableShapesList->count(); i++)
-	{
-		delete ui->availableShapesList->item(i);
-	}
-	ui->availableShapesList->clear();
-	for(int i = 0; i < shapeVector.getSize(); i++){
-		QString temp(shapeVector[i]->getTextString().c_str());
-		ui->availableShapesList->addItem(temp);
-		
-		if(shapeVector[i] == nullptr)
-        {
-            Shape** toErase = &(shapeVector[i]);
-            shapeVector.erase(toErase);
-        }
-	}
+    periList* peri = new periList(shapeVector);
+    peri->show();
+}
+
+void MainWindow::on_area_btn_clicked()
+{
+    areaList* area = new areaList(shapeVector);
+    area->show();
+}
+
+void MainWindow::on_id_btn_clicked()
+{
+    idList* id = new idList(shapeVector);
+    id->show();
 }

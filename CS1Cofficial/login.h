@@ -13,6 +13,8 @@ class logIn : public QDialog
 
 public:
     explicit logIn(QWidget *parent = 0);
+    void changeaccess(bool x);
+    bool getaccess();
     ~logIn();
 
 private slots:

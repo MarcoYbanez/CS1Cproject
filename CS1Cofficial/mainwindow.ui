@@ -552,6 +552,27 @@
        </layout>
       </item>
       <item>
+       <widget class="QPushButton" name="id_btn">
+        <property name="text">
+         <string>ID List</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="area_btn">
+        <property name="text">
+         <string>Area List</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="peri_btn">
+        <property name="text">
+         <string>Perimeter List</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -4039,7 +4060,7 @@
      <x>0</x>
      <y>0</y>
      <width>856</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

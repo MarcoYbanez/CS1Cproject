@@ -24,6 +24,7 @@ private:
 public:
     Text(): Shape()
     {
+
     }
 
      ~Text(){}
@@ -49,9 +50,10 @@ public:
         p.drawText(QPoint(x,y),QString::fromStdString(text));
     }
 
-    void move()
+    void move(int x, int y)
     {
-
+        this->x = x;
+        this->y = y;
     }
 
     double getPerimeter()

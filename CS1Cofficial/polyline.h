@@ -48,19 +48,30 @@ public:
     
     }
 
-    void move()
+    void move(int x, int y)
     {
+        int xDist = (x - x1);
+        int yDist = (y - y1);
 
+        this->x1 = x;
+        this->y1 = y;
+
+        x2 += xDist;
+        y2 += yDist;
+        x3 += xDist;
+        y3 += yDist;
+        x4 += xDist;
+        y4 += yDist;
     }
 
     double getPerimeter()
     {
-        return 0;
+        return -1;
     }
 
     double getArea()
     {
-        return 0;
+        return -1;
     }
 
   /*  QPen getPen()

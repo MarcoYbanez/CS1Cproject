@@ -8,7 +8,6 @@
 #include <QPoint>
 #include "shape.h"
 #include <QPainter>
-#include "drawwt.h"
 
 
 class Line : public Shape
@@ -57,9 +56,16 @@ void setCord(int a1, int b1, int a2, int b2)
      p.drawLine(x1,y1,x2,y2);
  }
 
- void move()
+ void move(int x, int y)
  {
+     int xDist = (x - x1);
+     int yDist = (y - y1);
 
+     x1 = x;
+     y1 = y;
+
+     x2 += xDist;
+     y2 += yDist;
  }
 
  double getPerimeter()

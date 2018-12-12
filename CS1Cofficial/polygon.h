@@ -50,10 +50,11 @@ public:
 
      }
 
-    void move()
-    {
-
-    }
+     void move(int x, int y)
+     {
+         this->x1 = x;
+         this->y1 = y;
+     }
 
     double getPerimeter()
     {
