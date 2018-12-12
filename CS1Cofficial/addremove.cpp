@@ -1,6 +1,5 @@
 #include "addremove.h"
 #include "ui_addremove.h"
-#include "data.h"
 #include <stdlib.h>
 
 addRemove::addRemove(vectorType<Shape*>& v, QWidget *parent) :
@@ -57,6 +56,7 @@ void addRemove::on_buttonBox_accepted()
             if(temp == ID)
                 {
                     delete *i;
+					*i = nullptr;
                     shapeVector.erase(i);
                     break;
                 }

@@ -21,6 +21,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(vectorType<Shape*>&, vectorType<Shape*>&, QWidget *parent = nullptr);
     ~MainWindow();
+	void loadAvailableShapes();
 
 private slots:
 
@@ -28,10 +29,11 @@ private slots:
 
     void on_draw_btn_clicked();
 
-
     void on_login_btn_clicked();
 
     void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
 
     void on_move_btn_clicked();
 
@@ -43,6 +45,7 @@ private:
      vectorType<Shape*> shapeVector;
      vectorType<Shape*> drawVector;
      drawWt *d;
+	 bool access;
 };
 
 #endif // MAINWINDOW_H
