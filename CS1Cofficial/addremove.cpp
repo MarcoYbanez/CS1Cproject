@@ -1,6 +1,5 @@
 #include "addremove.h"
 #include "ui_addremove.h"
-#include "data.h"
 #include <stdlib.h>
 
 addRemove::addRemove(vectorType<Shape*>& v, QWidget *parent) :
