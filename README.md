@@ -1,5 +1,5 @@
 # CS1Cproject
-2D Render Application
+2D Render Application using QT as our framework
 
 Goals:
 1) Provide “contact us” method with team name and logo
